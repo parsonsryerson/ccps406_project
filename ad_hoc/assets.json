@@ -2,13 +2,27 @@
 	"characters":[
 		{
 			"name":"John Smith",
-			"description":"Just an average looking dude",
+			"state":{
+				"0":{
+					"description":"Just an average looking dude."
+				},
+				"1":{
+					"description":"Same as always."
+				}
+			},
 			"is_playable":true,
 			"starting_loc":"Room 0"
 		},
 		{
 			"name":"Ethan Baddude",
-			"description":"An evil looking dude",
+			"state":{
+				"0":{
+					"description":"An evil looking dude."
+				},
+				"1":{
+					"description":"Somehow uglier than last time you checked."
+				}
+			},
 			"is_playable":false,
 			"starting_loc":"Room 4"
 		}
@@ -16,19 +30,40 @@
 	"items":[
 		{
 			"name":"knife",
-			"description":"A sharp, serrated hunting knife with a worn, yellow handle.",
+			"state":{
+				"0":{
+					"description":"A sharp, serrated hunting knife with a worn, yellow handle."
+				},
+				"1":{
+					"description":"Super sharp."
+				}
+			},
 			"can_be_picked_up":true,
 			"starting_loc":"Room 1"
 		},
 		{
 			"name":"book",
-			"description":"A brown, leather-bound book with some sort of archaic logo wrapping the entire cover.",
+			"state":{
+				"0":{
+					"description":"A brown, leather-bound book with some sort of archaic logo wrapping the entire cover."
+				},
+				"1":{
+					"description":"Upon closer inspection, the logo is some ornate version of a cross."
+				}
+			},
 			"can_be_picked_up":false,
 			"starting_loc":"Room 2"
 		},
 		{
 			"name":"key",
-			"description":"A tiny, silver key with the word 'Ultrasafe' branded into it.",
+			"state":{
+				"0":{
+					"description":"A tiny, silver key with the word 'Ultrasafe' branded into it."
+				},
+				"1":{
+					"description":"An extremely small key."
+				}
+			},
 			"can_be_picked_up":true,
 			"starting_loc":"Room 3"
 		}
@@ -36,27 +71,75 @@
 	"rooms":[
 		{
 			"name":"Room 0",
-			"description":"The room is dimly lit. \nYou can see hallways connecting to the north, east and west. \nA gate to the south is covered by a padlock with the word 'Ultrasafe' on it.",
+			"state":{
+				"0":{
+					"description":"The room is dimly lit. \nYou can see hallways connecting to the north, east and west. \nA gate to the south is covered by a padlock with the word 'Ultrasafe' on it."
+				},
+				"1":{
+					"description":"Hallways north, east and west. The gate to the south is still locked."
+				},
+				"2":{
+					"description":"Hallways north, east and west. The gate leading to the south is now open."
+				}
+			},
 			"connections":["Room 1","Room 2","Room 3","Room 4"]
 		},
 		{
 			"name":"Room 1",
-			"description":"The room contains a single wooden post with knife stuck in it. \nOut the window, you can see the rain has started to pick up in earnest.",
+			"state":{
+				"0":{
+					"description":"The room contains a single wooden post with knife stuck in it. \nOut the window, you can see the rain has started to pick up in earnest."
+				},
+				"1":{
+					"description":"The only thing interesting in this room is the knife in the wooden post."
+				},
+				"2":{
+					"description":"A wooden post previously hosting the knife sits in the center of the room."
+				}
+			},
 			"connections":["Room 0"]
 		},
 		{
 			"name":"Room 2",
-			"description":"The room contains a small chair and desk, with an large book opened partway. \nYou cannot make out the language the book is in. \nThe dim light flickers intermittently.",
+			"state":{
+				"0":{
+					"description":"The room contains a small chair and desk, with an large book opened partway. \nYou cannot make out the language the book is in. \nThe dim light flickers intermittently."
+				},
+				"1":{
+					"description":"There is a chair and desk, although the chair looks too small to fit in. Perhaps meant for a child."
+				}
+			},
 			"connections":["Room 0"]
 		},
 		{
 			"name":"Room 3",
-			"description":"The room contains a single storage locker. At the bottom of the locker, just in reach, is a small silver key.",
+			"state":{
+				"0":{
+					"description":"The room contains a single storage locker. At the bottom of the locker, just in reach, is a small silver key."
+				},
+				"1":{
+					"description":"The key at the bottom of the storage locker glints in the light's reflection."
+				},
+				"2":{
+					"description":"There is nothing in the room except an empty storage locker."
+				}
+			},
+			"description":"",
 			"connections":["Room 0"]
 		},
 		{
 			"name":"Room 4",
-			"description":"The room contains a physically grotesque individual, who gestures threateningly as you gaze at the EXIT sign behind their head.",
+			"state":{
+				"0":{
+					"description":"The room contains a physically grotesque individual, who gestures threateningly as you gaze at the EXIT sign behind their head."
+				},
+				"1":{
+					"description":"The individual postures that they will not let you get by them without a fight."
+				},
+				"2":{
+					"description":"The individual is slumped over in the corner, dead from a knife wound. Blood slowly accumulates in an uneven pool along the tile grout."
+				}
+			},
 			"connections":["Room 0"]
 		}
 	]

@@ -21,9 +21,11 @@ class World():
 
 
 class Room:
-    def __init__(self, name, description):
+    def __init__(self, name, state, state_id):
         self.name = name
-        self.description = description
+        self.state = state
+        self.state_id = state_id
+        self.description = state[state_id]['description']
         self.connections = set({})
         self.characters_in_room = set({})
         self.items_in_room = set({})
@@ -51,9 +53,11 @@ class Room:
 
 
 class Character():
-    def __init__(self, name, description, starting_loc, is_playable):
+    def __init__(self, name, state, state_id, starting_loc, is_playable):
         self.name = name
-        self.description = description
+        self.state = state
+        self.state_id = state_id
+        self.description = state[state_id]['description']
         self.starting_loc = starting_loc
         self.is_playable = is_playable
  
@@ -62,9 +66,11 @@ class Character():
 
 
 class Item():
-    def __init__(self, name, description, starting_loc, can_be_picked_up):
+    def __init__(self, name, state, state_id, starting_loc, can_be_picked_up):
         self.name = name
-        self.description = description
+        self.state = state
+        self.state_id = state_id
+        self.description = state[state_id]['description']
         self.starting_loc = starting_loc
         self.can_be_picked_up = can_be_picked_up
  

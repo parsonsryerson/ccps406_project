@@ -7,12 +7,12 @@ with open('assets.json') as json_file:
 
 # create characters
 if 'characters' in data.keys():
-	characters = [Character(x['name'],x['description'],x['starting_loc'],x['is_playable']) 
+	characters = [Character(x['name'],x['state'],"0",x['starting_loc'],x['is_playable']) 
 				  for x in data['characters']]
 
 # create items
 if 'items' in data.keys():
-	items = [Item(x['name'],x['description'],x['starting_loc'],x['can_be_picked_up']) 
+	items = [Item(x['name'],x['state'],"0",x['starting_loc'],x['can_be_picked_up']) 
 				  for x in data['items']]
 
 # create rooms
@@ -20,7 +20,7 @@ if 'rooms' in data.keys():
 	rooms = []
 	connections = {}
 	for x in data['rooms']:
-		r = Room(x['name'], x['description'])
+		r = Room(x['name'],x['state'],"0")
 		rooms += [r]
 		connections[x['name']] = x['connections']
 
