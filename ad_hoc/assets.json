@@ -11,7 +11,7 @@
 				}
 			},
 			"is_playable":true,
-			"starting_loc":"Room 0"
+			"current_loc":"Room 0"
 		},
 		{
 			"name":"Ethan Baddude",
@@ -24,7 +24,7 @@
 				}
 			},
 			"is_playable":false,
-			"starting_loc":"Room 4"
+			"current_loc":"Room 4"
 		}
 	],
 	"items":[
@@ -39,7 +39,7 @@
 				}
 			},
 			"can_be_picked_up":true,
-			"starting_loc":"Room 1"
+			"current_loc":"Room 1"
 		},
 		{
 			"name":"book",
@@ -52,7 +52,7 @@
 				}
 			},
 			"can_be_picked_up":false,
-			"starting_loc":"Room 2"
+			"current_loc":"Room 2"
 		},
 		{
 			"name":"key",
@@ -65,7 +65,7 @@
 				}
 			},
 			"can_be_picked_up":true,
-			"starting_loc":"Room 3"
+			"current_loc":"Room 3"
 		}
 	],
 	"rooms":[
@@ -82,7 +82,12 @@
 					"description":"Hallways north, east and west. The gate leading to the south is now open."
 				}
 			},
-			"connections":["Room 1","Room 2","Room 3","Room 4"]
+			"connections":{
+				"west":"Room 1",
+				"north":"Room 2",
+				"east":"Room 3",
+				"south":"Room 4"
+			}
 		},
 		{
 			"name":"Room 1",
@@ -97,7 +102,9 @@
 					"description":"A wooden post previously hosting the knife sits in the center of the room."
 				}
 			},
-			"connections":["Room 0"]
+			"connections":{
+				"east":"Room 0"
+			}
 		},
 		{
 			"name":"Room 2",
@@ -109,7 +116,9 @@
 					"description":"There is a chair and desk, although the chair looks too small to fit in. Perhaps meant for a child."
 				}
 			},
-			"connections":["Room 0"]
+			"connections":{
+				"south":"Room 0"
+			}
 		},
 		{
 			"name":"Room 3",
@@ -125,7 +134,9 @@
 				}
 			},
 			"description":"",
-			"connections":["Room 0"]
+			"connections":{
+				"west":"Room 0"
+			}
 		},
 		{
 			"name":"Room 4",
@@ -140,7 +151,9 @@
 					"description":"The individual is slumped over in the corner, dead from a knife wound. Blood slowly accumulates in an uneven pool along the tile grout."
 				}
 			},
-			"connections":["Room 0"]
+			"connections":{
+				"north":"Room 0"
+			}
 		}
 	]
 }
