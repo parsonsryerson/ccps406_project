@@ -16,7 +16,7 @@ class World():
     def add_rooms(self, rooms:dict) -> None:
         self.rooms.update(rooms)
 
-    def get_rooms(self) -> set:
+    def get_rooms(self) -> dict:
         return self.rooms
 
 
