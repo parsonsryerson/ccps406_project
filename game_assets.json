@@ -7,115 +7,28 @@
 			"state":{
 				"init":{
 					"description":{
+						"long": "Chained to the floor. This sucks.",
+						"short": "Still stuck."
+					}
+				},
+				"free":{
+					"description":{
 						"long": "Just an average looking dude.",
 						"short": "Same as always."
 					}
 				},
-				"equipped_knife":{
+				"armed":{
 					"description":{
 						"long":"White-fisted holding the knife, he looks ready to strike at any moment.",
 						"short":"Holding a knife."
-					},
-					"available_actions":{
-						"describe":{
-							"describe":{
-								"actor_next_state":null,
-								"target_next_state":null
-							}
-						}
-						,
-						"move":{
-							"room":{
-								"actor_next_state":null,
-								"target_next_state":null
-							}
-						},
-						"pickup":{
-							"carryable_object":{
-								"actor_next_state":null,
-								"target_next_state":"in_inventory"
-							}
-						},
-						"drop":{
-							"carryable_object":{
-								"actor_next_state":null,
-								"target_next_state":"init"
-							}
-						},
-						// "equip":{
-						// 	"knife":{
-						// 		"actor_next_state":"equipped_knife",
-						// 		"target_next_state":"equipped"
-						// 	}
-						// },
-						"push":{
-							"button":{
-								"actor_next_state":null,
-								"target_next_state":"pushed"
-							}
-						},
-						"pull":{
-							"lever":{
-								"actor_next_state":null,
-								"target_next_state":"pulled"
-							}
-						},
-						"open":{
-							"door":{
-								"actor_next_state":null,
-								"target_next_state":"opened"
-							},
-							"window":{
-								"actor_next_state":null,
-								"target_next_state":"opened"
-							},
-							"container":{
-								"actor_next_state":null,
-								"target_next_state":"opened"
-							}
-						},
-						"close":{
-							"door":{
-								"actor_next_state":null,
-								"target_next_state":"closed"
-							},
-							"window":{
-								"actor_next_state":null,
-								"target_next_state":"closed"
-							},
-							"container":{
-								"actor_next_state":null,
-								"target_next_state":"closed"
-							}
-						},
-						"unlock":{
-							"door":{
-								"actor_next_state":null,
-								"target_next_state":"unlocked"
-							},
-							"window":{
-								"actor_next_state":null,
-								"target_next_state":"unlocked"
-							},
-							"container":{
-								"actor_next_state":null,
-								"target_next_state":"unlocked"
-							}
-						},
-						"attack":{
-							"enemy":{
-								"actor_next_state":null,
-								"target_next_state":"unconscious"
-							}
-						}
 					}
 				}
-			},
+			}
 		},
 		{
 			"name":"Ethan Baddude",
 			"is_playable":false,
-			"starting_room":"Room 12",
+			"starting_room":"Room 11",
 			"state":{
 				"init":{
 					"description":{
@@ -159,8 +72,9 @@
 	"items":[
 		{
 			"name":"knife",
-			"carryable":true,
-			"current_loc":"Room 1",
+			"is_carryable":true,
+			"is_equippable":true,
+			"starting_room":"Room 1",
 			"state":{
 				"init":{
 					"description":{
@@ -179,118 +93,200 @@
 		},
 		{
 			"name":"book",
+			"is_carryable":true,
+			"is_equippable":false,
+			"starting_room":"Room 2",
 			"state":{
-				"0":{
-					"description":"A brown, leather-bound book with some sort of archaic logo wrapping the entire cover."
-				},
-				"1":{
-					"description":"Upon closer inspection, the logo is some ornate version of a cross."
+				"init":{
+					"description":{
+						"long":"A brown, leather-bound book with some sort of archaic logo wrapping the entire cover.",
+						"short":"Upon closer inspection, the logo is some ornate version of a cross."
+					}
 				}
-			},
-			"can_be_picked_up":false,
-			"current_loc":"Room 2"
+			}
 		},
 		{
 			"name":"key",
+			"is_carryable":true,
+			"is_equippable":false,
+			"starting_room":"Room 3",
 			"state":{
-				"0":{
-					"description":"A tiny, silver key with the word 'Ultrasafe' branded into it."
-				},
-				"1":{
-					"description":"An extremely small key."
+				"init":{
+					"description":{
+						"long":"A tiny, silver key with the word 'Ultrasafe' branded into it.",
+						"short":"An extremely small key."
+					}
 				}
-			},
-			"can_be_picked_up":true,
-			"current_loc":"Room 3"
+			}
 		}
 	],
 	"rooms":[
 		{
 			"name":"Room 0",
 			"state":{
-				"0":{
-					"description":"The room is dimly lit. \nYou can see hallways connecting to the north, east and west. \nA gate to the south is covered by a padlock with the word 'Ultrasafe' on it."
-				},
-				"1":{
-					"description":"Hallways north, east and west. The gate to the south is still locked."
-				},
-				"2":{
-					"description":"Hallways north, east and west. The gate leading to the south is now open."
+				"init":{
+						"long":"The room is dimly lit. \nYou can see hallways connecting to the east and south. \nA gate to the south is covered by a padlock with the word 'Ultrasafe' on it.",
+						"short":"small room."
 				}
 			},
 			"connections":{
-				"west":"Room 1",
-				"north":"Room 2",
-				"east":"Room 3",
-				"south":"Room 4"
+				"east":"Room 1",
+				"south":"Room 3"
 			}
 		},
 		{
 			"name":"Room 1",
 			"state":{
-				"0":{
-					"description":"The room contains a single wooden post with knife stuck in it. \nOut the window, you can see the rain has started to pick up in earnest."
-				},
-				"1":{
-					"description":"The only thing interesting in this room is the knife in the wooden post."
-				},
-				"2":{
-					"description":"A wooden post previously hosting the knife sits in the center of the room."
+				"init":{
+						"long":"TBD",
+						"short":"TBD"
 				}
 			},
 			"connections":{
-				"east":"Room 0"
+				"west":"Room 0",
+				"east":"Room 2",
+				"south":"Room 4"
 			}
 		},
 		{
 			"name":"Room 2",
 			"state":{
-				"0":{
-					"description":"The room contains a small chair and desk, with an large book opened partway. \nYou cannot make out the language the book is in. \nThe dim light flickers intermittently."
-				},
-				"1":{
-					"description":"There is a chair and desk, although the chair looks too small to fit in. Perhaps meant for a child."
+				"init":{
+						"long":"TBD",
+						"short":"TBD"
 				}
 			},
 			"connections":{
-				"south":"Room 0"
+				"west":"Room 1",
+				"south":"Room 5"
 			}
 		},
 		{
 			"name":"Room 3",
 			"state":{
-				"0":{
-					"description":"The room contains a single storage locker. At the bottom of the locker, just in reach, is a small silver key."
-				},
-				"1":{
-					"description":"The key at the bottom of the storage locker glints in the light's reflection."
-				},
-				"2":{
-					"description":"There is nothing in the room except an empty storage locker."
+				"init":{
+						"long":"TBD",
+						"short":"TBD"
 				}
 			},
-			"description":"",
 			"connections":{
-				"west":"Room 0"
+				"north":"Room 0",
+				"east":"Room 4",
+				"south":"Room 6"
 			}
 		},
 		{
 			"name":"Room 4",
 			"state":{
-				"0":{
-					"description":"The room contains a physically grotesque individual, who gestures threateningly as you gaze at the EXIT sign behind their head."
-				},
-				"1":{
-					"description":"The individual postures that they will not let you get by them without a fight."
-				},
-				"2":{
-					"description":"The individual is slumped over in the corner, dead from a knife wound. Blood slowly accumulates in an uneven pool along the tile grout."
+				"init":{
+						"long":"TBD",
+						"short":"TBD"
 				}
 			},
 			"connections":{
-				"north":"Room 0"
+				"north":"Room 1",
+				"west":"Room 3",
+				"east":"Room 5",
+				"south":"Room 7"
 			}
-		}
+		},
+		{
+			"name":"Room 5",
+			"state":{
+				"init":{
+						"long":"TBD",
+						"short":"TBD"
+				}
+			},
+			"connections":{
+				"north":"Room 2",
+				"west":"Room 4",
+				"south":"Room 8"
+			}
+		},
+		{
+			"name":"Room 6",
+			"state":{
+				"init":{
+						"long":"TBD",
+						"short":"TBD"
+				}
+			},
+			"connections":{
+				"north":"Room 3",
+				"east":"Room 7",
+				"south":"Room 9"
+			}
+		},
+		{
+			"name":"Room 7",
+			"state":{
+				"init":{
+						"long":"TBD",
+						"short":"TBD"
+				}
+			},
+			"connections":{
+				"north":"Room 4",
+				"west":"Room 6",
+				"east":"Room 8",
+				"south":"Room 10"
+			}
+		},
+		{
+			"name":"Room 8",
+			"state":{
+				"init":{
+						"long":"TBD",
+						"short":"TBD"
+				}
+			},
+			"connections":{
+				"north":"Room 5",
+				"west":"Room 7",
+				"south":"Room 11"
+			}
+		},
+		{
+			"name":"Room 9",
+			"state":{
+				"init":{
+						"long":"TBD",
+						"short":"TBD"
+				}
+			},
+			"connections":{
+				"north":"Room 6",
+				"east":"Room 10"
+			}
+		},
+		{
+			"name":"Room 10",
+			"state":{
+				"init":{
+						"long":"TBD",
+						"short":"TBD"
+				}
+			},
+			"connections":{
+				"north":"Room 7",
+				"west":"Room 9",
+				"east":"Room 11"
+			}
+		},
+		{
+			"name":"Room 11",
+			"state":{
+				"init":{
+						"long":"TBD",
+						"short":"TBD"
+				}
+			},
+			"connections":{
+				"north":"Room 8",
+				"west":"Room 10"
+			}
+		},
 	],
 	"actions":{
 		"describe":{
@@ -301,88 +297,74 @@
 			"description_success":null
 		},
 		"move":{
-			"room":{
-				"actor_next_state":null,
-				"target_next_state":null
-			}
+			"actor_name":null,
+			"target_name":null,
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
 		},
 		"pickup":{
-			"carryable_object":{
-				"actor_next_state":null,
-				"target_next_state":"in_inventory"
-			}
+			"actor_name":null,
+			"target_name":null,
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
 		},
 		"drop":{
-			"carryable_object":{
-				"actor_next_state":null,
-				"target_next_state":"init"
-			}
+			"actor_name":null,
+			"target_name":null,
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
 		},
 		"equip":{
-			"knife":{
-				"actor_next_state":"equipped_knife",
-				"target_next_state":"equipped"
-			}
+			"actor_name":null,
+			"target_name":null,
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
 		},
 		"push":{
-			"button":{
-				"actor_next_state":null,
-				"target_next_state":"pushed"
-			}
+			"actor_name":null,
+			"target_name":null,
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
 		},
 		"pull":{
-			"lever":{
-				"actor_next_state":null,
-				"target_next_state":"pulled"
-			}
+			"actor_name":null,
+			"target_name":null,
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
 		},
 		"open":{
-			"door":{
-				"actor_next_state":null,
-				"target_next_state":"opened"
-			},
-			"window":{
-				"actor_next_state":null,
-				"target_next_state":"opened"
-			},
-			"container":{
-				"actor_next_state":null,
-				"target_next_state":"opened"
-			}
+			"actor_name":null,
+			"target_name":null,
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
 		},
 		"close":{
-			"door":{
-				"actor_next_state":null,
-				"target_next_state":"closed"
-			},
-			"window":{
-				"actor_next_state":null,
-				"target_next_state":"closed"
-			},
-			"container":{
-				"actor_next_state":null,
-				"target_next_state":"closed"
-			}
+			"actor_name":null,
+			"target_name":null,
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
 		},
 		"unlock":{
-			"door":{
-				"actor_next_state":null,
-				"target_next_state":"unlocked"
-			},
-			"window":{
-				"actor_next_state":null,
-				"target_next_state":"unlocked"
-			},
-			"container":{
-				"actor_next_state":null,
-				"target_next_state":"unlocked"
-			}
+			"actor_name":null,
+			"target_name":null,
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
 		},
 		"attack":{
-			"enemy":{
-				"actor_next_state":null,
-				"target_next_state":null
-			}
+			"actor_name":null,
+			"target_name":null,
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
 		}
 	}
 }

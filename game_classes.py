@@ -217,9 +217,11 @@ class Character(GameObject):
 class Item(GameObject):
 
     # Constructor
-    def __init__(self, name:str, state:dict, starting_room_name:str) -> None:
+    def __init__(self, name:str, state:dict, starting_room_name:str, is_carryable:bool, is_equippable:bool) -> None:
         super().__init__(name,state,starting_room_name)
         self._in_inventory_of = None
+        self._is_carryable = is_carryable
+        self._is_equippable = is_equippable
 
     # Returns the Character for which the Item is currently in the inventory of, otherwise None
     def get_inventory_of(self):
