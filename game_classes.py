@@ -3,38 +3,61 @@ class CommandParser():
     # Constructor
     def __init__(self, world, input_string:str = '') -> None:
         self._input_string = input_string
-        self._actor = world.get_player_name()
-        self._action = None
-        self._target = None
+        self._actor_name = world.get_player_name()
+        self._action_name = None
+        self._target_name = None
         self._ignore_tokens = ['on','at','from','to','the']
+
+    def try_parse(self, world, command:str) -> str:
+        parse_result = self.parse_command(world,command)
+        if parse_result == "success":
+            # get required parameters to create an Action
+            action_params = world.get_available_actions().get(self._action_name).get(self._target_name)
+            action = Action(
+                name = self._action_name,
+                actor_name = self._actor_name, 
+                target_name = self._target_name, 
+                req_state = action_params['req_state'], 
+                next_state = action_params['next_state'], 
+                description_success = action_params['description_success']
+            )
+            action_result = action.perform_action(world)
+        else:
+            action_result = parse_result
+        return action_result
+
+
 
     # Translates input string into three key aspects
     # - Actor - the object performing the action
     # - Action - the action being performed
     # - Target - the object the action is being performed on
-    def parse_command(self, world, command: str) -> None:
+    # Returns the phrase to send to the view. 
+    # - If successful, this is an action desription
+    # - If one of action or target can't be found, then sends appropriate error message.
+    def parse_command(self, world, command_dict:dict, command: str) -> str:
         ## parse the command
-        split_text = [str.lower(x) for x in command.split()]
+        split_text = [command_dict.get(str.lower(x),'') for x in command.split()]
         while len(split_text) > 0:
-            if self._action is None:
-                action, split_text = self.__find_action(world, split_text)
-                if action is not None:
-                    self.__set_action(action)
+            if self._action_name is None:
+                action_name, split_text = self.__find_action_name(world, split_text)
+                if action_name is not None:
+                    self.__set_action_name(action_name)
                 else:
-                    print("ERROR - action command not found.")
+                    print("error - action")
                     break
-            elif self._target is None:
-                target, split_text = self.__find_target(world, split_text)
-                if target is not None:
-                    self.__set_target(target)
+            elif self._target_name is None:
+                target_name, split_text = self.__find_target_name(world, split_text)
+                if target_name is not None:
+                    self.__set_target_name(target)
                 else:
-                    print("ERROR - target not found.")
+                    print("error - target")
                     break
             else:
-                break
+                return "success"
 
-    def __find_action(self, world, split_text:[]):
-        while(self._action is None):
+    def __find_action_name(self, world, split_text:[]):
+        while(self._action_name is None):
             if len(split_text) == 0:
                 break
             token = split_text[0]
@@ -50,8 +73,8 @@ class CommandParser():
                     split_text.pop(0)
         return None, split_text
 
-    def __find_target(self, world, split_text:[]):
-        while(self._target is None):
+    def __find_target_name(self, world, split_text:[]):
+        while(self._target_name is None):
             if len(split_text) == 0:
                 break
             token = split_text[0]
@@ -68,24 +91,24 @@ class CommandParser():
         return None, split_text
 
     # Setter Methods (private)
-    def __set_action(self, action: str) -> None:
-        self._action = action
+    def __set_action_name(self, action_name: str) -> None:
+        self._action_name = action_name
 
-    def __set_actor(self, actor) -> None:
-        self._actor = actor
+    def __set_actor_name(self, actor) -> None:
+        self._actor_name = actor_name
 
-    def __set_target(self, target) -> None:
-        self._target = target
+    def __set_target_name(self, target) -> None:
+        self._target_name = target_name
 
     # Getter Methods (public)
-    def get_action(self) -> str:
-        return self._action
+    def get_action_name(self) -> str:
+        return self._action_name
 
-    def get_actor(self):
-        return self._actor
+    def get_actor_name(self):
+        return self._actor_name
 
-    def get_target(self):
-        return self._target
+    def get_target_name(self):
+        return self._target_name
 
 
 
@@ -98,14 +121,48 @@ class World():
         self._world_objects = world_objects
         self._available_actions = available_actions
         self._is_game_over = False
-        self._player_name = find_player_name(world_objects)
+        self._player_name = self.find_player_name(world_objects)
+        self._characters = self.__build_characters(world_objects)
+        self._items = self.__build_items(world_objects)
+        self._rooms = self.__build_rooms(world_objects)
+
+        # add game objects to rooms
+        self.__add_game_objects_to_rooms(self._characters)
+        self.__add_game_objects_to_rooms(self._items)
 
     # make player name directly available from world class for convenience
     def find_player_name(self,world_objects:dict) -> str:
-        for obj_name,obj_value in world_objects.items():
-            if obj_value.get_is_player():
-                return obj_name
+        for obj_dict in world_objects['characters']:
+            if obj_dict.get('is_playable',False):
+                return obj_dict.get('name',None)
         return ''
+
+    # build world 
+    def __build_characters(self, world_objects:dict) -> dict:
+        characters = {}
+        if 'characters' in world_objects.keys():
+            characters.update(
+                {c['name'] : Character(c['name'],c['state'],c['starting_room'],c['is_playable']) 
+                for c in world_objects['characters']})
+        return characters
+
+    def __build_items(self, world_objects:dict) -> dict:
+        items = {}
+        if 'items' in world_objects.keys():
+            items.update(
+                {i['name'] : Item(i['name'],i['state'],i['starting_room'],i['is_carryable'],i['is_equippable']) 
+                for i in world_objects['items']})
+        return items
+
+    def __build_rooms(self, world_objects:dict) -> dict:
+        rooms = {}
+        if 'rooms' in world_objects.keys():
+            rooms.update({r['name'] : Room(r['name'],r['state'],r['connections']) for r in world_objects['rooms']})
+        return rooms
+
+    def __add_game_objects_to_rooms(self, game_objects:dict) -> None:
+        for obj_name,obj in game_objects.items():
+            self._rooms.get(obj.get_room_name(),None).set_game_objects({obj_name:obj})
 
     # Setter Methods
     def set_world_objects(self, world_objects: dict) -> None:
@@ -176,9 +233,9 @@ class WorldObject():
 class Room(WorldObject):
 
     # Constructor
-    def __init__(self, name:str, state:dict) -> None:
+    def __init__(self, name:str, state:dict, connections:dict) -> None:
         super().__init__(name,state)
-        self._connections = {}
+        self._connections = connections
         self._game_objects = {}
 
     # Setter Methods
@@ -301,15 +358,15 @@ class Action():
 
         # special case - "describe" action always meets conditions
         if self._name == "describe":
-            result = self.perform_describe(world)
+            result = self.__perform_describe(world)
 
         # general case - check if conditions for actions are met, if so update states and return success description
-        if self.meets_conditions(world):
-            self.update_states(world)
+        if self.__meets_conditions(world):
+            self.__update_states(world)
             result = self._description_success
         return result
 
-    def perform_describe(self, world) -> str:
+    def __perform_describe(self, world) -> str:
         # if no target specified, assume target is current room of player
         if self._target_name is None:
             actor = world.get_world_objects().get(world.get_player_name(),None)
@@ -318,13 +375,13 @@ class Action():
             target = world.get_world_objects().get(self._target_name,None)
         return target.get_description()
 
-    def update_states(self, world) -> None:
+    def __update_states(self, world) -> None:
         for name, next_state in self._next_state.items(): 
             world_object = world.get_world_objects().get(name,None)
             if world_object is not None:
                 world_object.set_current_state(next_state)
 
-    def meets_conditions(self, world) -> bool:
+    def __meets_conditions(self, world) -> bool:
         # initialize result to False
         result = False
 
@@ -341,7 +398,17 @@ class Action():
             # check if actor and target in the required states
             is_actor_in_req_state = actor.get_current_state() == self._req_state.get(self._actor_name,None)
             is_target_in_req_state = target.get_current_state() == self._req_state.get(self._target_name,None)
-            result = is_same_room && is_actor_in_req_state && is_target_in_req_state
+            result = is_same_room and is_actor_in_req_state and is_target_in_req_state
 
         return result
+
+    # Getter Functions
+    def get_req_state(self, name, actor, target):
+        return self._req_state
+
+    def get_next_state(self, name, actor, target):
+        return self._next_state
+
+    def get_description_success(self,name,actor,target):
+        return self._description_success
 

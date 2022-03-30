@@ -1,0 +1,14 @@
+{
+	"help" : "help",
+	"describe" : "describe",
+	"n" : "move north",
+	"e" : "move east",
+	"w" : "move west",
+	"s" : "move south",
+	"go" : "move",
+	"player" : "player",
+	"enemy" : "enemy",
+	"knife" : "knife",
+	"key": " key",
+	"door" : "door"
+}
