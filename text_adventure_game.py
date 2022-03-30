@@ -1,7 +1,9 @@
 # import classes
 import json
-import game_model, game_view, game_controller
-from game_classes import World
+from game_model import *
+from game_view import * 
+from game_controller import *
+from game_classes import *
 
 # constants
 # assets_file_name = 'game_assets.json'
@@ -27,6 +29,10 @@ def main():
 
 	### Initialize World
 
+	vw = GameView()
+	mdl = GameModel()
+	ctrl = GameController(mdl,vw)
+
 	# generate world and add objects and available actions to it
 	my_world = World(world_objects=data['world_objects'], available_actions=data['actions'])
 
@@ -36,15 +42,17 @@ def main():
 	cmd_input=''
 	while(True):
 		cmd_input = input("\nprompt: ")
-		# check for game over
-		# tbd
 		if str.lower(cmd_input) == 'q':
 			break
-		response = CommandParser(world_objects,cmd_input)
+		response = CommandParser(my_world, cmd_input)
 		# send response to view
 
-	
+		# check for game over
+		if my_world.is_game_over():
+			break
+
 	# output gameover screen
+	vw.print_game_over()
 
 
 if __name__ == '__main__':

@@ -1,5 +1,8 @@
 class GameView():
 
+	def __init__(self):
+		pass
+
 	def print_help_commands(self, output_text):
 		pass
 
@@ -8,4 +11,9 @@ class GameView():
 
 	def print_description(self, output_text):
 		pass
+
+	def print_game_over(self):
+		print("\n********************************************")
+		print("*************** GAME OVER ******************")
+		print("********************************************\n")
 
