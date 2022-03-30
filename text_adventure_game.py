@@ -34,7 +34,7 @@ def main():
 	ctrl = GameController(mdl,vw)
 
 	# generate world and add objects and available actions to it
-	my_world = World(world_objects=data['world_objects'], available_actions=data['actions'])
+	my_world = World(world_objects=data['world_objects'], available_actions=data['actions'], available_commands=commands_dict)
 
 	### Start Game
 
@@ -45,7 +45,9 @@ def main():
 		if str.lower(cmd_input) == 'q':
 			break
 		response = CommandParser(my_world, cmd_input)
+
 		# send response to view
+		vw.print_description(response)
 
 		# check for game over
 		if my_world.is_game_over():

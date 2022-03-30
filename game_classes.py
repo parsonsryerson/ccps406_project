@@ -7,6 +7,7 @@ class CommandParser():
         self._action_name = None
         self._target_name = None
         self._ignore_tokens = ['on','at','from','to','the']
+        self.try_parse(world, input_string)
 
     def try_parse(self, world, command:str) -> str:
         parse_result = self.parse_command(world,command)
@@ -27,6 +28,9 @@ class CommandParser():
         return action_result
 
 
+    # helper function
+    def flatten(self,t):
+        return [item for sublist in t for item in sublist]
 
     # Translates input string into three key aspects
     # - Actor - the object performing the action
@@ -35,12 +39,14 @@ class CommandParser():
     # Returns the phrase to send to the view. 
     # - If successful, this is an action desription
     # - If one of action or target can't be found, then sends appropriate error message.
-    def parse_command(self, world, command_dict:dict, command: str) -> str:
+    def parse_command(self, world, command: str) -> str:
         ## parse the command
-        split_text = [command_dict.get(str.lower(x),'') for x in command.split()]
+        split_text = self.flatten([world.get_available_commands().get(str.lower(x),'').split() for x in command.split()])
+        print(f"in parse_command -- command: {command}, split_text: {split_text}")
         while len(split_text) > 0:
             if self._action_name is None:
                 action_name, split_text = self.__find_action_name(world, split_text)
+                print(f"in parse_command -- action_name: {action_name}, split_text: {split_text}")
                 if action_name is not None:
                     self.__set_action_name(action_name)
                 else:
@@ -48,6 +54,7 @@ class CommandParser():
                     break
             elif self._target_name is None:
                 target_name, split_text = self.__find_target_name(world, split_text)
+                print(f"in parse_command -- target_name: {target_name}, split_text: {split_text}")
                 if target_name is not None:
                     self.__set_target_name(target)
                 else:
@@ -61,6 +68,7 @@ class CommandParser():
             if len(split_text) == 0:
                 break
             token = split_text[0]
+            print(f"in __find_action_name -- token: {token}, available_actions: {world.get_available_actions().keys()}")
             if token in world.get_available_actions().keys():
                 split_text.pop(0)
                 return token, split_text
@@ -117,9 +125,10 @@ class CommandParser():
 class World():
 
     # Constructor
-    def __init__(self, world_objects:dict = {}, available_actions:dict = {}) -> None:
+    def __init__(self, world_objects:dict = {}, available_actions:dict = {}, available_commands:dict = {}) -> None:
         self._world_objects = world_objects
         self._available_actions = available_actions
+        self._available_commands = available_commands
         self._is_game_over = False
         self._player_name = self.find_player_name(world_objects)
         self._characters = self.__build_characters(world_objects)
@@ -170,6 +179,9 @@ class World():
 
     def set_available_actions(self, available_actions:dict) -> None:
         self._available_actions.update(available_actions)
+
+    def set_available_commands(self, available_commands:dict) -> None:
+        self._available_commands.update(available_commands)    
     
     def set_game_over(self, game_over: bool) -> None:
         self._is_game_over = game_over
@@ -180,6 +192,9 @@ class World():
 
     def get_available_actions(self) -> dict:
         return self._available_actions
+
+    def get_available_commands(self) -> dict:
+        return self._available_commands
 
     def get_player_name(self) -> str:
         return self._player_name
