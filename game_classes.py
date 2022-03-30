@@ -1,26 +1,71 @@
 class CommandParser():
 
     # Constructor
-    def __init__(self, input_string:str = '') -> None:
+    def __init__(self, world, input_string:str = '') -> None:
         self._input_string = input_string
+        self._actor = world.get_player_name()
         self._action = None
-        self._actor = None
         self._target = None
+        self._ignore_tokens = ['on','at','from','to','the']
 
     # Translates input string into three key aspects
     # - Actor - the object performing the action
     # - Action - the action being performed
     # - Target - the object the action is being performed on
-    def parse_command(self, command: str) -> None:
+    def parse_command(self, world, command: str) -> None:
         ## parse the command
-        # tbd
-        # action = ...
-        # actor = ...
-        # target = ...
-        # self.__set_action(action)
-        # self.__set_actor(actor)
-        # self.__set_target(target)
-        pass
+        split_text = [str.lower(x) for x in command.split()]
+        while len(split_text) > 0:
+            if self._action is None:
+                action, split_text = self.__find_action(world, split_text)
+                if action is not None:
+                    self.__set_action(action)
+                else:
+                    print("ERROR - action command not found.")
+                    break
+            elif self._target is None:
+                target, split_text = self.__find_target(world, split_text)
+                if target is not None:
+                    self.__set_target(target)
+                else:
+                    print("ERROR - target not found.")
+                    break
+            else:
+                break
+
+    def __find_action(self, world, split_text:[]):
+        while(self._action is None):
+            if len(split_text) == 0:
+                break
+            token = split_text[0]
+            if token in world.get_available_actions().keys():
+                split_text.pop(0)
+                return token, split_text
+            elif token in self._ignore_tokens:
+                split_text.pop(0)
+            else:
+                if len(split_text) > 1:
+                    split_text[0] += split_text[1]
+                else:
+                    split_text.pop(0)
+        return None, split_text
+
+    def __find_target(self, world, split_text:[]):
+        while(self._target is None):
+            if len(split_text) == 0:
+                break
+            token = split_text[0]
+            if token in world.get_world_objects().keys():
+                split_text.pop(0)
+                return token, split_text
+            elif token in self._ignore_tokens:
+                split_text.pop(0)
+            else:
+                if len(split_text) > 1:
+                    split_text[0] += split_text[1]
+                else:
+                    split_text.pop(0)
+        return None, split_text
 
     # Setter Methods (private)
     def __set_action(self, action: str) -> None:
