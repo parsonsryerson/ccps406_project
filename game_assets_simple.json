@@ -51,7 +51,7 @@
 				"name":"knife",
 				"is_carryable":true,
 				"is_equippable":true,
-				"starting_room":"Room 1",
+				"starting_room":"Room 0",
 				"state":{
 					"init":{
 						"description":{
@@ -71,7 +71,7 @@
 				"name":"book",
 				"is_carryable":true,
 				"is_equippable":false,
-				"starting_room":"Room 2",
+				"starting_room":"Room 0",
 				"state":{
 					"init":{
 						"description":{
@@ -85,7 +85,7 @@
 				"name":"key",
 				"is_carryable":true,
 				"is_equippable":false,
-				"starting_room":"Room 3",
+				"starting_room":"Room 0",
 				"state":{
 					"init":{
 						"description":{
