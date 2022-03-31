@@ -14,11 +14,10 @@ class CommandParser():
 
     def try_parse(self, command:str) -> str:
         split_text = self.flatten([self._world.get_available_commands().get(str.lower(x),'').split() for x in command.split()])
-        print(f"command: {command}, split_text: {split_text}")
         assert(len(split_text) >= 1 and len(split_text) <= 2)
         self._action_name = split_text[0]
         self._target_name = split_text[1] if len(split_text) > 1 else None
-        action = Action(self._world, self._action_name, self._actor_name, self._target_name).perform_action()
+        result = Action(self._world, self._action_name, self._actor_name, self._target_name).perform_action()
         return result
 
     # Setter Methods (private)
@@ -159,8 +158,7 @@ class WorldObject():
         return self._name
 
     def get_description(self) -> str:
-        print(f"DEBUG - in WorldObject - state: {self._state}, current_state: {self._current_state}")
-        result = self._state.get(self._current_state).get('description','').get(_description_length,'')
+        result = self._state.get(self._current_state).get('description').get(self._description_length,'')
         # Set description length to 'short' when 'long' description is requested
         if self._description_length == 'long':
             self._description_length = 'short'
@@ -191,9 +189,11 @@ class Room(WorldObject):
         self._connections.update(connections)
 
     def set_game_objects(self, game_objects:dict) -> None:
+        print(f"DEBUG - Room Class - room name: {self._name}, game_objects added: {game_objects}")
         self._game_objects.update(game_objects)
 
     def remove_game_objects(self, game_object_key:str) -> None:
+        print(f"DEBUG - Room Class - room name: {self._name}, game_objects removed: {game_object_key}")
         self._game_objects.pop(game_object_key)
 
     # Getter Methods
@@ -217,7 +217,8 @@ class GameObject(WorldObject):
 
     # Setter Method
     def set_room_name(self,room_name) -> None:
-        self.current_room_name = room_name
+        print(f"DEBUG - GameObject Class - name: {self._name}, old room: {self._current_room_name}, new room: {room_name}")
+        self._current_room_name = room_name
 
     # Getter Method
     def get_room_name(self) -> str:
@@ -317,18 +318,28 @@ class Action():
     def __perform_describe(self) -> str:
         # if no target specified, assume target is current room of player
         if self._target_name is None:
-            actor = self._world.get_world_objects().get(self._world.get_player_name(),None)
-            target = self._world.get_world_objects().get(actor.get_room_name(),None)
+            actor = self._world.get_characters().get(self._world.get_player_name(),None)
+            target = self._world.get_rooms().get(actor.get_room_name(),None)
         else:
-            target = self._world.get_world_objects().get(self._target_name,None)
+            if self._target_name in self._world.get_rooms():
+                target = self._world.get_rooms().get(self._target_name)
+            elif self._target_name in self._world.get_characters():
+                target = self._world.get_characters().get(self._target_name)
+            elif self._target_name in self._world.get_items():
+                target = self._world.get_items().get(self._target_name)
+            else:
+                target = None
         return target.get_description()
 
     def __perform_move(self) -> str:
         # translate the name of the target into the correct room name based on the actor's current location
         prev_room_name = self._world.get_characters().get(self._actor_name).get_room_name()
         next_room_name = self._world.get_rooms().get(prev_room_name).get_connections().get(self._target_name)
+        print(f"DEBUG - Action Class - prev_room_name: {prev_room_name}, next_room_name: {next_room_name}")
         # update the actor's location to the next room
-        self._world.get_characters().get(self._actor_name).set_room_name(self._target_name)
+        print(f"DEBUT - Action Class - Before room update: {self._world.get_characters().get(self._actor_name).get_room_name()}")
+        self._world.get_characters().get(self._actor_name).set_room_name(next_room_name)
+        print(f"DEBUT - Action Class - After room update: {self._world.get_characters().get(self._actor_name).get_room_name()}")
         # update the previous and next room's game objects
         self._world.get_rooms().get(prev_room_name).remove_game_objects(self._actor_name)
         self._world.get_rooms().get(next_room_name).set_game_objects({self._actor_name:self._world.get_characters().get(self._actor_name)})

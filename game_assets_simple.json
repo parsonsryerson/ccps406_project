@@ -96,8 +96,8 @@
 				"state":{
 					"init":{
 						"description":{
-							"long":"The room is dimly lit. \nYou can see hallways connecting to the east and south. \nA gate to the south is covered by a padlock with the word 'Ultrasafe' on it.",
-							"short":"small room."
+							"long":"This is Room 0 - long description",
+							"short":"This is Room 0."
 						}
 					}
 				},
@@ -109,8 +109,8 @@
 				"state":{
 					"init":{
 						"description":{
-							"long":"TBD",
-							"short":"TBD"
+							"long":"This is Room 1 - long description",
+							"short":"This is Room 1."
 						}
 					}
 				},

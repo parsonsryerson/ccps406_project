@@ -12,16 +12,16 @@ class GameView():
 			print(f"- {action}")
 
 	def print_error_no_room_connection(self):
-		print("You can't go that way.\n")
+		print("\nYou can't go that way.")
 
 	def print_error_unavailable_action(self):
-		print("You can't do that.\n")
+		print("\nYou can't do that.")
 
 	def print_error_unknown_target(self):
-		print("Not sure what that is.\n")
+		print("\nNot sure what that is.")
 
 	def print_description(self, output_text):
-		print(f"{output_text}\n")
+		print(f"\n{output_text}")
 
 	def print_game_over(self):
 		print("\n********************************************")
