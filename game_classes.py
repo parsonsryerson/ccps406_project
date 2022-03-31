@@ -335,6 +335,8 @@ class Action():
         # translate the name of the target into the correct room name based on the actor's current location
         prev_room_name = self._world.get_characters().get(self._actor_name).get_room_name()
         next_room_name = self._world.get_rooms().get(prev_room_name).get_connections().get(self._target_name)
+        if next_room_name is None:
+            return "error room"
         print(f"DEBUG - Action Class - prev_room_name: {prev_room_name}, next_room_name: {next_room_name}")
         # update the actor's location to the next room
         print(f"DEBUT - Action Class - Before room update: {self._world.get_characters().get(self._actor_name).get_room_name()}")
