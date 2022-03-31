@@ -11,7 +11,7 @@ class GameController():
         self._game_view = game_view
 
     def print_response(self, response):
-        if 'error' in response and response.split() > 1:
+        if 'error' in response and len(response.split()) > 1:
             error_type = response.split()[1]
             if error_type == 'room':
                 self._game_view.print_error_no_room_connection()

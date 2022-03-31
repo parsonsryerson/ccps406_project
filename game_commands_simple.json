@@ -1,6 +1,7 @@
 {
 	"help" : "help",
 	"describe" : "describe",
+	"look":"describe",
 	"move" : "move",
 	"n" : "move north",
 	"e" : "move east",

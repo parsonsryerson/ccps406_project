@@ -5,7 +5,7 @@ class GameView():
 
 	def print_help_commands(self, available_actions):
 		print("\n********************************************")
-		print("************** HELP COMMANDS *****************")
+		print("************** HELP COMMANDS ***************")
 		print("********************************************\n")
 		print("AVAILABLE ACTIONS:\n")
 		for action in available_actions:

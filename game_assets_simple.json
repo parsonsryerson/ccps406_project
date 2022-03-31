@@ -124,6 +124,7 @@
 		]
 	},
 	"actions":{
+		"help":{},
 		"describe":{
 			"actor_name":null,
 			"target_name":null,

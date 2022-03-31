@@ -12,16 +12,19 @@ class CommandParser():
         parse_result = self.parse_command(command)
         if parse_result == "success":
             # get required parameters to create an Action
-            action_params = self._world.get_available_actions().get(self._action_name).get(self._target_name)
-            action = Action(
-                name = self._action_name,
-                actor_name = self._actor_name, 
-                target_name = self._target_name, 
-                req_state = action_params['req_state'], 
-                next_state = action_params['next_state'], 
-                description_success = action_params['description_success']
-            )
-            action_result = action.perform_action(world)
+            if self._action_name is not None and self._target_name is not None:
+                action_params = self._world.get_available_actions().get(self._action_name).get(self._target_name)
+                action = Action(
+                    name = self._action_name,
+                    actor_name = self._actor_name, 
+                    target_name = self._target_name, 
+                    req_state = action_params.get('req_state',None), 
+                    next_state = action_params.get('next_state',None), 
+                    description_success = action_params.get('description_success',None)
+                )
+                action_result = action.perform_action(world)
+            else:
+                action_result = 'error - target'
         else:
             action_result = parse_result
         return action_result
@@ -47,8 +50,14 @@ class CommandParser():
             if self._action_name is None:
                 action_name, split_text = self.__find_action_name(split_text)
                 print(f"in parse_command -- action_name: {action_name}, split_text: {split_text}")
-                if action_name is not None:
+                if action_name in ('help','describe'):
+                    result = action_name
+                    break
+                elif action_name is not None:
                     self.__set_action_name(action_name)
+                    if len(split_text) == 0:
+                        result = "success"
+                        break
                 else:
                     result = "error action"
                     break
@@ -57,10 +66,17 @@ class CommandParser():
                 print(f"in parse_command -- target_name: {target_name}, split_text: {split_text}")
                 if target_name is not None:
                     self.__set_target_name(target_name)
+                    if len(split_text) == 0:
+                        result = "success"
+                        break
                 elif self._action_name == 'describe':
                     self._target_name = self._world.get_characters().get(self._world.get_player_name()).get_room_name()
+                    if len(split_text) == 0:
+                        result = "success"
+                        break
                 elif self._action_name == 'move':
-                    action_result = 'error move'
+                    result = 'error move'
+                    break
                 else:
                     result = "error target"
                     break
