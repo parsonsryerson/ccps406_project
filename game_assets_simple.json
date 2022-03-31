@@ -1,8 +1,7 @@
 { 
 	"world_objects":{
-		"characters":[
-			{
-				"name":"Player",
+		"characters":{
+			"Player":{
 				"is_playable":true,
 				"starting_room":"Room 0",
 				"state":{
@@ -26,8 +25,7 @@
 					}
 				}
 			},
-			{
-				"name":"Enemy NPC",
+			"Enemy NPC":{
 				"is_playable":false,
 				"starting_room":"Room 1",
 				"state":{
@@ -45,10 +43,9 @@
 					}
 				}
 			}
-		],
-		"items":[
-			{
-				"name":"knife",
+		},
+		"items":{
+			"knife":{
 				"is_carryable":true,
 				"is_equippable":true,
 				"starting_room":"Room 1",
@@ -67,8 +64,7 @@
 					}
 				}
 			},
-			{
-				"name":"book",
+			"book":{
 				"is_carryable":true,
 				"is_equippable":false,
 				"starting_room":"Room 1",
@@ -81,8 +77,7 @@
 					}
 				}
 			},
-			{
-				"name":"key",
+			"key":{
 				"is_carryable":true,
 				"is_equippable":false,
 				"starting_room":"Room 0",
@@ -95,10 +90,9 @@
 					}
 				}
 			}
-		],
-		"rooms":[
-			{
-				"name":"Room 0",
+		},
+		"rooms":{
+			"Room 0":{
 				"state":{
 					"init":{
 							"long":"The room is dimly lit. \nYou can see hallways connecting to the east and south. \nA gate to the south is covered by a padlock with the word 'Ultrasafe' on it.",
@@ -109,8 +103,7 @@
 					"east":"Room 1"
 				}
 			},
-			{
-				"name":"Room 1",
+			"Room 1":{
 				"state":{
 					"init":{
 							"long":"TBD",
@@ -121,7 +114,7 @@
 					"west":"Room 0"
 				}
 			}
-		]
+		}
 	},
 	"actions":{
 		"help":{},
@@ -132,62 +125,60 @@
 			"next_state":{},
 			"description_success":null
 		},
-		"move":[
-			{
-				"north":{
-					"actor_name":null,
-					"target_name":null,
-					"req_state":{
-						"actor":["free","armed"],
-						"target":null
-					},
-					"next_state":{
-						"actor":null,
-						"target":null
-					},
-					"description_success":null
+		"move":{
+			"north":{
+				"actor_name":null,
+				"target_name":null,
+				"req_state":{
+					"actor":["free","armed"],
+					"target":null
 				},
-				"east":{
-					"actor_name":null,
-					"target_name":null,
-					"req_state":{
-						"actor":["free","armed"],
-						"target":null
-					},
-					"next_state":{
-						"actor":null,
-						"target":null
-					},
-					"description_success":null
+				"next_state":{
+					"actor":null,
+					"target":null
 				},
-				"west":{
-					"actor_name":null,
-					"target_name":null,
-					"req_state":{
-						"actor":["free","armed"],
-						"target":null
-					},
-					"next_state":{
-						"actor":null,
-						"target":null
-					},
-					"description_success":null
+				"description_success":null
+			},
+			"east":{
+				"actor_name":null,
+				"target_name":null,
+				"req_state":{
+					"actor":["free","armed"],
+					"target":null
 				},
-				"south":{
-					"actor_name":null,
-					"target_name":null,
-					"req_state":{
-						"actor":["free","armed"],
-						"target":null
-					},
-					"next_state":{
-						"actor":null,
-						"target":null
-					},
-					"description_success":null
-				}
+				"next_state":{
+					"actor":null,
+					"target":null
+				},
+				"description_success":null
+			},
+			"west":{
+				"actor_name":null,
+				"target_name":null,
+				"req_state":{
+					"actor":["free","armed"],
+					"target":null
+				},
+				"next_state":{
+					"actor":null,
+					"target":null
+				},
+				"description_success":null
+			},
+			"south":{
+				"actor_name":null,
+				"target_name":null,
+				"req_state":{
+					"actor":["free","armed"],
+					"target":null
+				},
+				"next_state":{
+					"actor":null,
+					"target":null
+				},
+				"description_success":null
 			}
-		],
+		},
 		"pickup":{
 			"actor_name":null,
 			"target_name":null,

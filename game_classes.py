@@ -14,6 +14,7 @@ class CommandParser():
             # get required parameters to create an Action
             if self._action_name is not None and self._target_name is not None:
                 action_params = self._world.get_available_actions().get(self._action_name).get(self._target_name)
+                print(f"in try_parse -- action_params: {action_params}")
                 action = Action(
                     name = self._action_name,
                     actor_name = self._actor_name, 
@@ -22,11 +23,12 @@ class CommandParser():
                     next_state = action_params.get('next_state',None), 
                     description_success = action_params.get('description_success',None)
                 )
-                action_result = action.perform_action(world)
+                action_result = action.perform_action(self._world)
             else:
                 action_result = 'error - target'
         else:
             action_result = parse_result
+        print(f"in try_parse -- action_name: {self._action_name}, target_name: {self._target_name}, action_result: {action_result}")
         return action_result
 
 
@@ -112,15 +114,19 @@ class CommandParser():
             token = split_text[0]
             print(f"in __find_target_name -- token: {token},\ncharacters: {self._world.get_characters().keys()},\nitems: {self._world.get_items().keys()},\nrooms: {self._world.get_rooms().get(current_room_name).get_connections().keys()}")
             if token in self._world.get_characters().keys():
+                print(f"found in characters\n")
                 split_text.pop(0)
                 return token, split_text
             elif token in self._world.get_items().keys():
+                print(f"found in items\n")
                 split_text.pop(0)
                 return token, split_text
             elif token in self._world.get_rooms().get(current_room_name).get_connections().keys():
+                print(f"found in rooms\n")
                 split_text.pop(0)
                 return token, split_text
             elif token in self._ignore_tokens:
+                print(f"found in ignore_tokens\n")
                 split_text.pop(0)
             else:
                 if len(split_text) > 1:
@@ -172,9 +178,9 @@ class World():
 
     # make player name directly available from world class for convenience
     def find_player_name(self,world_objects:dict) -> str:
-        for obj_dict in world_objects['characters']:
-            if obj_dict.get('is_playable',False):
-                return obj_dict.get('name',None)
+        for char_name, character in world_objects['characters'].items():
+            if character.get('is_playable',False):
+                return char_name
         return ''
 
     # build world 
@@ -182,22 +188,22 @@ class World():
         characters = {}
         if 'characters' in world_objects.keys():
             characters.update(
-                {c['name'] : Character(c['name'],c['state'],c['starting_room'],c['is_playable']) 
-                for c in world_objects['characters']})
+                {char_name : Character(char_name,c['state'],c['starting_room'],c['is_playable']) 
+                for char_name,c in world_objects['characters'].items()})
         return characters
 
     def __build_items(self, world_objects:dict) -> dict:
         items = {}
         if 'items' in world_objects.keys():
             items.update(
-                {i['name'] : Item(i['name'],i['state'],i['starting_room'],i['is_carryable'],i['is_equippable']) 
-                for i in world_objects['items']})
+                {item_name : Item(item_name,i['state'],i['starting_room'],i['is_carryable'],i['is_equippable']) 
+                for item_name,i in world_objects['items'].items()})
         return items
 
     def __build_rooms(self, world_objects:dict) -> dict:
         rooms = {}
         if 'rooms' in world_objects.keys():
-            rooms.update({r['name'] : Room(r['name'],r['state'],r['connections']) for r in world_objects['rooms']})
+            rooms.update({room_name : Room(room_name,r['state'],r['connections']) for room_name,r in world_objects['rooms'].items()})
         return rooms
 
     def __add_game_objects_to_rooms(self, game_objects:dict) -> None:
@@ -411,14 +417,17 @@ class Action():
         # initialize result to empty string
         result = ''
 
+        print(f"in perform_action -- name: {self._name}")
         # special case - "describe" action always meets conditions
         if self._name == "describe":
             result = self.__perform_describe(world)
 
         # general case - check if conditions for actions are met, if so update states and return success description
         if self.__meets_conditions(world):
+            print(f"in perform_action (meets conditions)")
             self.__update_states(world)
             result = self._description_success
+            print(f"in perform_action (description success) -- result: {result}")
         return result
 
     def __perform_describe(self, world) -> str:
@@ -441,8 +450,19 @@ class Action():
         result = False
 
         # get references to actor and target from the world object
-        actor = world.get_world_objects().get(self._actor_name,None)
-        target = world.get_world_objects().get(self._target_name,None)
+        # actor = world.get_world_objects().get(self._actor_name,None)
+        actor = world.get_characters().get(world.get_player_name())
+        for world_object_type, world_object in world.get_world_objects().items():
+            print(f"world_object_type: {world_object_type}")
+            print(f"target_name: {self._target_name}")
+            print(f"world_object.keys(): {world_object.keys()}")
+            if self._target_name in world_object.keys():
+                print(f"found target name: {self._target_name}")
+                target = world_object.get(self._target_name,None)
+        
+        # print(f"in __meets_conditions -- world_objects: {world.get_world_objects()}")
+        print(f"in __meets_conditions -- actor_name: {self._actor_name}, target_name: {self._target_name}")
+        print(f"in __meets_conditions -- actor: {actor}, target: {target}")
 
         # if either of the actor or target is not specified then return False
         if actor is None or target is None:
