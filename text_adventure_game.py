@@ -54,7 +54,7 @@ def main():
 			break
 
 	# output gameover screen
-	vw.print_game_over()
+	ctrl.print_response('game over')
 
 
 if __name__ == '__main__':

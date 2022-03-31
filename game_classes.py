@@ -94,7 +94,7 @@ class CommandParser():
             if len(split_text) == 0:
                 break
             token = split_text[0]
-            print(f"in __find_target_name -- token: {token},\ncharacters: {self._world.get_characters().keys()},\nitems: {self._world.get_items().keys()},\nrooms: {world.get_rooms().get(current_room_name).get_connections().keys()}")
+            print(f"in __find_target_name -- token: {token},\ncharacters: {self._world.get_characters().keys()},\nitems: {self._world.get_items().keys()},\nrooms: {self._world.get_rooms().get(current_room_name).get_connections().keys()}")
             if token in self._world.get_characters().keys():
                 split_text.pop(0)
                 return token, split_text
