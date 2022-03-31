@@ -1,19 +1,18 @@
 class CommandParser():
 
     # Constructor
-    def __init__(self, world, input_string:str = '') -> None:
-        self._input_string = input_string
+    def __init__(self, world) -> None:
+        self._world = world
         self._actor_name = world.get_player_name()
         self._action_name = None
         self._target_name = None
         self._ignore_tokens = ['on','at','from','to','the']
-        self.try_parse(world, input_string)
 
-    def try_parse(self, world, command:str) -> str:
-        parse_result = self.parse_command(world,command)
+    def try_parse(self, command:str) -> str:
+        parse_result = self.parse_command(command)
         if parse_result == "success":
             # get required parameters to create an Action
-            action_params = world.get_available_actions().get(self._action_name).get(self._target_name)
+            action_params = self._world.get_available_actions().get(self._action_name).get(self._target_name)
             action = Action(
                 name = self._action_name,
                 actor_name = self._actor_name, 
@@ -39,37 +38,43 @@ class CommandParser():
     # Returns the phrase to send to the view. 
     # - If successful, this is an action desription
     # - If one of action or target can't be found, then sends appropriate error message.
-    def parse_command(self, world, command: str) -> str:
+    def parse_command(self, command: str) -> str:
+        result = ''
         ## parse the command
-        split_text = self.flatten([world.get_available_commands().get(str.lower(x),'').split() for x in command.split()])
+        split_text = self.flatten([self._world.get_available_commands().get(str.lower(x),'').split() for x in command.split()])
         print(f"in parse_command -- command: {command}, split_text: {split_text}")
         while len(split_text) > 0:
             if self._action_name is None:
-                action_name, split_text = self.__find_action_name(world, split_text)
+                action_name, split_text = self.__find_action_name(split_text)
                 print(f"in parse_command -- action_name: {action_name}, split_text: {split_text}")
                 if action_name is not None:
                     self.__set_action_name(action_name)
                 else:
-                    print("error - action")
+                    result = "error action"
                     break
             elif self._target_name is None:
-                target_name, split_text = self.__find_target_name(world, split_text)
+                target_name, split_text = self.__find_target_name(split_text)
                 print(f"in parse_command -- target_name: {target_name}, split_text: {split_text}")
                 if target_name is not None:
                     self.__set_target_name(target_name)
+                elif self._action_name == 'describe':
+                    self._target_name = self._world.get_characters().get(self._world.get_player_name()).get_room_name()
+                elif self._action_name == 'move':
+                    action_result = 'error move'
                 else:
-                    print("error - target")
+                    result = "error target"
                     break
             else:
-                return "success"
+                result = "success"
+        return result
 
-    def __find_action_name(self, world, split_text:[]):
+    def __find_action_name(self, split_text:[]):
         while(self._action_name is None):
             if len(split_text) == 0:
                 break
             token = split_text[0]
-            print(f"in __find_action_name -- token: {token}, available_actions: {world.get_available_actions().keys()}")
-            if token in world.get_available_actions().keys():
+            print(f"in __find_action_name -- token: {token}, available_actions: {self._world.get_available_actions().keys()}")
+            if token in self._world.get_available_actions().keys():
                 split_text.pop(0)
                 return token, split_text
             elif token in self._ignore_tokens:
@@ -81,22 +86,22 @@ class CommandParser():
                     split_text.pop(0)
         return None, split_text
 
-    def __find_target_name(self, world, split_text:[]):
-        current_room_name = world.get_characters().get(world.get_player_name()).get_room_name()
-        print(f"in __find_target_name -- \ncharacters: {world.get_characters().keys()}, current_room_name: {current_room_name}")
-        print(f"in __find_target_name -- \nconnections: {world.get_rooms().get(current_room_name).get_connections().keys()}")
+    def __find_target_name(self, split_text:[]):
+        current_room_name = self._world.get_characters().get(self._world.get_player_name()).get_room_name()
+        print(f"in __find_target_name -- \ncharacters: {self._world.get_characters().keys()}, current_room_name: {current_room_name}")
+        print(f"in __find_target_name -- \nconnections: {self._world.get_rooms().get(current_room_name).get_connections().keys()}")
         while(self._target_name is None):
             if len(split_text) == 0:
                 break
             token = split_text[0]
-            print(f"in __find_target_name -- token: {token},\ncharacters: {world.get_characters().keys()},\nitems: {world.get_items().keys()},\nrooms: {world.get_rooms().get(current_room_name).get_connections().keys()}")
-            if token in world.get_characters().keys():
+            print(f"in __find_target_name -- token: {token},\ncharacters: {self._world.get_characters().keys()},\nitems: {self._world.get_items().keys()},\nrooms: {world.get_rooms().get(current_room_name).get_connections().keys()}")
+            if token in self._world.get_characters().keys():
                 split_text.pop(0)
                 return token, split_text
-            elif token in world.get_items().keys():
+            elif token in self._world.get_items().keys():
                 split_text.pop(0)
                 return token, split_text
-            elif token in world.get_rooms().get(current_room_name).get_connections().keys():
+            elif token in self._world.get_rooms().get(current_room_name).get_connections().keys():
                 split_text.pop(0)
                 return token, split_text
             elif token in self._ignore_tokens:

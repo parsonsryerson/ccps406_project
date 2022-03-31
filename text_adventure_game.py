@@ -29,12 +29,12 @@ def main():
 
 	### Initialize World
 
-	vw = GameView()
-	mdl = GameModel()
-	ctrl = GameController(mdl,vw)
-
 	# generate world and add objects and available actions to it
 	my_world = World(world_objects=data['world_objects'], available_actions=data['actions'], available_commands=commands_dict)
+
+	vw = GameView()
+	mdl = GameModel()
+	ctrl = GameController(my_world, mdl, vw)
 
 	### Start Game
 
@@ -44,10 +44,10 @@ def main():
 		cmd_input = input("\nprompt: ")
 		if str.lower(cmd_input) == 'q':
 			break
-		response = CommandParser(my_world, cmd_input)
+		response = CommandParser(my_world).try_parse(cmd_input)
 
 		# send response to view
-		vw.print_description(response)
+		ctrl.print_response(response)
 
 		# check for game over
 		if my_world.is_game_over():
