@@ -56,7 +56,7 @@ class CommandParser():
                 target_name, split_text = self.__find_target_name(world, split_text)
                 print(f"in parse_command -- target_name: {target_name}, split_text: {split_text}")
                 if target_name is not None:
-                    self.__set_target_name(target)
+                    self.__set_target_name(target_name)
                 else:
                     print("error - target")
                     break
@@ -82,11 +82,21 @@ class CommandParser():
         return None, split_text
 
     def __find_target_name(self, world, split_text:[]):
+        current_room_name = world.get_characters().get(world.get_player_name()).get_room_name()
+        print(f"in __find_target_name -- \ncharacters: {world.get_characters().keys()}, current_room_name: {current_room_name}")
+        print(f"in __find_target_name -- \nconnections: {world.get_rooms().get(current_room_name).get_connections().keys()}")
         while(self._target_name is None):
             if len(split_text) == 0:
                 break
             token = split_text[0]
-            if token in world.get_world_objects().keys():
+            print(f"in __find_target_name -- token: {token},\ncharacters: {world.get_characters().keys()},\nitems: {world.get_items().keys()},\nrooms: {world.get_rooms().get(current_room_name).get_connections().keys()}")
+            if token in world.get_characters().keys():
+                split_text.pop(0)
+                return token, split_text
+            elif token in world.get_items().keys():
+                split_text.pop(0)
+                return token, split_text
+            elif token in world.get_rooms().get(current_room_name).get_connections().keys():
                 split_text.pop(0)
                 return token, split_text
             elif token in self._ignore_tokens:
@@ -102,10 +112,10 @@ class CommandParser():
     def __set_action_name(self, action_name: str) -> None:
         self._action_name = action_name
 
-    def __set_actor_name(self, actor) -> None:
+    def __set_actor_name(self, actor_name) -> None:
         self._actor_name = actor_name
 
-    def __set_target_name(self, target) -> None:
+    def __set_target_name(self, target_name) -> None:
         self._target_name = target_name
 
     # Getter Methods (public)
@@ -189,6 +199,15 @@ class World():
     # Getter Methods
     def get_world_objects(self) -> dict:
         return self._world_objects
+
+    def get_characters(self) -> dict:
+        return self._characters
+
+    def get_items(self) -> dict:
+        return self._items
+
+    def get_rooms(self) -> dict:
+        return self._rooms
 
     def get_available_actions(self) -> dict:
         return self._available_actions

@@ -29,7 +29,7 @@
 			{
 				"name":"Enemy NPC",
 				"is_playable":false,
-				"starting_room":"Room 0",
+				"starting_room":"Room 1",
 				"state":{
 					"init":{
 						"description":{
@@ -51,7 +51,7 @@
 				"name":"knife",
 				"is_carryable":true,
 				"is_equippable":true,
-				"starting_room":"Room 0",
+				"starting_room":"Room 1",
 				"state":{
 					"init":{
 						"description":{
@@ -71,7 +71,7 @@
 				"name":"book",
 				"is_carryable":true,
 				"is_equippable":false,
-				"starting_room":"Room 0",
+				"starting_room":"Room 1",
 				"state":{
 					"init":{
 						"description":{
@@ -105,7 +105,21 @@
 							"short":"small room."
 					}
 				},
-				"connections":{}
+				"connections":{
+					"east":"Room 1"
+				}
+			},
+			{
+				"name":"Room 1",
+				"state":{
+					"init":{
+							"long":"TBD",
+							"short":"TBD"
+					}
+				},
+				"connections":{
+					"west":"Room 0"
+				}
 			}
 		]
 	},
