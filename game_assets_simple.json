@@ -95,8 +95,10 @@
 			"Room 0":{
 				"state":{
 					"init":{
+						"description":{
 							"long":"The room is dimly lit. \nYou can see hallways connecting to the east and south. \nA gate to the south is covered by a padlock with the word 'Ultrasafe' on it.",
 							"short":"small room."
+						}
 					}
 				},
 				"connections":{
@@ -106,8 +108,10 @@
 			"Room 1":{
 				"state":{
 					"init":{
+						"description":{
 							"long":"TBD",
 							"short":"TBD"
+						}
 					}
 				},
 				"connections":{
@@ -117,7 +121,13 @@
 		}
 	},
 	"actions":{
-		"help":{},
+		"help":{
+			"actor_name":null,
+			"target_name":null,
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
+		},
 		"describe":{
 			"actor_name":null,
 			"target_name":null,
