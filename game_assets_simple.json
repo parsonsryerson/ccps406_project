@@ -3,7 +3,7 @@
 		"characters":{
 			"Player":{
 				"is_playable":true,
-				"starting_room":"Room 0",
+				"starting_room":"Room 1",
 				"state":{
 					"free":{
 						"description":{
@@ -21,7 +21,7 @@
 			},
 			"Enemy NPC":{
 				"is_playable":false,
-				"starting_room":"Room 1",
+				"starting_room":"Room 7",
 				"state":{
 					"free":{
 						"description":{
@@ -42,7 +42,7 @@
 			"knife":{
 				"is_carryable":true,
 				"is_equippable":true,
-				"starting_room":"Room 1",
+				"starting_room":"Room 2",
 				"state":{
 					"free":{
 						"description":{
@@ -67,7 +67,7 @@
 			"book":{
 				"is_carryable":true,
 				"is_equippable":false,
-				"starting_room":"Room 1",
+				"starting_room":"Room 3",
 				"state":{
 					"free":{
 						"description":{
@@ -86,7 +86,7 @@
 			"key":{
 				"is_carryable":true,
 				"is_equippable":false,
-				"starting_room":"Room 0",
+				"starting_room":"Room 1",
 				"state":{
 					"free":{
 						"description":{
@@ -104,22 +104,9 @@
 			}
 		},
 		"rooms":{
-			"Room 0":{
-				"state":{
-					"init":{
-						"description":{
-							"long":"This is Room 0 - long description",
-							"short":"This is Room 0."
-						}
-					}
-				},
-				"connections":{
-					"east":"Room 1"
-				}
-			},
 			"Room 1":{
 				"state":{
-					"init":{
+					"free":{
 						"description":{
 							"long":"This is Room 1 - long description",
 							"short":"This is Room 1."
@@ -127,7 +114,118 @@
 					}
 				},
 				"connections":{
-					"west":"Room 0"
+					"north":"Room 2"
+				}
+			},
+			"Room 2":{
+				"state":{
+					"free":{
+						"description":{
+							"long":"This is Room 2 - long description",
+							"short":"This is Room 2."
+						}
+					}
+				},
+				"connections":{
+					"south":"Room 1",
+					"north":"Room 3"
+				}
+			},
+			"Room 3":{
+				"state":{
+					"free":{
+						"description":{
+							"long":"This is Room 3 - long description",
+							"short":"This is Room 3."
+						}
+					}
+				},
+				"connections":{
+					"south":"Room 2",
+					"east":"Room 4"
+				}
+			},
+			"Room 4":{
+				"state":{
+					"free":{
+						"description":{
+							"long":"This is Room 4 - long description",
+							"short":"This is Room 4."
+						}
+					}
+				},
+				"connections":{
+					"west":"Room 3",
+					"east":"Room 5"
+				}
+			},
+			"Room 5":{
+				"state":{
+					"free":{
+						"description":{
+							"long":"This is Room 5 - long description",
+							"short":"This is Room 5."
+						}
+					}
+				},
+				"connections":{
+					"west":"Room 4",
+					"south":"Room 6"
+				}
+			},
+			"Room 6":{
+				"state":{
+					"free":{
+						"description":{
+							"long":"This is Room 6 - long description",
+							"short":"This is Room 6."
+						}
+					}
+				},
+				"connections":{
+					"north":"Room 5",
+					"south":"Room 7"
+				}
+			},
+			"Room 7":{
+				"state":{
+					"free":{
+						"description":{
+							"long":"This is Room 7 - long description",
+							"short":"This is Room 7."
+						}
+					}
+				},
+				"connections":{
+					"north":"Room 6",
+					"west":"Room 8"
+				}
+			},
+			"Room 8":{
+				"state":{
+					"free":{
+						"description":{
+							"long":"This is Room 8 - long description",
+							"short":"This is Room 8."
+						}
+					}
+				},
+				"connections":{
+					"east":"Room 7",
+					"north":"Room 9"
+				}
+			},
+			"Room 9":{
+				"state":{
+					"free":{
+						"description":{
+							"long":"This is Room 9 - long description",
+							"short":"This is Room 9."
+						}
+					}
+				},
+				"connections":{
+					"south":"Room 8"
 				}
 			}
 		}
@@ -212,6 +310,17 @@
 					"target":"in_inventory"
 				},
 				"description_success":"You pick up the key and put it in your pocket."
+			},
+			"book":{
+				"actor_name":null,
+				"target_name":null,
+				"req_state":{
+					"target":["free"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
+				"description_success":"You grab the leather-bound book and stache it in your pack."
 			},
 			"knife":{
 				"actor_name":null,

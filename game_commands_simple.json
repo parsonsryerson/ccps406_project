@@ -15,9 +15,12 @@
 	"pickup" : "pickup",
 	"equip" : "equip",
 	"hold" : "equip",
+	"inventory" : "inventory",
+	"pack" : "inventory",
 	"player" : "player",
 	"enemy" : "enemy",
 	"knife" : "knife",
-	"key": " key",
+	"key" : "key",
+	"book" : "book",
 	"door" : "door"
 }
