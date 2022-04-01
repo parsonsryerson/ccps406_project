@@ -398,8 +398,10 @@ class Action():
             # check if actor and target in the same room
             is_same_room = actor.get_room_name() == target.get_room_name()
             # check if actor and target in the required states
-            actor_req_state = self._req_state.get(self._actor_name,None)
-            target_req_state = self._req_state.get(self._target_name,None)
+            actor_req_state = self._req_state.get("actor",None)
+            target_req_state = self._req_state.get("target",None)
+            print(f"DEBUG - Action State - actor_req_state: {self._req_state}, actor_curent_state: {actor.get_current_state()}")
+            print(f"DEBUG - Action State - target_req_state: {self._req_state}, target_current_state: {target.get_current_state()}")
             is_actor_in_req_state = actor.get_current_state() == actor_req_state or actor_req_state is None
             is_target_in_req_state = target.get_current_state() == target_req_state or target_req_state is None
             print(f"DEBUG - Action Meets Conditions - is_same_room: {is_same_room}, is_actor_in_req_state: {is_actor_in_req_state}, is_target_in_req_state: {is_target_in_req_state}")

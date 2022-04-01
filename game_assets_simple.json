@@ -5,12 +5,6 @@
 				"is_playable":true,
 				"starting_room":"Room 0",
 				"state":{
-					"init":{
-						"description":{
-							"long": "Chained to the floor. This sucks.",
-							"short": "Still stuck."
-						}
-					},
 					"free":{
 						"description":{
 							"long": "Just an average looking dude.",
@@ -29,7 +23,7 @@
 				"is_playable":false,
 				"starting_room":"Room 1",
 				"state":{
-					"init":{
+					"free":{
 						"description":{
 							"long":"An evil looking dude.",
 							"short":"Somehow uglier than last time you checked."
@@ -37,8 +31,8 @@
 					},
 					"unconscious":{
 						"description":{
-							"long":"An evil looking dude.",
-							"short":"Somehow uglier than last time you checked."
+							"long":"Lying on the floor, barely breathing.",
+							"short":"Knocked out cold."
 						}
 					}
 				}
@@ -50,7 +44,13 @@
 				"is_equippable":true,
 				"starting_room":"Room 1",
 				"state":{
-					"init":{
+					"free":{
+						"description":{
+							"long":"A sharp, serrated hunting knife with a worn, yellow handle.",
+							"short":"Super sharp."
+						}
+					},
+					"in_inventory":{
 						"description":{
 							"long":"A sharp, serrated hunting knife with a worn, yellow handle.",
 							"short":"Super sharp."
@@ -69,7 +69,13 @@
 				"is_equippable":false,
 				"starting_room":"Room 1",
 				"state":{
-					"init":{
+					"free":{
+						"description":{
+							"long":"A brown, leather-bound book with some sort of archaic logo wrapping the entire cover.",
+							"short":"Upon closer inspection, the logo is some ornate version of a cross."
+						}
+					},
+					"in_inventory":{
 						"description":{
 							"long":"A brown, leather-bound book with some sort of archaic logo wrapping the entire cover.",
 							"short":"Upon closer inspection, the logo is some ornate version of a cross."
@@ -82,7 +88,13 @@
 				"is_equippable":false,
 				"starting_room":"Room 0",
 				"state":{
-					"init":{
+					"free":{
+						"description":{
+							"long":"A tiny, silver key with the word 'Ultrasafe' branded into it.",
+							"short":"An extremely small key."
+						}
+					},
+					"in_inventory":{
 						"description":{
 							"long":"A tiny, silver key with the word 'Ultrasafe' branded into it.",
 							"short":"An extremely small key."
@@ -193,15 +205,23 @@
 			"key":{
 				"actor_name":null,
 				"target_name":null,
-				"req_state":{},
-				"next_state":{},
+				"req_state":{
+					"target":["free"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
 				"description_success":"You pick up the key and put it in your pocket."
 			},
 			"knife":{
 				"actor_name":null,
 				"target_name":null,
-				"req_state":{},
-				"next_state":{},
+				"req_state":{
+					"target":["free"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
 				"description_success":"You pick up the serrated knife, storing it safely in your belt."
 			}
 		},
@@ -209,15 +229,23 @@
 			"key":{
 				"actor_name":null,
 				"target_name":null,
-				"req_state":{},
-				"next_state":{},
+				"req_state":{
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"target":"free"
+				},
 				"description_success":"You set the key down on the floor."
 			},
 			"knife":{
 				"actor_name":null,
 				"target_name":null,
-				"req_state":{},
-				"next_state":{},
+				"req_state":{
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"target":"free"
+				},
 				"description_success":"You drop the knife to the ground, making a loud thunk."
 			}
 		},
@@ -225,8 +253,14 @@
 			"knife":{
 				"actor_name":null,
 				"target_name":null,
-				"req_state":{},
-				"next_state":{},
+				"req_state":{
+					"actor":["free"],
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"actor":"armed",
+					"target":"equipped"
+				},
 				"description_success":"You remove the knife from your belt and hold it firmly in your dominant hand."
 			}
 		},
