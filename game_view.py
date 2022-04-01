@@ -1,3 +1,5 @@
+import time
+
 class GameView():
 
 	def __init__(self):
@@ -21,7 +23,12 @@ class GameView():
 		print("\nNot sure what that is.")
 
 	def print_description(self, output_text):
-		print(f"\n{output_text}")
+		# print(f"\n{output_text}")
+		print("\n")
+		for c in output_text:
+			print(c,end='',flush=True)
+			time.sleep(0.01)
+		print('')
 
 	def print_game_over(self):
 		print("\n********************************************")

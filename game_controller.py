@@ -11,9 +11,10 @@ class GameController():
         self._game_view = game_view
 
         # display intro text at initialization
-        
+
 
     def print_response(self, response):
+        print(f"DEBUG - In GameController - response : {response}")
         if 'error' in response.split()[0] and len(response.split()) > 1:
             error_type = response.split()[1]
             print(f"DEBUG - In GameController - error_type : {error_type}")

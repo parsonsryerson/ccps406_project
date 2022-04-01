@@ -41,7 +41,7 @@ def main():
 	# accept commands in a permenent while loop
 	cmd_input=''
 	while(True):
-		cmd_input = input("\nprompt: ")
+		cmd_input = input("\n>>> ")
 		if str.lower(cmd_input) == 'q':
 			break
 		response = CommandParser(my_world).try_parse(cmd_input)

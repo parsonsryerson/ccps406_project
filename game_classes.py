@@ -13,10 +13,21 @@ class CommandParser():
         return [item for sublist in t for item in sublist]
 
     def try_parse(self, command:str) -> str:
-        split_text = self.flatten([self._world.get_available_commands().get(str.lower(x),'').split() for x in command.split()])
+        # split the command
+        available_commands = self._world.get_available_commands()
+        split_text = []
+        for x in command.split():
+            next_token = str.lower(x)
+            if next_token in available_commands.keys():
+                next_token = available_commands.get(next_token).split()
+            split_text.append(next_token)
+        split_text = self.flatten(split_text)
+
+        print(f"DEBUG - CommandParser - command: {command}, split_text: {split_text}")
         assert(len(split_text) >= 1 and len(split_text) <= 2)
         self._action_name = split_text[0]
         self._target_name = split_text[1] if len(split_text) > 1 else None
+        print(f"DEBUG - CommandParser Class - split_text: {split_text}, action_name: {self._action_name}, target_name: {self._target_name}")
         result = Action(self._world, self._action_name, self._actor_name, self._target_name).perform_action()
         return result
 
@@ -286,14 +297,21 @@ class Item(GameObject):
 class Action():
 
     # Constructor
-    def __init__(self, world, name:str, actor_name:str, target_name:str) -> None:
+    def __init__(self, world, action_name:str, actor_name:str, target_name:str) -> None:
         self._world = world
-        self._action_name = name
+        self._action_name = action_name
         self._actor_name = actor_name
         self._target_name = target_name
-        self._req_state = self._world.get_available_actions().get(self._action_name).get('req_state')
-        self._next_state = self._world.get_available_actions().get(self._action_name).get('next_state')
-        self._description_success = self._world.get_available_actions().get(self._action_name).get('description_success')
+        print(f"DEBUG - Action Constructor - action_name: {action_name}, actor_name: {actor_name}, target_name: {target_name}")
+        if target_name is not None:
+            self._req_state = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('req_state')
+            self._next_state = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('next_state')
+            self._description_success = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('description_success')
+        else:
+            self._req_state = {}
+            self._next_state = {}
+            self._description_success = ''
+        print(f"DEBUG - Action Constructor - req_state: {self._req_state}, next_state: {self._next_state}, description_success: {self._description_success}")
 
     def perform_action(self) -> str:
         # initialize result to empty string
@@ -301,7 +319,7 @@ class Action():
 
         # special case - "help" action simply returns help - no changes to game world or state
         if self._action_name == "help":
-            result = self._name
+            result = self._action_name
         # special case - "describe" action always meets conditions
         elif self._action_name == "describe":
             result = self.__perform_describe()
@@ -311,8 +329,11 @@ class Action():
 
         # general case - check if conditions for actions are met, if so update states and return success description
         elif self.__meets_conditions():
+            print(f"DEBUG - Action Class - met general case conditions")
             self.__update_states()
+            print(f"DEBUG - Action Class - after update states")
             result = self._description_success
+            print(f"DEBUG - Action Class - result: {result}")
         return result
 
     def __perform_describe(self) -> str:
@@ -339,9 +360,9 @@ class Action():
             return "error room"
         print(f"DEBUG - Action Class - prev_room_name: {prev_room_name}, next_room_name: {next_room_name}")
         # update the actor's location to the next room
-        print(f"DEBUT - Action Class - Before room update: {self._world.get_characters().get(self._actor_name).get_room_name()}")
+        print(f"DEBUG - Action Class - Before room update: {self._world.get_characters().get(self._actor_name).get_room_name()}")
         self._world.get_characters().get(self._actor_name).set_room_name(next_room_name)
-        print(f"DEBUT - Action Class - After room update: {self._world.get_characters().get(self._actor_name).get_room_name()}")
+        print(f"DEBUG - Action Class - After room update: {self._world.get_characters().get(self._actor_name).get_room_name()}")
         # update the previous and next room's game objects
         self._world.get_rooms().get(prev_room_name).remove_game_objects(self._actor_name)
         self._world.get_rooms().get(next_room_name).set_game_objects({self._actor_name:self._world.get_characters().get(self._actor_name)})
@@ -361,9 +382,14 @@ class Action():
         # get references to actor and target from the world object
         # actor = world.get_world_objects().get(self._actor_name,None)
         actor = self._world.get_characters().get(self._world.get_player_name())
-        for world_object_type, world_object in self._world.get_world_objects().items():
-            if self._target_name in world_object.keys():
-                target = world_object.get(self._target_name,None)
+        if self._target_name in self._world.get_rooms():
+            target = self._world.get_rooms().get(self._target_name)
+        elif self._target_name in self._world.get_characters():
+            target = self._world.get_characters().get(self._target_name)
+        elif self._target_name in self._world.get_items():
+            target = self._world.get_items().get(self._target_name)
+        else:
+            target = None
 
         # if either of the actor or target is not specified then return False
         if actor is None or target is None:
@@ -372,8 +398,11 @@ class Action():
             # check if actor and target in the same room
             is_same_room = actor.get_room_name() == target.get_room_name()
             # check if actor and target in the required states
-            is_actor_in_req_state = actor.get_current_state() == self._req_state.get(self._actor_name,None)
-            is_target_in_req_state = target.get_current_state() == self._req_state.get(self._target_name,None)
+            actor_req_state = self._req_state.get(self._actor_name,None)
+            target_req_state = self._req_state.get(self._target_name,None)
+            is_actor_in_req_state = actor.get_current_state() == actor_req_state or actor_req_state is None
+            is_target_in_req_state = target.get_current_state() == target_req_state or target_req_state is None
+            print(f"DEBUG - Action Meets Conditions - is_same_room: {is_same_room}, is_actor_in_req_state: {is_actor_in_req_state}, is_target_in_req_state: {is_target_in_req_state}")
             result = is_same_room and is_actor_in_req_state and is_target_in_req_state
 
         return result

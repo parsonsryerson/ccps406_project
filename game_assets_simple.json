@@ -190,25 +190,45 @@
 			}
 		},
 		"pickup":{
-			"actor_name":null,
-			"target_name":null,
-			"req_state":{},
-			"next_state":{},
-			"description_success":null
+			"key":{
+				"actor_name":null,
+				"target_name":null,
+				"req_state":{},
+				"next_state":{},
+				"description_success":"You pick up the key and put it in your pocket."
+			},
+			"knife":{
+				"actor_name":null,
+				"target_name":null,
+				"req_state":{},
+				"next_state":{},
+				"description_success":"You pick up the serrated knife, storing it safely in your belt."
+			}
 		},
 		"drop":{
-			"actor_name":null,
-			"target_name":null,
-			"req_state":{},
-			"next_state":{},
-			"description_success":null
+			"key":{
+				"actor_name":null,
+				"target_name":null,
+				"req_state":{},
+				"next_state":{},
+				"description_success":"You set the key down on the floor."
+			},
+			"knife":{
+				"actor_name":null,
+				"target_name":null,
+				"req_state":{},
+				"next_state":{},
+				"description_success":"You drop the knife to the ground, making a loud thunk."
+			}
 		},
 		"equip":{
-			"actor_name":null,
-			"target_name":null,
-			"req_state":{},
-			"next_state":{},
-			"description_success":null
+			"knife":{
+				"actor_name":null,
+				"target_name":null,
+				"req_state":{},
+				"next_state":{},
+				"description_success":"You remove the knife from your belt and hold it firmly in your dominant hand."
+			}
 		},
 		"push":{
 			"actor_name":null,
