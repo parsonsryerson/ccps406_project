@@ -163,7 +163,6 @@ class WorldObject():
     # Setter Methods
     def set_current_state(self, next_state:str) -> None:
         self._current_state = next_state
-        # Reset description length to 'long' when WorldObject changes state
         self._description_length = 'long'
 
     # Getter Methods
@@ -172,7 +171,7 @@ class WorldObject():
 
     def get_description(self) -> str:
         # print(f"DEBUG - WorldObject - current_state: {self._current_state}, self._state: {self._state}")
-        result = self._state.get(self._current_state).get('description').get(self._description_length,'')
+        result = self._state.get(self._current_state).get('description').get(self._description_length)
         # Set description length to 'short' when 'long' description is requested
         if self._description_length == 'long':
             self._description_length = 'short'
@@ -197,10 +196,17 @@ class Room(WorldObject):
         super().__init__(name,state)
         # override
         self._current_state = 'init'
-        self._connections = state[self._current_state]['connections']
+        self._connections = self._state[self._current_state]['connections']
         self._game_objects = {}
 
     # Setter Methods
+
+    # override
+    def set_current_state(self, next_state:str) -> None:
+        self._current_state = next_state
+        self._description_length = 'long'
+        self.set_connections(self._state[self._current_state]['connections'])
+
     def set_connections(self, connections:dict) -> None:
         self._connections.update(connections)
 
@@ -282,6 +288,16 @@ class Item(GameObject):
         self._in_inventory_of = None
         self._is_carryable = is_carryable
         self._is_equippable = is_equippable
+        if self._name in ['bread','cheese','chocolate','grapes','key']:
+            self.set_current_state('hidden')
+
+    # # override superclass
+    # def get_description(self) -> str:
+    #     print(f"DEBUG - Item get_description - current_state: {self._state.get(self._current_state)}")
+    #     result = self._state.get(self._current_state).get('description').get(self._description_length)
+    #     if self._description_length == 'long':
+    #         self._description_length = 'short'
+    #     return result
 
     # Returns the Character for which the Item is currently in the inventory of, otherwise None
     def get_inventory_of(self):
@@ -334,9 +350,9 @@ class Action():
 
         # general case - check if conditions for actions are met, if so update states and return success description
         elif self.__meets_conditions():
-            # print(f"DEBUG - Action Class - met general case conditions")
+            print(f"DEBUG - Action Class - met general case conditions")
             self.__update_states()
-            # print(f"DEBUG - Action Class - after update states")
+            print(f"DEBUG - Action Class - after update states")
             self.__update_inventory()
             result = self._description_success
             # print(f"DEBUG - Action Class - result: {result}")
@@ -349,6 +365,7 @@ class Action():
         
         if self._target_name in self._world.get_rooms():
             target = self._world.get_rooms().get(self._target_name)
+            # print(f"DEBUG - Action __perform_describe - target: {target}")
             result = target.get_description()
             # check for free items in the room
             free_items_in_room = {}
@@ -393,12 +410,12 @@ class Action():
         self._world.get_rooms().get(prev_room_name).remove_game_objects(self._actor_name)
         self._world.get_rooms().get(next_room_name).set_game_objects({self._actor_name:self._world.get_characters().get(self._actor_name)})
         # return description of next room
-        # return self._world.get_rooms().get(next_room_name).get_description()
         self._target_name = next_room_name
+
         return self.__perform_describe()
 
     def __update_states(self) -> None:
-        # print(f"DEBUG - Action __update_states - self._next_state: {self._next_state}, self._target_name: {self._target_name}")
+        print(f"DEBUG - Action __update_states - self._next_state: {self._next_state}, self._target_name: {self._target_name}")
         for name, next_state in self._next_state.items(): 
             # world_object = self._world.get_world_objects().get(name,None)
             if name == 'actor':
@@ -408,7 +425,14 @@ class Action():
                     world_object = self._world.get_characters().get(self._target_name)
                 elif self._target_name in self._world.get_items().keys():
                     world_object = self._world.get_items().get(self._target_name)
-            # print(f"DEBUG - Action __update_states - name: {name}, next_state: {next_state}, world_object: {world_object}")
+            elif name == 'room':
+                actor = self._world.get_characters().get(self._actor_name)
+                world_object = self._world.get_rooms().get(actor.get_room_name())
+            elif name in self._world.get_characters().keys():
+                world_object = self._world.get_characters().get(name)
+            elif name in self._world.get_items().keys():
+                world_object = self._world.get_items().get(name)
+            print(f"DEBUG - Action __update_states - name: {name}, next_state: {next_state}, world_object: {world_object}")
             if world_object is not None:
                 world_object.set_current_state(next_state)
 
@@ -416,7 +440,7 @@ class Action():
         if self._target_name in self._world.get_items().keys():
             actor = self._world.get_characters().get(self._actor_name)
             item = self._world.get_items().get(self._target_name)
-            if item.get_current_state() == 'in_inventory':
+            if 'inventory' in item.get_current_state():
                 item.add_inventory_of(actor)
                 actor.add_to_inventory({self._target_name:item})
 
@@ -446,10 +470,10 @@ class Action():
             actor_req_state = self._req_state.get("actor",None)
             target_req_state = self._req_state.get("target",None)
             # print(f"DEBUG - Action State - actor_req_state: {actor_req_state}, actor_curent_state: {actor.get_current_state()}")
-            # print(f"DEBUG - Action State - target_req_state: {target_req_state}, target_current_state: {target.get_current_state()}")
+            print(f"DEBUG - Action State - target_req_state: {target_req_state}, target_current_state: {target.get_current_state()}")
             is_actor_in_req_state = (actor_req_state is None) or (actor.get_current_state() in actor_req_state)
             is_target_in_req_state = (target_req_state is None) or (target.get_current_state() in target_req_state)
-            # print(f"DEBUG - Action Meets Conditions - is_same_room: {is_same_room}, is_actor_in_req_state: {is_actor_in_req_state}, is_target_in_req_state: {is_target_in_req_state}")
+            print(f"DEBUG - Action Meets Conditions - is_same_room: {is_same_room}, is_actor_in_req_state: {is_actor_in_req_state}, is_target_in_req_state: {is_target_in_req_state}")
             result = is_same_room and is_actor_in_req_state and is_target_in_req_state
 
         return result

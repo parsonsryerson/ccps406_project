@@ -44,7 +44,7 @@ class GameView():
 		print("************ ~~ THE CIRCLES ~~ *************")
 		print("********************************************\n")
 		print("- For available commands, type 'help'")
-		print("- To exit the game, type 'q'\n")
+		print("- To exit the game, type 'q'")
 
 	def print_game_over(self):
 		print("\n********************************************")

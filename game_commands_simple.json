@@ -2,6 +2,7 @@
 	"help" : "help",
 	"describe" : "describe",
 	"look":"describe",
+	"read":"describe",
 	"move" : "move",
 	"n" : "move north",
 	"e" : "move east",
@@ -13,6 +14,7 @@
 	"south" : "move south",
 	"go" : "move",
 	"pickup" : "pickup",
+	"get":"pickup",
 	"equip" : "equip",
 	"hold" : "equip",
 	"inventory" : "inventory",
@@ -22,6 +24,8 @@
 	"knife" : "knife",
 	"key" : "key",
 	"inventory" : "inventory",
+	"magazines" : "magazine",
+	"magazine" : "magazine",
 	"book" : "book",
 	"door" : "door"
 }
