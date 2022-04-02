@@ -101,7 +101,7 @@ class World():
     def __build_rooms(self, world_objects:dict) -> dict:
         rooms = {}
         if 'rooms' in world_objects.keys():
-            rooms.update({room_name : Room(room_name,r['state'],r['connections']) for room_name,r in world_objects['rooms'].items()})
+            rooms.update({room_name : Room(room_name,r['state']) for room_name,r in world_objects['rooms'].items()})
         return rooms
 
     def __add_game_objects_to_rooms(self, game_objects:dict) -> None:
@@ -193,11 +193,11 @@ class WorldObject():
 class Room(WorldObject):
 
     # Constructor
-    def __init__(self, name:str, state:dict, connections:dict) -> None:
+    def __init__(self, name:str, state:dict) -> None:
         super().__init__(name,state)
         # override
         self._current_state = 'init'
-        self._connections = connections
+        self._connections = state[self._current_state]['connections']
         self._game_objects = {}
 
     # Setter Methods

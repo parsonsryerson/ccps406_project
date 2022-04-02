@@ -41,7 +41,7 @@ class GameView():
 	def print_introduction(self):
 		print("\n********************************************")
 		print("*************** WELCOME TO *****************")
-		print("*********** ~~ THE CIRCLES ~~ **************")
+		print("************ ~~ THE CIRCLES ~~ *************")
 		print("********************************************\n")
 		print("- For available commands, type 'help'")
 		print("- To exit the game, type 'q'\n")
