@@ -233,160 +233,227 @@
 						}
 					}
 				}
-			},
+			}
 		},
 		"rooms":{
 			"Room 1":{
 				"state":{
+					"init":{
+						"description":{
+							"long":"You awake to find yourself in a large room filled with fog.\nIn sections where the walls are visible, images of forelorn individuals are seen wandering too and fro, with no specific destination.\n",
+							"short":"A foggy room with images of hopeless souls wandering on the walls."
+						},
+						"connections":{}
+					},
 					"free":{
 						"description":{
-							"long":"You awake to find yourself in a large room filled with fog.\nIn sections where the walls are visible, images of forelorn individuals are seen wandering too and fro, with no specific destination.\nWhile difficult to make out, a large letter 'E' appears to be scratched into the ceiling.\n",
-							"short":"A foggy room with images of hopeless souls wandering on the walls. The letter 'E' is scratched onto the floor."
+							"long":"You awake to find yourself in a large room filled with fog.\nIn sections where the walls are visible, images of forelorn individuals are seen wandering too and fro, with no specific destination.\n",
+							"short":"A foggy room with images of hopeless souls wandering on the walls. The letter 'E' is scratched onto the floor underneath where the book used to be."
+						},
+						"connections":{
+							"north":"Room 2"
 						}
 					}
-				},
-				"connections":{
-					"north":"Room 2"
 				}
 			},
 			"Room 2":{
 				"state":{
+					"init":{
+						"description":{
+							"long":"This is Room 2 - long description",
+							"short":"This is Room 2."
+						},
+						"connections":{
+							"south":"Room 1"
+						}
+					},
 					"free":{
 						"description":{
 							"long":"This is Room 2 - long description",
 							"short":"This is Room 2."
+						},
+						"connections":{
+							"south":"Room 1",
+							"north":"Room 3"
 						}
-					},
-					"food_consumed":{
-						"description":{
-							"long":"This is Room 2 - long description",
-							"short":"This is Room 2."
-						}
-					},
-				},
-				"connections":{
-					"south":"Room 1",
-					"north":"Room 3"
+					}
 				}
 			},
 			"Room 3":{
 				"state":{
+					"init":{
+						"description":{
+							"long":"This is Room 3 - long description",
+							"short":"This is Room 3."
+						},
+						"connections":{
+							"south":"Room 2"
+						}
+					},
 					"free":{
 						"description":{
 							"long":"This is Room 3 - long description",
 							"short":"This is Room 3."
+						},
+						"connections":{
+							"south":"Room 2",
+							"east":"Room 4"
 						}
 					}
-				},
-				"connections":{
-					"south":"Room 2",
-					"east":"Room 4"
 				}
 			},
 			"Room 4":{
 				"state":{
+					"init":{
+						"description":{
+							"long":"This is Room 4 - long description",
+							"short":"This is Room 4."
+						},
+						"connections":{
+							"west":"Room 3"
+						}
+					},
 					"free":{
 						"description":{
 							"long":"This is Room 4 - long description",
 							"short":"This is Room 4."
+						},
+						"connections":{
+							"west":"Room 3",
+							"east":"Room 5"
 						}
 					}
-				},
-				"connections":{
-					"west":"Room 3",
-					"east":"Room 5"
 				}
 			},
 			"Room 5":{
 				"state":{
+					"init":{
+						"description":{
+							"long":"This is Room 5 - long description",
+							"short":"This is Room 5."
+						},
+						"connections":{
+							"west":"Room 4"
+						}
+					},
 					"free":{
 						"description":{
 							"long":"This is Room 5 - long description",
 							"short":"This is Room 5."
+						},
+						"connections":{
+							"west":"Room 4",
+							"south":"Room 6"
 						}
 					}
-				},
-				"connections":{
-					"west":"Room 4",
-					"south":"Room 6"
 				}
 			},
 			"Room 6":{
 				"state":{
+					"init":{
+						"description":{
+							"long":"This is Room 6 - long description",
+							"short":"This is Room 6."
+						},
+						"connections":{
+							"north":"Room 5"
+						}
+					},
 					"free":{
 						"description":{
 							"long":"This is Room 6 - long description",
 							"short":"This is Room 6."
+						},
+						"connections":{
+							"north":"Room 5",
+							"south":"Room 7"
 						}
 					}
-				},
-				"connections":{
-					"north":"Room 5",
-					"south":"Room 7"
 				}
 			},
 			"Room 7":{
 				"state":{
+					"init":{
+						"description":{
+							"long":"This is Room 7 - long description",
+							"short":"This is Room 7."
+						},
+						"connections":{
+							"north":"Room 6"
+						}
+					},
 					"free":{
 						"description":{
 							"long":"This is Room 7 - long description",
 							"short":"This is Room 7."
+						},
+						"connections":{
+							"north":"Room 6",
+							"west":"Room 8"
 						}
 					}
-				},
-				"connections":{
-					"north":"Room 6",
-					"west":"Room 8"
 				}
 			},
 			"Room 8":{
 				"state":{
+					"init":{
+						"description":{
+							"long":"This is Room 8 - long description",
+							"short":"This is Room 8."
+						},
+						"connections":{
+							"east":"Room 7"
+						}
+					},
 					"free":{
 						"description":{
 							"long":"This is Room 8 - long description",
 							"short":"This is Room 8."
+						},
+						"connections":{
+							"east":"Room 7",
+							"north":"Room 9"
 						}
 					}
-				},
-				"connections":{
-					"east":"Room 7",
-					"north":"Room 9"
 				}
 			},
 			"Room 9":{
 				"state":{
+					"init":{
+						"description":{
+							"long":"This is Room 9 - long description",
+							"short":"This is Room 9."
+						},
+						"connections":{
+							"south":"Room 8"
+						}
+					},
 					"free":{
 						"description":{
 							"long":"This is Room 9 - long description",
 							"short":"This is Room 9."
+						},
+						"connections":{
+							"south":"Room 8"
 						}
 					}
-				},
-				"connections":{
-					"south":"Room 8"
 				}
 			}
 		}
 	},
 	"actions":{
 		"help":{
-			"actor_name":null,
-			"target_name":null,
 			"req_state":{},
 			"next_state":{},
 			"description_success":null
 		},
 		"describe":{
-			"actor_name":null,
-			"target_name":null,
 			"req_state":{},
 			"next_state":{},
 			"description_success":null
 		},
 		"move":{
 			"north":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"actor":["free","armed"],
 					"target":null
@@ -398,8 +465,6 @@
 				"description_success":null
 			},
 			"east":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"actor":["free","armed"],
 					"target":null
@@ -411,8 +476,6 @@
 				"description_success":null
 			},
 			"west":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"actor":["free","armed"],
 					"target":null
@@ -424,8 +487,6 @@
 				"description_success":null
 			},
 			"south":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"actor":["free","armed"],
 					"target":null
@@ -439,8 +500,6 @@
 		},
 		"pickup":{
 			"key":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["free"]
 				},
@@ -450,19 +509,17 @@
 				"description_success":"You pick up the key and put it in your pocket."
 			},
 			"book":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
-					"target":["free"]
+					"target":["free"],
+					"room":["init"]
 				},
 				"next_state":{
-					"target":"in_inventory"
+					"target":"in_inventory",
+					"room":"free"
 				},
-				"description_success":"You grab the leather-bound book and stache it in your pack."
+				"description_success":"You grab the leather-bound book and stache it in your pack.\nThe fog partially clears indicating a path forward to the north."
 			},
 			"knife":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["free"]
 				},
@@ -472,8 +529,6 @@
 				"description_success":"You pick up the serrated knife, storing it safely in your belt."
 			},
 			"meat":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["free"]
 				},
@@ -483,8 +538,6 @@
 				"description_success":"You stuff as much of the meat into your pack as it will carry."
 			},
 			"bread":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["free"]
 				},
@@ -494,8 +547,6 @@
 				"description_success":"You break the bread into small enough chunks to fit into your pack."
 			},
 			"cheese":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["free"]
 				},
@@ -505,8 +556,6 @@
 				"description_success":"You stack the cheeses and place it carefully in your pack."
 			},
 			"grapes":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["free"]
 				},
@@ -516,8 +565,6 @@
 				"description_success":"You empty the bowl of grapes into your pack."
 			},
 			"chocolate":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["free"]
 				},
@@ -529,8 +576,6 @@
 		},
 		"drop":{
 			"key":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["in_inventory"]
 				},
@@ -540,8 +585,6 @@
 				"description_success":"You set the key down on the floor."
 			},
 			"book":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["in_inventory"]
 				},
@@ -551,8 +594,6 @@
 				"description_success":"You should probably hold onto this."
 			},
 			"knife":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["in_inventory"]
 				},
@@ -562,8 +603,6 @@
 				"description_success":"You drop the knife to the ground, making a loud thunk."
 			},
 			"meat":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["in_inventory"]
 				},
@@ -573,8 +612,6 @@
 				"description_success":"You empty the meat onto the floor."
 			},
 			"bread":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["in_inventory"]
 				},
@@ -584,8 +621,6 @@
 				"description_success":"You drop the now-crumbled bread onto the floor."
 			},
 			"cheese":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["in_inventory"]
 				},
@@ -595,8 +630,6 @@
 				"description_success":"You place the cheeses delicately onto the floor."
 			},
 			"grapes":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["in_inventory"]
 				},
@@ -606,8 +639,6 @@
 				"description_success":"You pile the grapes up in the corner of the room."
 			},
 			"chocolate":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["in_inventory"]
 				},
@@ -619,8 +650,6 @@
 		},
 		"equip":{
 			"knife":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"actor":["free"],
 					"target":["in_inventory"]
@@ -634,8 +663,6 @@
 		},
 		"eat":{
 			"key":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["free","in_inventory"]
 				},
@@ -645,106 +672,84 @@
 				"description_success":"You probably shouldn't eat that."
 			},
 			"book":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{},
 				"next_state":{},
 				"description_success":"You nibble the corner, but realize the book is probably more useful un-eaten."
 			},
 			"knife":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{},
 				"next_state":{},
 				"description_success":"That just seems like a bad idea."
 			},
 			"meat":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["free","in_inventory"]
 				},
 				"next_state":{
 					"target":"consumed"
 				},
-				"description_success":"You feast on the meat's flesh, ripping at it with your teeth. It's delicious. Somehow you find room in your stomach to eat it all."
+				"description_success":"You feast on the meat's flesh, ripping at it with your teeth. It's delicious. Somehow you find room in your stomach to eat it all.\nWhen you look down, you notice a loaf of bread has appeared where the meat had originally stood."
 			},
 			"bread":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["free","in_inventory"]
 				},
 				"next_state":{
 					"target":"consumed"
 				},
-				"description_success":"You grab fistfulls of the bread and stuff it in your mouth, barely waiting to swallow before cramming in more. It's incredibly filling, but you manage to eat the whole loaf."
+				"description_success":"You grab fistfulls of the bread and stuff it in your mouth, barely waiting to swallow before cramming in more. It's incredibly filling, but you manage to eat the whole loaf.\nYou swear it was not there before, but suddently a large selection of cheeses has taken the place where the bread had been."
 			},
 			"cheese":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["free","in_inventory"]
 				},
 				"next_state":{
 					"target":"consumed"
 				},
-				"description_success":"You proceed to take a bite out of each of the cheeses, each one richer and more decadent than the last. Bite after bite until you realize nothing is left but the crumbs."
+				"description_success":"You proceed to take a bite out of each of the cheeses, each one richer and more decadent than the last. Bite after bite until you realize nothing is left but the crumbs.\nOnce again, like magic, a bowl of grapes appears where the cheese had once been."
 			},
 			"grapes":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
 					"target":["free","in_inventory"]
 				},
 				"next_state":{
 					"target":"consumed"
 				},
-				"description_success":"You start popping grapes into your mouth and they burst with flavour. The juices are complex, vibrant, and you can't stop yourself from eating every last one."
+				"description_success":"You start popping grapes into your mouth and they burst with flavour. The juices are complex, vibrant, and you can't stop yourself from eating every last one.\nRight on cue, the bowl that had contained the grapes had transformed into a large pile of decadent chocolates."
 			},
 			"chocolate":{
-				"actor_name":null,
-				"target_name":null,
 				"req_state":{
-					"target":["free","in_inventory"]
+					"target":["free","in_inventory"],
+					"room":["init"]
 				},
 				"next_state":{
-					"target":"consumed"
+					"target":"consumed",
+					"room":"free"
 				},
-				"description_success":"You take the tiniest bite of the corner of a piece of chocolate. It's heavenly. The sugar rush fills you with a wave of giddiness. You don't want this feeling to stop. You take another bite, and another, until you look down and see only sticky fingers remaining."
+				"description_success":"You take the tiniest bite of the corner of a piece of chocolate. It's heavenly. The sugar rush fills you with a wave of giddiness. You don't want this feeling to stop. You take another bite, and another, until you look down and see only sticky fingers remaining.\nNo more food emerges in the chocolate's place.\nYou feel ill and ready to burst, but it seems like the path forward is clear."
 			}
 		},
 		"pull":{
-			"actor_name":null,
-			"target_name":null,
 			"req_state":{},
 			"next_state":{},
 			"description_success":null
 		},
 		"open":{
-			"actor_name":null,
-			"target_name":null,
 			"req_state":{},
 			"next_state":{},
 			"description_success":null
 		},
 		"close":{
-			"actor_name":null,
-			"target_name":null,
 			"req_state":{},
 			"next_state":{},
 			"description_success":null
 		},
 		"unlock":{
-			"actor_name":null,
-			"target_name":null,
 			"req_state":{},
 			"next_state":{},
 			"description_success":null
 		},
 		"attack":{
-			"actor_name":null,
-			"target_name":null,
 			"req_state":{},
 			"next_state":{},
 			"description_success":null

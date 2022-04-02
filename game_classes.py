@@ -195,6 +195,8 @@ class Room(WorldObject):
     # Constructor
     def __init__(self, name:str, state:dict, connections:dict) -> None:
         super().__init__(name,state)
+        # override
+        self._current_state = 'init'
         self._connections = connections
         self._game_objects = {}
 
