@@ -1,5 +1,6 @@
 # import classes
 import json
+import os
 from game_model import *
 from game_view import * 
 from game_controller import *
@@ -37,6 +38,10 @@ def main():
 	ctrl = GameController(my_world, mdl, vw)
 
 	### Start Game
+	os.system('cls') # for windows
+	os.system('clear') # for unix/mac
+	ctrl.print_response('introduction')
+	ctrl.print_response(CommandParser(my_world).try_parse('describe'))
 
 	# accept commands in a permenent while loop
 	cmd_input=''

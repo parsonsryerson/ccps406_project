@@ -38,6 +38,14 @@ class GameView():
 			time.sleep(0.01)
 		print('')
 
+	def print_introduction(self):
+		print("\n********************************************")
+		print("*************** WELCOME TO *****************")
+		print("*********** ~~ THE CIRCLES ~~ **************")
+		print("********************************************\n")
+		print("- For available commands, type 'help'")
+		print("- To exit the game, type 'q'\n")
+
 	def print_game_over(self):
 		print("\n********************************************")
 		print("*************** GAME OVER ******************")

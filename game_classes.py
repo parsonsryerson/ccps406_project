@@ -306,7 +306,7 @@ class Action():
         self._actor_name = actor_name
         self._target_name = target_name
         # print(f"DEBUG - Action Constructor - action_name: {action_name}, actor_name: {actor_name}, target_name: {target_name}")
-        if target_name is not None:
+        if target_name is not None and action_name != 'describe':
             self._req_state = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('req_state')
             self._next_state = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('next_state')
             self._description_success = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('description_success')
@@ -343,26 +343,38 @@ class Action():
     def __perform_describe(self) -> str:
         # if no target specified, assume target is current room of player
         if self._target_name is None:
-            actor = self._world.get_characters().get(self._world.get_player_name(),None)
-            target = self._world.get_rooms().get(actor.get_room_name(),None)
+            self._target_name = self._world.get_characters().get(self._world.get_player_name()).get_room_name()
+        
+        if self._target_name in self._world.get_rooms():
+            target = self._world.get_rooms().get(self._target_name)
             result = target.get_description()
-
             # check for free items in the room
-            free_items_in_room = target.get_game_objects().copy()
-            free_items_in_room.pop("Player")
+            free_items_in_room = {}
+            for obj_name,obj in target.get_game_objects().items():
+                if obj.get_current_state() == "free" and obj_name != self._world.get_player_name():
+                    free_items_in_room.update({obj_name:obj})
             # print(f"DEBUG - Action __perform_describe - free_items_in_room: {free_items_in_room}")
-            for item_name,item in free_items_in_room.items():
-                result += '\n'+item.get_description()
+            if len(free_items_in_room) > 0:
+                for item_name,item in free_items_in_room.items():
+                    result += '\nOn the floor, there is '+item.get_description()
+
+            # check for connections to other rooms
+            if len(target.get_connections()) > 0:
+                directions = list(target.get_connections().keys())
+                if len(target.get_connections()) == 1:
+                    result += f'\nYou can see a passage to the {directions[0]}.'
+                else:
+                    result += f'\nYou can see passages to the {directions[0]}'
+                    for direction in directions[1:-1]:
+                        result += f'{direction}, '
+                    result += f' and {directions[-1]}.'
             return result
+        elif self._target_name in self._world.get_characters():
+            return self._world.get_characters().get(self._target_name).get_description()
+        elif self._target_name in self._world.get_items():
+            return self._world.get_items().get(self._target_name).get_description()
         else:
-            if self._target_name in self._world.get_rooms():
-                return self._world.get_rooms().get(self._target_name).get_description()
-            elif self._target_name in self._world.get_characters():
-                return self._world.get_characters().get(self._target_name).get_description()
-            elif self._target_name in self._world.get_items():
-                return self._world.get_items().get(self._target_name).get_description()
-            else:
-                return None
+            return None
 
     def __perform_move(self) -> str:
         # translate the name of the target into the correct room name based on the actor's current location
@@ -379,7 +391,9 @@ class Action():
         self._world.get_rooms().get(prev_room_name).remove_game_objects(self._actor_name)
         self._world.get_rooms().get(next_room_name).set_game_objects({self._actor_name:self._world.get_characters().get(self._actor_name)})
         # return description of next room
-        return self._world.get_rooms().get(next_room_name).get_description()
+        # return self._world.get_rooms().get(next_room_name).get_description()
+        self._target_name = next_room_name
+        return self.__perform_describe()
 
     def __update_states(self) -> None:
         # print(f"DEBUG - Action __update_states - self._next_state: {self._next_state}, self._target_name: {self._target_name}")

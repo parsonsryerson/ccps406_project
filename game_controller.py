@@ -32,6 +32,8 @@ class GameController():
             # print(f"DEBUG - GameController print_response - player: {self._world.get_characters().get(self._world.get_player_name())}")
             # print(f"DEBUG - GameController print_response - inventory: {self._world.get_characters().get(self._world.get_player_name()).get_inventory()}")
             self._game_view.print_inventory(self._world.get_characters().get(self._world.get_player_name()).get_inventory())
+        elif response == 'introduction':
+            self._game_view.print_introduction()
         elif response == 'game over':
             self._game_view.print_game_over()
         else:
