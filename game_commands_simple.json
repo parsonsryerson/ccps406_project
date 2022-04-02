@@ -21,6 +21,7 @@
 	"enemy" : "enemy",
 	"knife" : "knife",
 	"key" : "key",
+	"inventory" : "inventory",
 	"book" : "book",
 	"door" : "door"
 }

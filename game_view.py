@@ -13,6 +13,14 @@ class GameView():
 		for action in available_actions:
 			print(f"- {action}")
 
+	def print_inventory(self, inventory = []):
+		if len(inventory) == 0:
+			print("You're not holding anything.")
+			return None
+		print("Currently in your inventory:\n")
+		for item in inventory:
+			print(f"- {item}")
+
 	def print_error_no_room_connection(self):
 		print("\nYou can't go that way.")
 

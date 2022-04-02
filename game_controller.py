@@ -16,7 +16,7 @@ class GameController():
     def print_response(self, response):
         # print(f"DEBUG - In GameController - response : {response}")
         if response == '':
-            return None
+            return self._game_view.print_error_unknown_target()
         elif 'error' in response.split()[0] and len(response.split()) > 1:
             error_type = response.split()[1]
             # print(f"DEBUG - In GameController - error_type : {error_type}")
@@ -28,6 +28,10 @@ class GameController():
                 self._game_view.print_error_unknown_target()
         elif response == 'help':
             self._game_view.print_help_commands(sorted(self._world.get_available_actions().keys()))
+        elif response == 'inventory':
+            # print(f"DEBUG - GameController print_response - player: {self._world.get_characters().get(self._world.get_player_name())}")
+            # print(f"DEBUG - GameController print_response - inventory: {self._world.get_characters().get(self._world.get_player_name()).get_inventory()}")
+            self._game_view.print_inventory(self._world.get_characters().get(self._world.get_player_name()).get_inventory())
         elif response == 'game over':
             self._game_view.print_game_over()
         else:

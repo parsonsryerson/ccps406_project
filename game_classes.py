@@ -321,7 +321,7 @@ class Action():
         result = ''
 
         # special case - "help" action simply returns help - no changes to game world or state
-        if self._action_name == "help":
+        if self._action_name in ["help","inventory"]:
             result = self._action_name
         # special case - "describe" action always meets conditions
         elif self._action_name == "describe":
@@ -335,6 +335,7 @@ class Action():
             # print(f"DEBUG - Action Class - met general case conditions")
             self.__update_states()
             # print(f"DEBUG - Action Class - after update states")
+            self.__update_inventory()
             result = self._description_success
             # print(f"DEBUG - Action Class - result: {result}")
         return result
@@ -394,6 +395,14 @@ class Action():
             # print(f"DEBUG - Action __update_states - name: {name}, next_state: {next_state}, world_object: {world_object}")
             if world_object is not None:
                 world_object.set_current_state(next_state)
+
+    def __update_inventory(self) -> None:
+        if self._target_name in self._world.get_items().keys():
+            actor = self._world.get_characters().get(self._actor_name)
+            item = self._world.get_items().get(self._target_name)
+            if item.get_current_state() == 'in_inventory':
+                item.add_inventory_of(actor)
+                actor.add_to_inventory({self._target_name:item})
 
     def __meets_conditions(self) -> bool:
         # initialize result to False
