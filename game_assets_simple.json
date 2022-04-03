@@ -125,8 +125,8 @@
 					},
 					"inventory Room 9":{
 						"description":{
-							"long":"The word 'TREACHERY' appears in all black letters.\n'Welcome to TREACHERY, where those who betrayed the trust of those closest to them are tormented for eternity.\n\nWhere the man name Ted was supposed to be here, there is only a mirror. You are Ted.\n\nThis is not your first time here. The man you saw enter this room was you from a previous trip through.\n\nYou have been confronted with this situation time and again. Each time, you must name an individual to enter the first circle, LIMBO.\n\nEach time, you have to choosen to betray yourself, Ted. But by choosing another, you may be freed from this endless cycle.\n\nUltimately it is your choice - so, once again, say aloud the name of the individual who shall be sent to LIMBO.'",
-							"short":"'Welcome to TREACHERY, where those who betrayed the trust of those closest to them are tormented for eternity.\n\nWhere the man name Ted was supposed to be here, there is only a mirror. You are Ted.\n\nThis is not your first time here. The man you saw enter this room was you from a previous trip through.\n\nYou have been confronted with this situation time and again. Each time, you must name an individual to enter the first circle, LIMBO.\n\nEach time, you have to choosen to betray yourself, Ted. But by choosing another, you may be freed from this endless cycle.\n\nUltimately it is your choice - so, once again, say aloud the name of the individual who shall be sent to LIMBO.'"
+							"long":"The word 'TREACHERY' appears in all black letters.\n'Welcome to TREACHERY, where those who betrayed the trust of those closest to them are tormented for eternity.\n\nThe man name Ted was supposed to be here, but there is only a mirror. You are Ted.\n\nThis is not your first time here. The man you saw enter this room was you from a previous trip through.\n\nYou have been confronted with this situation time and again. Each time, you must name an individual to enter the first circle, LIMBO.\n\nEach time, you have to choosen to betray yourself, Ted. But by choosing another, you may be freed from this endless cycle.\n\nUltimately it is your choice - so, once again, say aloud the name of the individual who shall be sent to LIMBO.'",
+							"short":"'Welcome to TREACHERY, where those who betrayed the trust of those closest to them are tormented for eternity.\n\nThe man name Ted was supposed to be here, but there is only a mirror. You are Ted.\n\nThis is not your first time here. The man you saw enter this room was you from a previous trip through.\n\nYou have been confronted with this situation time and again. Each time, you must name an individual to enter the first circle, LIMBO.\n\nEach time, you have to choosen to betray yourself, Ted. But by choosing another, you may be freed from this endless cycle.\n\nUltimately it is your choice - so, once again, say aloud the name of the individual who shall be sent to LIMBO.'"
 						}
 					}
 				}
@@ -419,8 +419,8 @@
 				"state":{
 					"init":{
 						"description":{
-							"long":"This is Room 5 - long description",
-							"short":"This is Room 5."
+							"long":"You enter the room and are surprised to find it completely empty.\nSome sort of barrier is blocking your passage to the south.",
+							"short":"Some sort of barrier is blocking your passage to the south."
 						},
 						"connections":{
 							"west":"Room 4"
@@ -428,8 +428,8 @@
 					},
 					"free":{
 						"description":{
-							"long":"This is Room 5 - long description",
-							"short":"This is Room 5."
+							"long":"With the barrier now broken, you can now make out the letter 'I' carved into the floor.\nA path to the south is now open.",
+							"short":"The letter 'I' is carved into the floor."
 						},
 						"connections":{
 							"west":"Room 4",
@@ -442,8 +442,8 @@
 				"state":{
 					"init":{
 						"description":{
-							"long":"This is Room 6 - long description",
-							"short":"This is Room 6."
+							"long":"The room is dark, and you can make out faint imagery of planets and stars on the east and west walls.",
+							"short":"The dark room is faintly lit from images of stars and planets on the walls."
 						},
 						"connections":{
 							"north":"Room 5"
@@ -451,8 +451,8 @@
 					},
 					"free":{
 						"description":{
-							"long":"This is Room 6 - long description",
-							"short":"This is Room 6."
+							"long":"The room, once faintly lit, is bright once again. You can now make out the letter 'G' on the floor.\nA passage opens to the south.",
+							"short":"Now well-lit, you can make out the letter 'G' on the floor."
 						},
 						"connections":{
 							"north":"Room 5",
@@ -465,8 +465,8 @@
 				"state":{
 					"init":{
 						"description":{
-							"long":"This is Room 7 - long description",
-							"short":"This is Room 7."
+							"long":"As you enter the room you are immediately horrified by the graphical violence depicted on the walls.\nAt first, the images appear random, with the only similarity the degree of depravity on display.\nUpon closer inspection, it is clear that the acts are all being committed by a single person.\n\nStanding in front of you, that individual now stands before your eyes, weilding a knife covered in dried blood.\nYou recognize the knife from several of the images as one used to perpetrate many of the violent crimes portrayed.",
+							"short":"A man stands before you, gesturing threateningly at you with a knife."
 						},
 						"connections":{
 							"north":"Room 6"
@@ -474,8 +474,8 @@
 					},
 					"free":{
 						"description":{
-							"long":"This is Room 7 - long description",
-							"short":"This is Room 7."
+							"long":"The room, previously containing violent horrors, now sits empty. The letter 'R' is seen carved into the floor.\nTo the west, a passage is open.",
+							"short":"The letter 'R' is seen carved into the floor."
 						},
 						"connections":{
 							"north":"Room 6",
@@ -488,8 +488,8 @@
 				"state":{
 					"init":{
 						"description":{
-							"long":"This is Room 8 - long description",
-							"short":"This is Room 8."
+							"long":"As you enter the room, a familiar man is seen exiting to the north, but the passage immediately closes behind him.\nIt is the first time you've sensed anything familiar since entering this place.\nWith no obvious objects to interact with, it's once again time to check the guide book.",
+							"short":"The room where the familiar man was seen. Time to consult the guidebook."
 						},
 						"connections":{
 							"east":"Room 7"
@@ -497,8 +497,8 @@
 					},
 					"free":{
 						"description":{
-							"long":"This is Room 8 - long description",
-							"short":"This is Room 8."
+							"long":"With a perpetrator's name finally revealed, you look down to see an 'O' carved into the floor.\nThe path north, where Ted was headed, now stands available.",
+							"short":"There is an 'O' carved into the floor."
 						},
 						"connections":{
 							"east":"Room 7",
@@ -511,17 +511,35 @@
 				"state":{
 					"init":{
 						"description":{
-							"long":"This is Room 9 - long description",
-							"short":"This is Room 9."
+							"long":"You enter the room to find only a mirror. There is no sign of Ted.\nThe guidebook likely has more answers.",
+							"short":"In the room there is only a mirror - the guidebook can probably tell you more."
 						},
 						"connections":{
 							"south":"Room 8"
 						}
 					},
-					"free":{
+					"betray_self":{
 						"description":{
-							"long":"This is Room 9 - long description",
-							"short":"This is Room 9."
+							"long":"As you have chosen once again to betray yourself, you see the room start to slip away.",
+							"short":"The room continues to get fuzzier and fuzzier, slowly slipping away."
+						},
+						"connections":{
+							"south":"Room 8"
+						}
+					},
+					"betray_other":{
+						"description":{
+							"long":"As you have chosen to betray another, you look around at the empty room that will remain your prison.",
+							"short":"The room is your prison for all eternity."
+						},
+						"connections":{
+							"south":"Room 8"
+						}
+					},
+					"forgive":{
+						"description":{
+							"long":"As you have chosen to forgive, rather than betray, the room slowly starts to fade away. What happens next is unclear, however a sense of relief washes over you.",
+							"short":"The room starts to fade away, replaced with a soft white light and a warm sense of relief."
 						},
 						"connections":{
 							"south":"Room 8"
