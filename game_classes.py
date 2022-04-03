@@ -355,6 +355,10 @@ class Action():
             # print(f"DEBUG - Action Class - after update states")
             self.__update_inventory()
             result = self._description_success
+            print(f"DEBUG - Action __meets_conditions - self._req_state: {self._req_state}, self._next_state: {self._next_state}")
+            if 'room' in self._req_state.keys() and 'room' in self._next_state.keys():
+                if 'init' in self._req_state.get('room') and self._next_state.get('room') == 'free':
+                    result += '\n'+self._world.get_rooms().get(self._world.get_characters().get(self._actor_name).get_room_name()).get_description()
             # print(f"DEBUG - Action Class - result: {result}")
         return result
 
@@ -446,6 +450,9 @@ class Action():
             if 'inventory' in item.get_current_state():
                 item.add_inventory_of(actor)
                 actor.add_to_inventory({self._target_name:item})
+            elif 'consumed' in item.get_current_state() or self._action_name in ['drop']:
+                item.remove_inventory_of()
+                actor.remove_from_inventory({self._target_name:item})
 
     def __meets_conditions(self) -> bool:
         # initialize result to False

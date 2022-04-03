@@ -47,7 +47,7 @@ def main():
 	cmd_input=''
 	while(True):
 		cmd_input = input("\n>>> ")
-		if str.lower(cmd_input) == 'q':
+		if str.lower(cmd_input) in ['q','quit','exit']:
 			break
 		response = CommandParser(my_world).try_parse(cmd_input)
 

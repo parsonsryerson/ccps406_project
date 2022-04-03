@@ -19,7 +19,7 @@
 					}
 				}
 			},
-			"Enemy NPC":{
+			"violent_npc":{
 				"is_playable":false,
 				"starting_room":"Room 7",
 				"state":{
@@ -77,56 +77,56 @@
 					},
 					"inventory Room 1":{
 						"description":{
-							"long":"Initially blank, words start to appear as you flip to the first page.\nThe word 'LIMBO' appears in large, purple letters at the top of the page.\n\n'Welcome to Limbo, where the souls of those not clensed of sin during their life are not granted entrance to the glorious afterlife.\n\nIt is here they will spend the rest of their days - but not you.\n\nContinue deeper - if you dare.'",
-							"short":"'Welcome to Limbo, where the souls of those not clensed of sin during their life are not granted entrance to the glorious afterlife.\n\nIt is here they will spend the rest of their days - but not you.\n\nContinue deeper - if you dare.'"
+							"long":"Initially blank, words start to appear as you flip to the first page.\nThe word 'LIMBO' appears in large, purple letters at the top of the page.\n\n'Welcome to LIMBO, where the souls of those not clensed of sin during their life are not granted entrance to the glorious afterlife.\n\nIt is here they will spend the rest of their days - but not you.\n\nContinue deeper - if you dare.'",
+							"short":"'Welcome to LIMBO, where the souls of those not clensed of sin during their life are not granted entrance to the glorious afterlife.\n\nIt is here they will spend the rest of their days - but not you.\n\nContinue deeper - if you dare.'"
 						}
 					},
 					"inventory Room 2":{
 						"description":{
-							"long":"Lust - TBD Description 2",
-							"short":"Lust - TBD Description 2"
+							"long":"In large teal letters, the word 'LUST' now adorned the top of the page.\n'Welcome to LUST, where temptations of the flesh haunt those who succumbed to tantalizing sin during their life.\n\nNow, the imagery taunts them with what they can never have again.\n\nYou may freely proceed - but only after obtaining an item you will need later.'",
+							"short":"'Welcome to LUST, where temptations of the flesh haunt those who succumbed to tantalizing sin during their life.\n\nNow, the imagery taunts them with what they can never have again.\n\nYou may freely proceed - but only after obtaining an item you will need later.'"
 						}
 					},
 					"inventory Room 3":{
 						"description":{
-							"long":"Gluttony - TBD Description 3",
-							"short":"Gluttony - TBD Description 3"
+							"long":"The title 'GLUTTONY' now appears in big, blue letters.\n'Welcome to GLUTTONY, where those who overindulged on culinary pleasures reside.\n\nThese individuals feasted while their neighbours starved, growing fat and lazy, wasting their life for sinful tastes.\n\nOnly when you understand the depths of their depravity can you proceed - eat, eat until your body buckles.'",
+							"short":"'Welcome to GLUTTONY, where those who overindulged on culinary pleasures reside.\n\nThese individuals feasted while their neighbours starved, growing fat and lazy, wasting their life for sinful tastes.\n\nOnly when you understand the depths of their depravity can you proceed - eat, eat until your body buckles.'"
 						}
 					},
 					"inventory Room 4":{
 						"description":{
-							"long":"Greed - TBD Description 4",
-							"short":"Greed - TBD Description 4"
+							"long":"The title 'GREED' appears on the page in bright green letters.\n'Welcome to GREED, where those who prioritized material wealth and power will spend eternity.\n\nThroughout time there has always been the have's and the have-nots - these individuals spent their lives ensuring the gap between them was as wide as possible.\n\nFind the item that epitomizes this sin to proceed.'",
+							"short":"'Welcome to GREED, where those who prioritized material wealth and power will spend eternity.\n\nThroughout time there has always been the have's and the have-nots - these individuals spent their lives ensuring the gap between them was as wide as possible.\n\nFind the item that epitomizes this sin to proceed.'"
 						}
 					},
 					"inventory Room 5":{
 						"description":{
-							"long":"Wrath - TBD Description 5",
-							"short":"Wrath - TBD Description 5"
+							"long":"The word 'WRATH' is printed in bright yellow.\n'Welcome to WRATH, where those whose hearts are filled with hate will rage ad infinitum.\n\nLacking reason or empathy, these individuals have replaced everything that made them human with a seering hate that would see the world burn.\n\nThere is hate in all of us - to proceed, you must channel this anger and break the barrier blocking the way.'",
+							"short":"'Welcome to WRATH, where those whose hearts are filled with hate will rage ad infinitum.\n\nLacking reason or empathy, these individuals have replaced everything that made them human with a seering hate that would see the world burn.\n\nThere is hate in all of us - to proceed, you must channel this anger and break the barrier blocking the way.'"
 						}
 					},
 					"inventory Room 6":{
 						"description":{
-							"long":"Heresy - TBD Description 6",
-							"short":"Heresy - TBD Description 6"
+							"long":"The word 'HERESY' now appears in solid orange.\n'Welcome to HERESY, where those who cast off and rejected the writings of divinity now spent eternity.\n\nWhen offered the teachings of divine love, these sinners chose to believe in mortal trappers, explanations fit for a secular world.\n\nTo proceed, you too must walk in the path of the heretics.'",
+							"short":"'Welcome to HERESY, where those who cast off and rejected the writings of divinity now spent eternity.\n\nWhen offered the teachings of divine love, these sinners chose to believe in mortal trappers, explanations fit for a secular world.\n\nTo proceed, you too must walk in the path of the heretics.'"
 						}
 					},
 					"inventory Room 7":{
 						"description":{
-							"long":"Violence - TBD Description 7",
-							"short":"Violence - TBD Description 7"
+							"long":"The word 'VIOLENCE' is printed in large, blood-red letters.\n'Welcome to VIOLENCE, where those who chose to settle their differences in blood rather than words will wander for eternity.\n\nSoldiers, murderers, even those who believed they were performing acts of divine will - all sought to end a life with violence.\n\nThere's no going around this - you too must channel your violent nature to progress.\nThe man in this room has committed unforgiveable atrocities during his life - only by spilling his blood can you proceed.'",
+							"short":"'Welcome to VIOLENCE, where those who chose to settle their differences in blood rather than words will wander for eternity.\n\nSoldiers, murderers, even those who believed they were performing acts of divine will - all sought to end a life with violence.\n\nThere's no going around this - you too must channel your violent nature to progress.\nThe man in this room has committed unforgiveable atrocities during his life - only by spilling his blood can you proceed.'"
 						}
 					},
 					"inventory Room 8":{
 						"description":{
-							"long":"Fraud - TBD Description 8",
-							"short":"Fraud - TBD Description 8"
+							"long":"The word 'FRAUD' appears in gray letters.\n'Welcome to FRAUD, where those who preyed on the trust and beliefs of others will spend their eternity.\n\nThese individuals falsely represented themselves in order to facilitate additional wealth, power or influence. In their wake they left loss, chaos, broken lives of those who incorrectly assessed the authenticity of the perpetrator.\n\nThe man who was in this room is named Ted. You may not remember, but Ted is the reason you are here.\nTed convinced thousands of people to hand over their material wealth with the promise of salvation - only to leave them empty, penniless, and hopeless.\n\nTed cannot be forgiven, and must be confronted about his crimes. Proceed to the final room.'",
+							"short":"'Welcome to FRAUD, where those who preyed on the trust and beliefs of others will spend their eternity.\n\nThese individuals falsely represented themselves in order to facilitate additional wealth, power or influence. In their wake they left loss, chaos, broken lives of those who incorrectly assessed the authenticity of the perpetrator.\n\nThe man who was in this room is named Ted. You may not remember, but Ted is the reason you are here.\nTed convinced thousands of people to hand over their material wealth with the promise of salvation - only to leave them empty, penniless, and hopeless.\n\nTed cannot be forgiven, and must be confronted about his crimes. Proceed to the final room.'"
 						}
 					},
 					"inventory Room 9":{
 						"description":{
-							"long":"Treachery - TBD Description 9",
-							"short":"Treachery - TBD Description 9"
+							"long":"The word 'TREACHERY' appears in all black letters.\n'Welcome to TREACHERY, where those who betrayed the trust of those closest to them are tormented for eternity.\n\nWhere the man name Ted was supposed to be here, there is only a mirror. You are Ted.\n\nThis is not your first time here. The man you saw enter this room was you from a previous trip through.\n\nYou have been confronted with this situation time and again. Each time, you must name an individual to enter the first circle, LIMBO.\n\nEach time, you have to choosen to betray yourself, Ted. But by choosing another, you may be freed from this endless cycle.\n\nUltimately it is your choice - so, once again, say aloud the name of the individual who shall be sent to LIMBO.'",
+							"short":"'Welcome to TREACHERY, where those who betrayed the trust of those closest to them are tormented for eternity.\n\nWhere the man name Ted was supposed to be here, there is only a mirror. You are Ted.\n\nThis is not your first time here. The man you saw enter this room was you from a previous trip through.\n\nYou have been confronted with this situation time and again. Each time, you must name an individual to enter the first circle, LIMBO.\n\nEach time, you have to choosen to betray yourself, Ted. But by choosing another, you may be freed from this endless cycle.\n\nUltimately it is your choice - so, once again, say aloud the name of the individual who shall be sent to LIMBO.'"
 						}
 					}
 				}
@@ -337,7 +337,7 @@
 					},
 					"free":{
 						"description":{
-							"long":"A foggy room with images of hopeless souls wandering on the walls.\nThe letter 'E' is scratched onto the floor underneath where the book used to be.\n",
+							"long":"Underneath where the book used to be, you see a letter 'E' scratched into the floor.\nThrough the fog, you can now see a path forward to the north.\n",
 							"short":"A foggy room with images of hopeless souls wandering on the walls.\nThe letter 'E' is scratched onto the floor underneath where the book used to be.\n"
 						},
 						"connections":{
@@ -359,7 +359,7 @@
 					},
 					"free":{
 						"description":{
-							"long":"Where heaps of pornography previously lay, the letter 'M' is now seen carved into the floor.",
+							"long":"Somehow, where a swath of erotica used to be, you now see a letter 'M' scratched into the floor.\nA path to the north now appears to be available.",
 							"short":"The letter 'M' is carved into the floor."
 						},
 						"connections":{
@@ -382,7 +382,7 @@
 					},
 					"free":{
 						"description":{
-							"long":"A now-empty room, the food it previously contained now entirely in your stomach. The letter 'E' is carved into the floor.",
+							"long":"A now-empty room, the food it previously contained now entirely in your stomach. The letter 'E' is carved into the floor.\nA path to the east is now available.",
 							"short":"An empty room formally containing food. The letter 'E' is carved into the floor."
 						},
 						"connections":{
@@ -396,8 +396,8 @@
 				"state":{
 					"init":{
 						"description":{
-							"long":"This is Room 4 - long description",
-							"short":"This is Room 4."
+							"long":"The room is brightly lit, reflecting off the surfaces of well-polished gold, gems and other treasures piles to the ceiling.",
+							"short":"A room filled with all sorts of shiny treasures."
 						},
 						"connections":{
 							"west":"Room 3"
@@ -405,8 +405,8 @@
 					},
 					"free":{
 						"description":{
-							"long":"This is Room 4 - long description",
-							"short":"This is Room 4."
+							"long":"The room formerly filled with treasure now sits empty. The letter 'V' is carved into the floor.\nA path to the east is now open.",
+							"short":"The room formerly filled with treasure now sits empty. The letter 'V' is carved into the floor."
 						},
 						"connections":{
 							"west":"Room 3",
@@ -609,7 +609,7 @@
 					"target":"in_inventory",
 					"room":"free"
 				},
-				"description_success":"You pick up the key and put it in your pocket.\nSomehow, where a swath of erotica used to be, you now see a letter 'M' scratched into the floor.\nA path to the north now appears to be available."
+				"description_success":"You pick up the key and put it in your pocket."
 			},
 			"book":{
 				"req_state":{
@@ -620,7 +620,7 @@
 					"target":"inventory Room 1",
 					"room":"free"
 				},
-				"description_success":"You grab the leather-bound book and stache it in your pack.\nUnderneath where the book used to be, you see a letter 'E' scratched into the floor.\nThrough the fog, you can now see a path forward to the north."
+				"description_success":"You grab the leather-bound book and stache it in your pack."
 			},
 			"knife":{
 				"req_state":{
