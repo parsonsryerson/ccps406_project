@@ -393,7 +393,7 @@
 				"state":{
 					"init":{
 						"description":{
-							"long":"You awake to find yourself in a large room filled with fog.\nYou cannot recall how you got here, or what has happened leading up to this moment.\nIn sections where the walls are visible, images of forlorn individuals are seen wandering too and fro, with no specific destination.\n",
+							"long":"You awake to find yourself in a large room filled with fog.\nYou cannot recall how you got here, or what has happened leading up to this moment.\nIn sections where the walls are visible, images of forlorn individuals are seen wandering to and fro, with no specific destination.\n",
 							"short":"A foggy room with images of hopeless souls wandering on the walls."
 						},
 						"connections":{}
