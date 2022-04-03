@@ -7,8 +7,6 @@ from game_controller import *
 from game_classes import *
 
 # constants
-# assets_file_name = 'game_assets.json'
-# commands_file_name = 'game_commands.json'
 assets_file_name = 'game_assets_simple.json'
 commands_file_name = 'game_commands_simple.json'
 responses_file_name = 'game_responses.json'

@@ -15,7 +15,7 @@ class GameController():
 
     def print_response(self, response):
         # print(f"DEBUG - In GameController - response : {response}")
-        if response == '':
+        if response == '' or response is None:
             return self._game_view.print_error_unknown_target()
         elif 'error' in response.split()[0] and len(response.split()) > 1:
             error_type = response.split()[1]

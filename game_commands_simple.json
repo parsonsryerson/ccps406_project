@@ -34,6 +34,7 @@
 	"magazines" : "magazine",
 	"magazine" : "magazine",
 	"book" : "book",
+	"guidebook" : "book",
 	"meat" : "meat",
 	"meats" : "meat",
 	"roast" : "meat",

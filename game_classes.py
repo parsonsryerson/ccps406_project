@@ -8,10 +8,6 @@ class CommandParser():
         self._target_name = None
         self._ignore_tokens = ['on','at','from','to','the']
 
-    # # helper function
-    # def flatten(self,t):
-    #     return [item for sublist in t for item in sublist]
-
     def try_parse(self, command:str) -> str:
         # split the command
         available_commands = self._world.get_available_commands()
@@ -291,14 +287,6 @@ class Item(GameObject):
         if self._name in ['bread','cheese','chocolate','grapes','key']:
             self.set_current_state('hidden')
 
-    # # override superclass
-    # def get_description(self) -> str:
-    #     print(f"DEBUG - Item get_description - current_state: {self._state.get(self._current_state)}")
-    #     result = self._state.get(self._current_state).get('description').get(self._description_length)
-    #     if self._description_length == 'long':
-    #         self._description_length = 'short'
-    #     return result
-
     # Returns the Character for which the Item is currently in the inventory of, otherwise None
     def get_inventory_of(self):
         return self._in_inventory_of
@@ -323,7 +311,7 @@ class Action():
         self._action_name = action_name
         self._actor_name = actor_name
         self._target_name = target_name
-        print(f"DEBUG - Action Constructor - action_name: {action_name}, actor_name: {actor_name}, target_name: {target_name}")
+        # print(f"DEBUG - Action Constructor - action_name: {action_name}, actor_name: {actor_name}, target_name: {target_name}")
         if target_name is not None and action_name != 'describe':
             self._req_state = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('req_state')
             self._next_state = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('next_state')
@@ -355,7 +343,7 @@ class Action():
             # print(f"DEBUG - Action Class - after update states")
             self.__update_inventory()
             result = self._description_success
-            print(f"DEBUG - Action __meets_conditions - self._req_state: {self._req_state}, self._next_state: {self._next_state}")
+            # print(f"DEBUG - Action __meets_conditions - self._req_state: {self._req_state}, self._next_state: {self._next_state}")
             if 'room' in self._req_state.keys() and 'room' in self._next_state.keys():
                 if 'init' in self._req_state.get('room') and self._next_state.get('room') == 'free':
                     result += '\n'+self._world.get_rooms().get(self._world.get_characters().get(self._actor_name).get_room_name()).get_description()
@@ -475,17 +463,17 @@ class Action():
             return False
         else:
             # check if actor and target in the same room
-            print(f"DEBUG - Action State - actor: {actor}, target: {target}")
-            print(f"DEBUG - Action State - actor_room: {actor.get_room_name()}, target_room: {target.get_room_name()}")
+            # print(f"DEBUG - Action State - actor: {actor}, target: {target}")
+            # print(f"DEBUG - Action State - actor_room: {actor.get_room_name()}, target_room: {target.get_room_name()}")
             is_same_room = actor.get_room_name() == target.get_room_name()
             # check if actor and target in the required states
             actor_req_state = self._req_state.get("actor",None)
             target_req_state = self._req_state.get("target",None)
-            print(f"DEBUG - Action State - actor_req_state: {actor_req_state}, actor_curent_state: {actor.get_current_state()}")
-            print(f"DEBUG - Action State - target_req_state: {target_req_state}, target_current_state: {target.get_current_state()}")
+            # print(f"DEBUG - Action State - actor_req_state: {actor_req_state}, actor_curent_state: {actor.get_current_state()}")
+            # print(f"DEBUG - Action State - target_req_state: {target_req_state}, target_current_state: {target.get_current_state()}")
             is_actor_in_req_state = (actor_req_state is None) or (actor.get_current_state() in actor_req_state)
             is_target_in_req_state = (target_req_state is None) or (target.get_current_state() in target_req_state)
-            print(f"DEBUG - Action Meets Conditions - is_same_room: {is_same_room}, is_actor_in_req_state: {is_actor_in_req_state}, is_target_in_req_state: {is_target_in_req_state}")
+            # print(f"DEBUG - Action Meets Conditions - is_same_room: {is_same_room}, is_actor_in_req_state: {is_actor_in_req_state}, is_target_in_req_state: {is_target_in_req_state}")
             result = is_same_room and is_actor_in_req_state and is_target_in_req_state
 
         return result
