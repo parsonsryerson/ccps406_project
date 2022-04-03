@@ -31,7 +31,6 @@ class GameView():
 		print("\nNot sure what that is.")
 
 	def print_description(self, output_text):
-		# print(f"\n{output_text}")
 		print("\n")
 		for c in output_text:
 			print(c,end='',flush=True)

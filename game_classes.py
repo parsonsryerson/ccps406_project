@@ -284,7 +284,7 @@ class Item(GameObject):
         self._in_inventory_of = None
         self._is_carryable = is_carryable
         self._is_equippable = is_equippable
-        if self._name in ['bread','cheese','chocolate','grapes','key']:
+        if self._name in ['bread','cheese','chocolate','grapes','key','hourglass']:
             self.set_current_state('hidden')
 
     # Returns the Character for which the Item is currently in the inventory of, otherwise None

@@ -10,9 +10,6 @@ class GameController():
         self._game_model = game_model
         self._game_view = game_view
 
-        # display intro text at initialization
-
-
     def print_response(self, response):
         # print(f"DEBUG - In GameController - response : {response}")
         if response == '' or response is None:

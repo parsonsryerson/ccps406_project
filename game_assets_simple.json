@@ -323,6 +323,69 @@
 						}
 					}
 				}
+			},
+			"gold":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 4",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a huge pile of gold coins, bars and other treasures.",
+							"short":"a pile of gold coins and other treasure."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"an armful of gold coins.",
+							"short":"an armful of gold coins."
+						}
+					}
+				}
+			},
+			"hourglass":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 4",
+				"state":{
+					"hidden":{
+						"description":{
+							"long":"Hidden 'long' description - should be unreachable.",
+							"short":"Hidden 'short' description - should be unreachable."
+						}
+					},
+					"free":{
+						"description":{
+							"long":"a small hourglass, containing soft white sand gathered to the bottom.",
+							"short":"a small hourglass."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"a small hourglass, the sand now delicately flowing from the top to bottom chambers.",
+							"short":"a small hourglass."
+						}
+					}
+				}
+			},
+			"chest":{
+				"is_carryable":false,
+				"is_equippable":false,
+				"starting_room":"Room 4",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a small, locked chest.",
+							"short":"a small, locked chest."
+						}
+					},
+					"opened":{
+						"description":{
+							"long":"an unlocked chest.",
+							"short":"an unlocked chest."
+						}
+					}
+				}
 			}
 		},
 		"rooms":{
@@ -560,6 +623,11 @@
 			"next_state":{},
 			"description_success":null
 		},
+		"say":{
+			"req_state":{},
+			"next_state":{},
+			"description_success":null	
+		},
 		"move":{
 			"north":{
 				"req_state":{
@@ -693,6 +761,29 @@
 					"target":"in_inventory"
 				},
 				"description_success":"You scoop as much of the chocolate into your pack as you can carry."
+			},
+			"gold":{
+				"req_state":{
+					"target":["free"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
+				"description_success":"You grab as many shiny, gold coins as your pack can carry."
+			},
+			"chest":{
+				"req_state":{},
+				"next_state":{},
+				"description_success":"That seems too large and awkward to carry."
+			},
+			"hourglass":{
+				"req_state":{
+					"target":["free"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
+				"description_success":"You pickup the hourglass and immediately the sands inside start to flow."
 			}
 		},
 		"drop":{
@@ -710,9 +801,9 @@
 					"target":["in_inventory"]
 				},
 				"next_state":{
-					"target":"free"
+					"target":"in_inventory"
 				},
-				"description_success":"You set the key down on the floor."
+				"description_success":"You consider dropping the key, but can't help but think it's going to be important to keep."
 			},
 			"book":{
 				"req_state":{
@@ -776,6 +867,39 @@
 					"target":"in_inventory"
 				},
 				"description_success":"You remove the slightly melted chocolate and place it on the floor."
+			},
+			"gold":{
+				"req_state":{
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"target":"free"
+				},
+				"description_success":"You empty the gold coins onto the floor."
+			},
+			"hourglass":{
+				"req_state":{
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"target":"free"
+				},
+				"description_success":"You set the hourglass down on the ground. The sands inside immediately stop flowing."
+			}
+		},
+		"open":{
+			"chest":{
+				"req_state":{
+					"target":["free"],
+					"key":["in_inventory"],
+					"hourglass":["hidden"]
+				},
+				"next_state":{
+					"target":"opened",
+					"key":"in_inventory",
+					"hourglass":"free"
+				},
+				"description_success":"You take out the small key from your pack and insert it into the chest's lock.\nWith a quiet 'click', the chest's lid pops open. Inside is a small hourglass."
 			}
 		},
 		"equip":{
@@ -870,27 +994,35 @@
 					"room":"free"
 				},
 				"description_success":"You take the tiniest bite of the corner of a piece of chocolate. It's heavenly. The sugar rush fills you with a wave of giddiness. You don't want this feeling to stop. You take another bite, and another, until you look down and see only sticky fingers remaining.\nNo more food emerges in the chocolate's place - instead, you now notice the letter 'E' is carved into the ground.\nYou feel ill and ready to burst, but it seems like the path forward is now clear."
+			},
+			"gold":{
+				"req_state":{},
+				"next_state":{},
+				"description_success":"You take a quick bite. Yup, it's real."
+			},
+			"chest":{
+				"req_state":{},
+				"next_state":{},
+				"description_success":"You look for a place to sink your teeth but don't think it will make a dent."
+			},
+			"hourglass":{
+				"req_state":{},
+				"next_state":{},
+				"description_success":"That seems like it would be both painful and a waste."
 			}
 		},
-		"open":{
-			"req_state":{},
-			"next_state":{},
-			"description_success":null
-		},
-		"close":{
-			"req_state":{},
-			"next_state":{},
-			"description_success":null
-		},
-		"unlock":{
-			"req_state":{},
-			"next_state":{},
-			"description_success":null
-		},
 		"attack":{
-			"req_state":{},
-			"next_state":{},
-			"description_success":null
+			"violent_npc":{
+				"req_state":{
+					"actor":["armed"],
+					"target":["free"]
+				},
+				"next_state":{
+					"actor":"armed",
+					"target":"unconscious"
+				},
+				"description_success":"You work up the nerve and lunge at the evil man, but your attempt is deftly avoided.\nYou realize quick his skill with the knife far exceeds yours.\nYou look at the violent images around the room and realize you're going to be his next victim.\nHe steps towards you, adjusting his grip his blood-soaked knife in preparation of a killing blow.\n\nWhat happens next makes little sense - the killer stumbles in his approach and falls awkwardly in front of you.\nYou realize you're not going to get a second chance - you close your eyes and drive the knife in your hands directly into the man's torso.\n\nWhen your eyes open, there is no man - only yourself and the knife.\nIt is unclear if the man ever even existed - or if this was some sort of sick test."
+			}
 		}
 	}
 }

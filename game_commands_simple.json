@@ -26,6 +26,8 @@
 	"stab" : "attack",
 	"say" : "say",
 	"speak": "say",
+	"open":"open",
+	"unlock":"open",
 	"player" : "player",
 	"enemy" : "enemy",
 	"knife" : "knife",
