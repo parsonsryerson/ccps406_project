@@ -138,8 +138,8 @@
 				"state":{
 					"free":{
 						"description":{
-							"long":"a plethora of erotic magazines - images of individuals in all sorts of sexual situations.",
-							"short":"a lot of dirty magazines."
+							"long":"a plethora of erotic magazines - images of individuals in all sorts of indelicate situations.",
+							"short":"a dirty magazine or twelve."
 						}
 					},
 					"in_inventory":{
@@ -182,19 +182,19 @@
 				"state":{
 					"free":{
 						"description":{
-							"long":"a delicious-looking roast, smells freshly cooked.",
+							"long":"a delicious-looking meat roast, smells freshly cooked.",
 							"short":"a scrumptious piece of meat."
 						}
 					},
 					"in_inventory":{
 						"description":{
-							"long":"a delicious-looking roast, smells freshly cooked.",
+							"long":"a delicious-looking meat roast, smells freshly cooked.",
 							"short":"a scrumptious piece of meat."
 						}
 					},
 					"consumed":{
 						"description":{
-							"long":"a delicious-looking roast, smells freshly cooked.",
+							"long":"a delicious-looking meat roast, smells freshly cooked.",
 							"short":"a scrumptious piece of meat."
 						}
 					}
@@ -350,7 +350,7 @@
 				"state":{
 					"init":{
 						"description":{
-							"long":"The fog clears as you enter the next room, and you let out an audible *GASP* !!\nAll along the eastern and western walls, nude images of individuals in every form of compromising position can be seen.\nNot to be outdone by the rooms' surroundings, splayed across the floor is an uncomfortable amount of erotic magazines.\nPerhaps it's time to consult the guidebook again.",
+							"long":"The fog clears as you enter the next room, and you let out an audible *GASP* !!\nAll along the eastern and western walls, nude images of individuals in every form of compromising position can be seen.\nNot to be outdone by the rooms' surroundings, splayed across the floor is an uncomfortable amount of erotic magazines.\nPerhaps it's time to consult the guidebook again.\n",
 							"short":"The room is filled with an embarassing amount of erotica. Perhaps the guidebook can suggest why."
 						},
 						"connections":{

@@ -15,10 +15,12 @@
 	"go" : "move",
 	"pickup" : "pickup",
 	"get":"pickup",
+	"drop":"drop",
 	"equip" : "equip",
 	"hold" : "equip",
 	"inventory" : "inventory",
 	"pack" : "inventory",
+	"eat" : "eat",
 	"player" : "player",
 	"enemy" : "enemy",
 	"knife" : "knife",
@@ -27,5 +29,10 @@
 	"magazines" : "magazine",
 	"magazine" : "magazine",
 	"book" : "book",
+	"meat" : "meat",
+	"cheese" : "cheese",
+	"bread" : "bread",
+	"grapes" : "grapes",
+	"chocolate" : "chocolate",
 	"door" : "door"
 }
