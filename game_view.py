@@ -25,7 +25,7 @@ class GameView():
 		print("\nYou can't go that way.")
 
 	def print_error_unavailable_action(self):
-		print("\nYou can't do that.")
+		print("\nYou can't do that. Enter 'help' for available commands.")
 
 	def print_error_unknown_target(self):
 		print("\nNot sure what that is.")

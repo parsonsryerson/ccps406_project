@@ -807,7 +807,7 @@
 			},
 			"book":{
 				"req_state":{
-					"target":["in_inventory"]
+					"target":["inventory Room 1","inventory Room 2","inventory Room 3","inventory Room 4","inventory Room 5","inventory Room 6","inventory Room 7","inventory Room 8","inventory Room 9"]
 				},
 				"next_state":{
 					"target":["in_inventory"]

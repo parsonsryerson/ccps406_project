@@ -9,6 +9,9 @@ class CommandParser():
         self._ignore_tokens = ['on','at','from','to','the']
 
     def try_parse(self, command:str) -> str:
+        # null case
+        if command is None or command == '':
+            return ''
         # split the command
         available_commands = self._world.get_available_commands()
         split_text = []
@@ -22,7 +25,7 @@ class CommandParser():
         split_text = list(dict.fromkeys(split_text))
 
         # print(f"DEBUG - CommandParser - command: {command}, split_text: {split_text}")
-        assert(len(split_text) >= 1 and len(split_text) <= 2)
+        # assert(len(split_text) >= 1 and len(split_text) <= 2)
         self._action_name = split_text[0]
         self._target_name = split_text[1] if len(split_text) > 1 else None
         # print(f"DEBUG - CommandParser Class - split_text: {split_text}, action_name: {self._action_name}, target_name: {self._target_name}")
@@ -312,7 +315,7 @@ class Action():
         self._actor_name = actor_name
         self._target_name = target_name
         # print(f"DEBUG - Action Constructor - action_name: {action_name}, actor_name: {actor_name}, target_name: {target_name}")
-        if target_name is not None and action_name != 'describe':
+        if target_name in self._world.get_available_actions().get(self._action_name).keys() and action_name != 'describe':
             self._req_state = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('req_state')
             self._next_state = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('next_state')
             self._description_success = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('description_success')
@@ -348,6 +351,8 @@ class Action():
                 if 'init' in self._req_state.get('room') and self._next_state.get('room') == 'free':
                     result += '\n'+self._world.get_rooms().get(self._world.get_characters().get(self._actor_name).get_room_name()).get_description()
             # print(f"DEBUG - Action Class - result: {result}")
+        else:
+            result = 'error target'
         return result
 
     def __perform_describe(self) -> str:
@@ -381,9 +386,19 @@ class Action():
                     result += f' and {directions[-1]}.'
             return result
         elif self._target_name in self._world.get_characters():
-            return self._world.get_characters().get(self._target_name).get_description()
+            player = self._world.get_characters().get(self._world.get_player_name())
+            target = self._world.get_characters().get(self._target_name)
+            if player.get_room_name() == target.get_room_name():
+                return target.get_description()
+            else:
+                return 'error target'
         elif self._target_name in self._world.get_items():
-            return self._world.get_items().get(self._target_name).get_description()
+            player = self._world.get_characters().get(self._world.get_player_name())
+            target = self._world.get_items().get(self._target_name)
+            if player.get_room_name() == target.get_room_name():
+                return target.get_description()
+            else:
+                return 'error target'
         else:
             return None
 
