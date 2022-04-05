@@ -3,6 +3,7 @@
 	"describe" : "describe",
 	"look":"describe",
 	"read":"describe",
+	"examine":"describe",
 	"move" : "move",
 	"n" : "move north",
 	"e" : "move east",
