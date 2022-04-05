@@ -15,12 +15,15 @@ class CommandParser():
         # split the command
         available_commands = self._world.get_available_commands()
         split_text = []
-        for x in command.split():
+        for idx,x in enumerate(command.split()):
             next_token = str.lower(x)
             if next_token in available_commands.keys():
                 next_token = available_commands.get(next_token).split()
             else:
-                return 'error action'
+                if idx==0:
+                    return 'error action'
+                else:
+                    return 'error target'
             split_text.extend(next_token)
         split_text = list(dict.fromkeys(split_text))
 
@@ -315,14 +318,15 @@ class Action():
         self._actor_name = actor_name
         self._target_name = target_name
         # print(f"DEBUG - Action Constructor - action_name: {action_name}, actor_name: {actor_name}, target_name: {target_name}")
-        if target_name in self._world.get_available_actions().get(self._action_name).keys() and action_name != 'describe':
-            self._req_state = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('req_state')
-            self._next_state = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('next_state')
-            self._description_success = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('description_success')
-        else:
-            self._req_state = {}
-            self._next_state = {}
-            self._description_success = ''
+        if self._action_name in self._world.get_available_actions():
+            if target_name in self._world.get_available_actions().get(self._action_name).keys() and action_name != 'describe':
+                self._req_state = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('req_state')
+                self._next_state = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('next_state')
+                self._description_success = self._world.get_available_actions().get(self._action_name).get(self._target_name).get('description_success')
+            else:
+                self._req_state = {}
+                self._next_state = {}
+                self._description_success = ''
         # print(f"DEBUG - Action Constructor - req_state: {self._req_state}, next_state: {self._next_state}, description_success: {self._description_success}")
 
     def perform_action(self) -> str:

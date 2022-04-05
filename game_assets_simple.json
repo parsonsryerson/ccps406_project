@@ -42,7 +42,7 @@
 			"knife":{
 				"is_carryable":true,
 				"is_equippable":true,
-				"starting_room":"Room 5",
+				"starting_room":"Room 7",
 				"state":{
 					"free":{
 						"description":{
@@ -386,6 +386,76 @@
 						}
 					}
 				}
+			},
+			"barrier":{
+				"is_carryable":false,
+				"is_equippable":false,
+				"starting_room":"Room 5",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a tall, wide barrier blocking further progression. It looks fragile.",
+							"short":"a fragile barrier blocks your way."
+						}
+					},
+					"broken":{
+						"description":{
+							"long":"a broken barrier, smashed by your fists.",
+							"short":"a broken barrier, smashed by your fists."
+						}
+					}
+				}
+			},
+			"cross":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 6",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a large cross, symbolizing true faith in the divine.",
+							"short":"a large cross, symbolizing true faith in the divine."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"a large cross, symbolizing true faith in the divine.",
+							"short":"a large cross, symbolizing true faith in the divine."
+						}
+					}
+				}
+			},
+			"telescope":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 6",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a large telescope, by which early astronomers identified the Earth circles the Sun - and not the other way around.",
+							"short":"a large telecope."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"a large telecope.",
+							"short":"a large telecope."
+						}
+					}
+				}
+			},
+			"mirror":{
+				"is_carryable":false,
+				"is_equippable":false,
+				"starting_room":"Room 9",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a tall mirror, bearing your reflection.\nStrangely, you can see the outline of the letter 'F' in the reflection but not in the room itself.",
+							"short":"a tall mirror, displaying yourself and the letter 'F' in the reflection."
+						}
+					}
+				}
 			}
 		},
 		"rooms":{
@@ -623,6 +693,11 @@
 			"next_state":{},
 			"description_success":null
 		},
+		"inventory":{
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
+		},
 		"say":{
 			"req_state":{},
 			"next_state":{},
@@ -778,12 +853,34 @@
 			},
 			"hourglass":{
 				"req_state":{
+					"target":["free"],
+					"room":["init"]
+				},
+				"next_state":{
+					"target":"in_inventory",
+					"room":"free"
+				},
+				"description_success":"You pickup the hourglass and immediately the sands inside start to flow."
+			},
+			"cross":{
+				"req_state":{
 					"target":["free"]
 				},
 				"next_state":{
 					"target":"in_inventory"
 				},
-				"description_success":"You pickup the hourglass and immediately the sands inside start to flow."
+				"description_success":"You lift the large cross and place it in your pack."
+			},
+			"telescope":{
+				"req_state":{
+					"target":["free"],
+					"room":["init"]
+				},
+				"next_state":{
+					"target":"in_inventory",
+					"room":"free"
+				},
+				"description_success":"You lift the telescope and realize it's quite light. It fits easily in your pack."
 			}
 		},
 		"drop":{
@@ -1022,6 +1119,17 @@
 					"target":"unconscious"
 				},
 				"description_success":"You work up the nerve and lunge at the evil man, but your attempt is deftly avoided.\nYou realize quick his skill with the knife far exceeds yours.\nYou look at the violent images around the room and realize you're going to be his next victim.\nHe steps towards you, adjusting his grip his blood-soaked knife in preparation of a killing blow.\n\nWhat happens next makes little sense - the killer stumbles in his approach and falls awkwardly in front of you.\nYou realize you're not going to get a second chance - you close your eyes and drive the knife in your hands directly into the man's torso.\n\nWhen your eyes open, there is no man - only yourself and the knife.\nIt is unclear if the man ever even existed - or if this was some sort of sick test."
+			},
+			"barrier":{
+				"req_state":{
+					"target":["free"],
+					"room":["init"]
+				},
+				"next_state":{
+					"target":"broken",
+					"room":"free"
+				},
+				"description_success":"Mustering all the strength you can, you clench your fists and smash at the barrier.\nYou can feel the rage well up inside you as you hit it, again and again until your knuckles bleed\nYou cry out in fury as you land one more blow, and you feel the barrier crack then crumble, acquiescing to your rage."
 			}
 		}
 	}
