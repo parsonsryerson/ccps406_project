@@ -1,4 +1,12 @@
 {
-	"error action" : "Not sure how to do that.",
-	"error target" : "Not sure what that is."
+	"introduction":"\n********************************************\n*************** WELCOME TO *****************\n************ ~~ THE CIRCLES ~~ *************\n********************************************\n\n- For available commands, type 'help'\n- To exit the game, type 'q'",
+	"game over" : "\n********************************************\n*************** GAME OVER ******************\n********************************************\n",
+	"help" : "\n********************************************\n************** HELP COMMANDS ***************\n********************************************\nAVAILABLE ACTIONS:\n",
+	"inventory" : {
+		"=0":"You're not holding anything.",
+		">0":"Currently in your inventory:\n"
+	},
+	"error action" : "\nYou can't do that. Enter 'help' for available commands.",
+	"error target" : "\nNot sure what that is.",
+	"error room" : "\nYou can't go that way."
 }

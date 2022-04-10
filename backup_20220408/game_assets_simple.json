@@ -1,0 +1,1136 @@
+{ 
+	"world_objects":{
+		"characters":{
+			"Player":{
+				"is_playable":true,
+				"starting_room":"Room 1",
+				"state":{
+					"free":{
+						"description":{
+							"long": "Just an average looking dude.",
+							"short": "Same as always."
+						}
+					},
+					"armed":{
+						"description":{
+							"long":"White-fisted holding the knife, he looks ready to strike at any moment.",
+							"short":"Holding a knife."
+						}
+					}
+				}
+			},
+			"violent_npc":{
+				"is_playable":false,
+				"starting_room":"Room 7",
+				"state":{
+					"free":{
+						"description":{
+							"long":"An evil looking dude.",
+							"short":"Somehow uglier than last time you checked."
+						}
+					},
+					"unconscious":{
+						"description":{
+							"long":"Lying on the floor, barely breathing.",
+							"short":"Knocked out cold."
+						}
+					}
+				}
+			}
+		},
+		"items":{
+			"knife":{
+				"is_carryable":true,
+				"is_equippable":true,
+				"starting_room":"Room 7",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a sharp, serrated hunting knife with a worn, yellow handle.",
+							"short":"a super sharp knife."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"a sharp, serrated hunting knife with a worn, yellow handle.",
+							"short":"a super sharp knife."
+						}
+					},
+					"equipped":{
+						"description":{
+							"long":"a sharp, serrated hunting knife with a worn, yellow handle.",
+							"short":"a super sharp knife."
+						}
+					}
+				}
+			},
+			"book":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 1",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a brown, leather-bound book with some sort of archaic logo wrapping the entire cover.\nThe gold letters on the front spell out 'THE CIRCLES - A GUIDE BOOK'.",
+							"short":"a leather book."
+						}
+					},
+					"inventory Room 1":{
+						"description":{
+							"long":"Initially blank, words start to appear as you flip to the first page.\nThe word 'LIMBO' appears in large, purple letters at the top of the page.\n\n'Welcome to LIMBO, where the souls of those not clensed of sin during their life are not granted entrance to the glorious afterlife.\n\nIt is here they will spend the rest of their days - but not you.\n\nContinue deeper - if you dare.'",
+							"short":"'Welcome to LIMBO, where the souls of those not clensed of sin during their life are not granted entrance to the glorious afterlife.\n\nIt is here they will spend the rest of their days - but not you.\n\nContinue deeper - if you dare.'"
+						}
+					},
+					"inventory Room 2":{
+						"description":{
+							"long":"In large teal letters, the word 'LUST' now adorned the top of the page.\n'Welcome to LUST, where temptations of the flesh haunt those who succumbed to tantalizing sin during their life.\n\nNow, the imagery taunts them with what they can never have again.\n\nAn item can be found here among the depravity - you will need this to continue.'",
+							"short":"'Welcome to LUST, where temptations of the flesh haunt those who succumbed to tantalizing sin during their life.\n\nNow, the imagery taunts them with what they can never have again.\n\nAn item can be found here among the depravity - you will need this to continue.'"
+						}
+					},
+					"inventory Room 3":{
+						"description":{
+							"long":"The title 'GLUTTONY' now appears in big, blue letters.\n'Welcome to GLUTTONY, where those who overindulged on culinary pleasures reside.\n\nThese individuals feasted while their neighbours starved, growing fat and lazy, wasting their life for sinful tastes.\n\nOnly when you understand the depths of their depravity can you proceed - eat, eat until your body buckles.'",
+							"short":"'Welcome to GLUTTONY, where those who overindulged on culinary pleasures reside.\n\nThese individuals feasted while their neighbours starved, growing fat and lazy, wasting their life for sinful tastes.\n\nOnly when you understand the depths of their depravity can you proceed - eat, eat until your body buckles.'"
+						}
+					},
+					"inventory Room 4":{
+						"description":{
+							"long":"The title 'GREED' appears on the page in bright green letters.\n'Welcome to GREED, where those who prioritized material wealth and power will spend eternity.\n\nThroughout time there has always been the have's and the have-nots - these individuals spent their lives ensuring the gap between them was as wide as possible.\n\nFind the item that epitomizes this sin to proceed.'",
+							"short":"'Welcome to GREED, where those who prioritized material wealth and power will spend eternity.\n\nThroughout time there has always been the have's and the have-nots - these individuals spent their lives ensuring the gap between them was as wide as possible.\n\nFind the item that epitomizes this sin to proceed.'"
+						}
+					},
+					"inventory Room 5":{
+						"description":{
+							"long":"The word 'WRATH' is printed in bright yellow.\n'Welcome to WRATH, where those whose hearts are filled with hate will rage ad infinitum.\n\nLacking reason or empathy, these individuals have replaced everything that made them human with a seering hate that would see the world burn.\n\nThere is hate in all of us - to proceed, you must channel this anger and break the barrier blocking the way.'",
+							"short":"'Welcome to WRATH, where those whose hearts are filled with hate will rage ad infinitum.\n\nLacking reason or empathy, these individuals have replaced everything that made them human with a seering hate that would see the world burn.\n\nThere is hate in all of us - to proceed, you must channel this anger and break the barrier blocking the way.'"
+						}
+					},
+					"inventory Room 6":{
+						"description":{
+							"long":"The word 'HERESY' now appears in solid orange.\n'Welcome to HERESY, where those who cast off and rejected the writings of divinity now spent eternity.\n\nWhen offered the teachings of divine love, these sinners chose to believe in mortal trappers, explanations fit for a secular world.\n\nTo proceed, you too must walk in the path of the heretics.'",
+							"short":"'Welcome to HERESY, where those who cast off and rejected the writings of divinity now spent eternity.\n\nWhen offered the teachings of divine love, these sinners chose to believe in mortal trappers, explanations fit for a secular world.\n\nTo proceed, you too must walk in the path of the heretics.'"
+						}
+					},
+					"inventory Room 7":{
+						"description":{
+							"long":"The word 'VIOLENCE' is printed in large, blood-red letters.\n'Welcome to VIOLENCE, where those who chose to settle their differences in blood rather than words will wander for eternity.\n\nSoldiers, murderers, even those who believed they were performing acts of divine will - all sought to end a life with violence.\n\nThere's no going around this - you too must channel your violent nature to progress.\nThe man in this room has committed unforgiveable atrocities during his life - only by spilling his blood can you proceed.'",
+							"short":"'Welcome to VIOLENCE, where those who chose to settle their differences in blood rather than words will wander for eternity.\n\nSoldiers, murderers, even those who believed they were performing acts of divine will - all sought to end a life with violence.\n\nThere's no going around this - you too must channel your violent nature to progress.\nThe man in this room has committed unforgiveable atrocities during his life - only by spilling his blood can you proceed.'"
+						}
+					},
+					"inventory Room 8":{
+						"description":{
+							"long":"The word 'FRAUD' appears in gray letters.\n'Welcome to FRAUD, where those who preyed on the trust and beliefs of others will spend their eternity.\n\nThese individuals falsely represented themselves in order to facilitate additional wealth, power or influence. In their wake they left loss, chaos, broken lives of those who incorrectly assessed the authenticity of the perpetrator.\n\nThe man who was in this room is named Ted. You may not remember, but Ted is the reason you are here.\nTed convinced thousands of people to hand over their material wealth with the promise of salvation - only to leave them empty, penniless, and hopeless.\n\nTed cannot be forgiven, and must be confronted about his crimes. Proceed to the final room.'",
+							"short":"'Welcome to FRAUD, where those who preyed on the trust and beliefs of others will spend their eternity.\n\nThese individuals falsely represented themselves in order to facilitate additional wealth, power or influence. In their wake they left loss, chaos, broken lives of those who incorrectly assessed the authenticity of the perpetrator.\n\nThe man who was in this room is named Ted. You may not remember, but Ted is the reason you are here.\nTed convinced thousands of people to hand over their material wealth with the promise of salvation - only to leave them empty, penniless, and hopeless.\n\nTed cannot be forgiven, and must be confronted about his crimes. Proceed to the final room.'"
+						}
+					},
+					"inventory Room 9":{
+						"description":{
+							"long":"The word 'TREACHERY' appears in all black letters.\n'Welcome to TREACHERY, where those who betrayed the trust of those closest to them are tormented for eternity.\n\nThe man name Ted was supposed to be here, but there is only a mirror. You are Ted.\n\nThis is not your first time here. The man you saw enter this room was you from a previous trip through.\n\nYou have been confronted with this situation time and again. Each time, you must name an individual to enter the first circle, LIMBO.\n\nEach time, you have to choosen to betray yourself, Ted. But by choosing another, you may be freed from this endless cycle.\n\nUltimately it is your choice - so, once again, say aloud the name of the individual who shall be sent to LIMBO.'",
+							"short":"'Welcome to TREACHERY, where those who betrayed the trust of those closest to them are tormented for eternity.\n\nThe man name Ted was supposed to be here, but there is only a mirror. You are Ted.\n\nThis is not your first time here. The man you saw enter this room was you from a previous trip through.\n\nYou have been confronted with this situation time and again. Each time, you must name an individual to enter the first circle, LIMBO.\n\nEach time, you have to choosen to betray yourself, Ted. But by choosing another, you may be freed from this endless cycle.\n\nUltimately it is your choice - so, once again, say aloud the name of the individual who shall be sent to LIMBO.'"
+						}
+					}
+				}
+			},
+			"magazine":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 2",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a plethora of erotic magazines - images of individuals in all sorts of indelicate situations.",
+							"short":"a dirty magazine or twelve."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"once containing a key, this magazine is filled with erotica best left to your imagination.",
+							"short":"an erotic magazine."
+						}
+					}
+				}
+			},
+			"key":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 2",
+				"state":{
+					"hidden":{
+						"description":{
+							"long":"Hidden 'long' description - should be unreachable.",
+							"short":"Hidden 'short' description - should be unreachable."
+						}
+					},
+					"free":{
+						"description":{
+							"long":"a tiny, silver key, looks important enough to hang onto.",
+							"short":"an extremely small key."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"a tiny, silver key, looks important enough to hang onto.",
+							"short":"an extremely small key."
+						}
+					}
+				}
+			},
+			"meat":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 3",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a delicious-looking meat roast, smells freshly cooked.",
+							"short":"a scrumptious piece of meat."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"a delicious-looking meat roast, smells freshly cooked.",
+							"short":"a scrumptious piece of meat."
+						}
+					},
+					"consumed":{
+						"description":{
+							"long":"a delicious-looking meat roast, smells freshly cooked.",
+							"short":"a scrumptious piece of meat."
+						}
+					}
+				}
+			},
+			"bread":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 3",
+				"state":{
+					"hidden":{
+						"description":{
+							"long":"Hidden 'long' description - should be unreachable.",
+							"short":"Hidden 'short' description - should be unreachable."
+						}
+					},
+					"free":{
+						"description":{
+							"long":"a full loaf of bread, which appears to be freshly baked.",
+							"short":"a loaf of bread."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"a full loaf of bread, which appears to be freshly baked.",
+							"short":"a loaf of bread."
+						}
+					},
+					"consumed":{
+						"description":{
+							"long":"a full loaf of bread, which appears to be freshly baked.",
+							"short":"a loaf of bread."
+						}
+					}
+				}
+			},
+			"cheese":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 3",
+				"state":{
+					"hidden":{
+						"description":{
+							"long":"Hidden 'long' description - should be unreachable.",
+							"short":"Hidden 'short' description - should be unreachable."
+						}
+					},
+					"free":{
+						"description":{
+							"long":"a monumentously sized spread of cheeses - brie, camembert, gouda, chedder - all neatly sliced and ready for the tasting.",
+							"short":"a spread of assorted cheeses."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"a monumentously sized spread of cheeses - brie, camembert, gouda, chedder - all neatly sliced and ready for the tasting.",
+							"short":"a spread of assorted cheeses."
+						}
+					},
+					"consumed":{
+						"description":{
+							"long":"a monumentously sized spread of cheeses - brie, camembert, gouda, chedder - all neatly sliced and ready for the tasting.",
+							"short":"a spread of assorted cheeses."
+						}
+					}
+				}
+			},
+			"grapes":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 3",
+				"state":{
+					"hidden":{
+						"description":{
+							"long":"Hidden 'long' description - should be unreachable.",
+							"short":"Hidden 'short' description - should be unreachable."
+						}
+					},
+					"free":{
+						"description":{
+							"long":"a gigantic bowl of succulent red grapes, ripe for eating.",
+							"short":"an unreasonable portion of grapes."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"a gigantic bowl of succulent red grapes, ripe for eating.",
+							"short":"an unreasonable portion of grapes."
+						}
+					},
+					"consumed":{
+						"description":{
+							"long":"a gigantic bowl of succulent red grapes, ripe for eating.",
+							"short":"an unreasonable portion of grapes."
+						}
+					}
+				}
+			},
+			"chocolate":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 3",
+				"state":{
+					"hidden":{
+						"description":{
+							"long":"Hidden 'long' description - should be unreachable.",
+							"short":"Hidden 'short' description - should be unreachable."
+						}
+					},
+					"free":{
+						"description":{
+							"long":"a stack of elegantly crafted chocolate creations - bars, nuggets, sculpted figures - you name it.",
+							"short":"an exorbanant amount of rich chocolatey goodness."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"a stack of elegantly crafted chocolate creations - bars, nuggets, sculpted figures - you name it.",
+							"short":"an exorbanant amount of rich chocolatey goodness."
+						}
+					},
+					"consumed":{
+						"description":{
+							"long":"a stack of elegantly crafted chocolate creations - bars, nuggets, sculpted figures - you name it.",
+							"short":"an exorbanant amount of rich chocolatey goodness."
+						}
+					}
+				}
+			},
+			"gold":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 4",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a huge pile of gold coins, bars and other treasures.",
+							"short":"a pile of gold coins and other treasure."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"an armful of gold coins.",
+							"short":"an armful of gold coins."
+						}
+					}
+				}
+			},
+			"hourglass":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 4",
+				"state":{
+					"hidden":{
+						"description":{
+							"long":"Hidden 'long' description - should be unreachable.",
+							"short":"Hidden 'short' description - should be unreachable."
+						}
+					},
+					"free":{
+						"description":{
+							"long":"a small hourglass, containing soft white sand gathered to the bottom.",
+							"short":"a small hourglass."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"a small hourglass, the sand now delicately flowing from the top to bottom chambers.",
+							"short":"a small hourglass."
+						}
+					}
+				}
+			},
+			"chest":{
+				"is_carryable":false,
+				"is_equippable":false,
+				"starting_room":"Room 4",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a small, locked chest.",
+							"short":"a small, locked chest."
+						}
+					},
+					"opened":{
+						"description":{
+							"long":"an unlocked chest.",
+							"short":"an unlocked chest."
+						}
+					}
+				}
+			},
+			"barrier":{
+				"is_carryable":false,
+				"is_equippable":false,
+				"starting_room":"Room 5",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a tall, wide barrier blocking further progression. It looks fragile.",
+							"short":"a fragile barrier blocks your way."
+						}
+					},
+					"broken":{
+						"description":{
+							"long":"a broken barrier, smashed by your fists.",
+							"short":"a broken barrier, smashed by your fists."
+						}
+					}
+				}
+			},
+			"cross":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 6",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a large cross, symbolizing true faith in the divine.",
+							"short":"a large cross, symbolizing true faith in the divine."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"a large cross, symbolizing true faith in the divine.",
+							"short":"a large cross, symbolizing true faith in the divine."
+						}
+					}
+				}
+			},
+			"telescope":{
+				"is_carryable":true,
+				"is_equippable":false,
+				"starting_room":"Room 6",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a large telescope, by which early astronomers identified the Earth circles the Sun - and not the other way around.",
+							"short":"a large telecope."
+						}
+					},
+					"in_inventory":{
+						"description":{
+							"long":"a large telecope.",
+							"short":"a large telecope."
+						}
+					}
+				}
+			},
+			"mirror":{
+				"is_carryable":false,
+				"is_equippable":false,
+				"starting_room":"Room 9",
+				"state":{
+					"free":{
+						"description":{
+							"long":"a tall mirror, bearing your reflection.\nStrangely, you can see the outline of the letter 'F' in the reflection but not in the room itself.",
+							"short":"a tall mirror, displaying yourself and the letter 'F' in the reflection."
+						}
+					}
+				}
+			}
+		},
+		"rooms":{
+			"Room 1":{
+				"state":{
+					"init":{
+						"description":{
+							"long":"You awake to find yourself in a large room filled with fog.\nYou cannot recall how you got here, or what has happened leading up to this moment.\nIn sections where the walls are visible, images of forlorn individuals are seen wandering to and fro, with no specific destination.\n",
+							"short":"A foggy room with images of hopeless souls wandering on the walls."
+						},
+						"connections":{}
+					},
+					"free":{
+						"description":{
+							"long":"Underneath where the book used to be, you see a letter 'E' scratched into the floor.\nThrough the fog, you can now see a path forward to the north.\n",
+							"short":"A foggy room with images of hopeless souls wandering on the walls.\nThe letter 'E' is scratched onto the floor underneath where the book used to be.\n"
+						},
+						"connections":{
+							"north":"Room 2"
+						}
+					}
+				}
+			},
+			"Room 2":{
+				"state":{
+					"init":{
+						"description":{
+							"long":"The fog clears as you enter the next room, and you let out an audible *GASP* !!\nAll along the eastern and western walls, nude images of individuals in every form of compromising position can be seen.\nNot to be outdone by the rooms' surroundings, splayed across the floor is an uncomfortable amount of erotic magazines.\nPerhaps it's time to consult the guidebook again.\n",
+							"short":"The room is filled with an embarassing amount of erotica. Perhaps the guidebook can suggest why."
+						},
+						"connections":{
+							"south":"Room 1"
+						}
+					},
+					"free":{
+						"description":{
+							"long":"Somehow, where a swath of erotica used to be, you now see a letter 'M' scratched into the floor.\nA path to the north now appears to be available.",
+							"short":"The letter 'M' is carved into the floor."
+						},
+						"connections":{
+							"south":"Room 1",
+							"north":"Room 3"
+						}
+					}
+				}
+			},
+			"Room 3":{
+				"state":{
+					"init":{
+						"description":{
+							"long":"As you enter the next room, you are immediately overtaken by the overpowering stench of animal flesh.\nThere is a picnic blanket in the center of the room, supporting a large spread of various meats.",
+							"short":"A small room with a picnic blanket in the center, supporting a large plate of food."
+						},
+						"connections":{
+							"south":"Room 2"
+						}
+					},
+					"free":{
+						"description":{
+							"long":"A now-empty room, the food it previously contained now entirely in your stomach. The letter 'E' is carved into the floor.\nA path to the east is now available.",
+							"short":"An empty room formally containing food. The letter 'E' is carved into the floor."
+						},
+						"connections":{
+							"south":"Room 2",
+							"east":"Room 4"
+						}
+					}
+				}
+			},
+			"Room 4":{
+				"state":{
+					"init":{
+						"description":{
+							"long":"The room is brightly lit, reflecting off the surfaces of well-polished gold, gems and other treasures piles to the ceiling.",
+							"short":"A room filled with all sorts of shiny treasures."
+						},
+						"connections":{
+							"west":"Room 3"
+						}
+					},
+					"free":{
+						"description":{
+							"long":"The room formerly filled with treasure now sits empty. The letter 'V' is carved into the floor.\nA path to the east is now open.",
+							"short":"The room formerly filled with treasure now sits empty. The letter 'V' is carved into the floor."
+						},
+						"connections":{
+							"west":"Room 3",
+							"east":"Room 5"
+						}
+					}
+				}
+			},
+			"Room 5":{
+				"state":{
+					"init":{
+						"description":{
+							"long":"You enter the room and are surprised to find it completely empty.\nSome sort of barrier is blocking your passage to the south.",
+							"short":"Some sort of barrier is blocking your passage to the south."
+						},
+						"connections":{
+							"west":"Room 4"
+						}
+					},
+					"free":{
+						"description":{
+							"long":"With the barrier now broken, you can now make out the letter 'I' carved into the floor.\nA path to the south is now open.",
+							"short":"The letter 'I' is carved into the floor."
+						},
+						"connections":{
+							"west":"Room 4",
+							"south":"Room 6"
+						}
+					}
+				}
+			},
+			"Room 6":{
+				"state":{
+					"init":{
+						"description":{
+							"long":"The room is dark, and you can make out faint imagery of planets and stars on the east and west walls.",
+							"short":"The dark room is faintly lit from images of stars and planets on the walls."
+						},
+						"connections":{
+							"north":"Room 5"
+						}
+					},
+					"free":{
+						"description":{
+							"long":"The room, once faintly lit, is bright once again. You can now make out the letter 'G' on the floor.\nA passage opens to the south.",
+							"short":"Now well-lit, you can make out the letter 'G' on the floor."
+						},
+						"connections":{
+							"north":"Room 5",
+							"south":"Room 7"
+						}
+					}
+				}
+			},
+			"Room 7":{
+				"state":{
+					"init":{
+						"description":{
+							"long":"As you enter the room you are immediately horrified by the graphical violence depicted on the walls.\nAt first, the images appear random, with the only similarity the degree of depravity on display.\nUpon closer inspection, it is clear that the acts are all being committed by a single person.\n\nStanding in front of you, that individual now stands before your eyes, weilding a knife covered in dried blood.\nYou recognize the knife from several of the images as one used to perpetrate many of the violent crimes portrayed.",
+							"short":"A man stands before you, gesturing threateningly at you with a knife."
+						},
+						"connections":{
+							"north":"Room 6"
+						}
+					},
+					"free":{
+						"description":{
+							"long":"The room, previously containing violent horrors, now sits empty. The letter 'R' is seen carved into the floor.\nTo the west, a passage is open.",
+							"short":"The letter 'R' is seen carved into the floor."
+						},
+						"connections":{
+							"north":"Room 6",
+							"west":"Room 8"
+						}
+					}
+				}
+			},
+			"Room 8":{
+				"state":{
+					"init":{
+						"description":{
+							"long":"As you enter the room, a familiar man is seen exiting to the north, but the passage immediately closes behind him.\nIt is the first time you've sensed anything familiar since entering this place.\nWith no obvious objects to interact with, it's once again time to check the guide book.",
+							"short":"The room where the familiar man was seen. Time to consult the guidebook."
+						},
+						"connections":{
+							"east":"Room 7"
+						}
+					},
+					"free":{
+						"description":{
+							"long":"With a perpetrator's name finally revealed, you look down to see an 'O' carved into the floor.\nThe path north, where Ted was headed, now stands available.",
+							"short":"There is an 'O' carved into the floor."
+						},
+						"connections":{
+							"east":"Room 7",
+							"north":"Room 9"
+						}
+					}
+				}
+			},
+			"Room 9":{
+				"state":{
+					"init":{
+						"description":{
+							"long":"You enter the room to find only a mirror. There is no sign of Ted.\nThe guidebook likely has more answers.",
+							"short":"In the room there is only a mirror - the guidebook can probably tell you more."
+						},
+						"connections":{
+							"south":"Room 8"
+						}
+					},
+					"betray_self":{
+						"description":{
+							"long":"As you have chosen once again to betray yourself, you see the room start to slip away.",
+							"short":"The room continues to get fuzzier and fuzzier, slowly slipping away."
+						},
+						"connections":{
+							"south":"Room 8"
+						}
+					},
+					"betray_other":{
+						"description":{
+							"long":"As you have chosen to betray another, you look around at the empty room that will remain your prison.",
+							"short":"The room is your prison for all eternity."
+						},
+						"connections":{
+							"south":"Room 8"
+						}
+					},
+					"forgive":{
+						"description":{
+							"long":"As you have chosen to forgive, rather than betray, the room slowly starts to fade away. What happens next is unclear, however a sense of relief washes over you.",
+							"short":"The room starts to fade away, replaced with a soft white light and a warm sense of relief."
+						},
+						"connections":{
+							"south":"Room 8"
+						}
+					}
+				}
+			}
+		}
+	},
+	"actions":{
+		"help":{
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
+		},
+		"describe":{
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
+		},
+		"inventory":{
+			"req_state":{},
+			"next_state":{},
+			"description_success":null
+		},
+		"say":{
+			"req_state":{},
+			"next_state":{},
+			"description_success":null	
+		},
+		"move":{
+			"north":{
+				"req_state":{
+					"actor":["free","armed"],
+					"target":null
+				},
+				"next_state":{
+					"actor":null,
+					"target":null
+				},
+				"description_success":null
+			},
+			"east":{
+				"req_state":{
+					"actor":["free","armed"],
+					"target":null
+				},
+				"next_state":{
+					"actor":null,
+					"target":null
+				},
+				"description_success":null
+			},
+			"west":{
+				"req_state":{
+					"actor":["free","armed"],
+					"target":null
+				},
+				"next_state":{
+					"actor":null,
+					"target":null
+				},
+				"description_success":null
+			},
+			"south":{
+				"req_state":{
+					"actor":["free","armed"],
+					"target":null
+				},
+				"next_state":{
+					"actor":null,
+					"target":null
+				},
+				"description_success":null
+			}
+		},
+		"pickup":{
+			"magazine":{
+				"req_state":{
+					"target":["free"],
+					"key":["hidden"]
+				},
+				"next_state":{
+					"target":"in_inventory",
+					"key":"free"
+				},
+				"description_success":"You ruffle through the magazines and choose one that seems slightly more tasteful than the others.\nAs you pick up the magazine, a small key falls to the floor."
+			},
+			"key":{
+				"req_state":{
+					"target":["free"],
+					"room":["init"]
+				},
+				"next_state":{
+					"target":"in_inventory",
+					"room":"free"
+				},
+				"description_success":"You pick up the key and put it in your pocket."
+			},
+			"book":{
+				"req_state":{
+					"target":["free"],
+					"room":["init"]
+				},
+				"next_state":{
+					"target":"inventory Room 1",
+					"room":"free"
+				},
+				"description_success":"You grab the leather-bound book and stache it in your pack."
+			},
+			"knife":{
+				"req_state":{
+					"target":["free"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
+				"description_success":"You pick up the serrated knife, storing it safely in your belt."
+			},
+			"meat":{
+				"req_state":{
+					"target":["free"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
+				"description_success":"You stuff as much of the meat into your pack as it will carry."
+			},
+			"bread":{
+				"req_state":{
+					"target":["free"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
+				"description_success":"You break the bread into small enough chunks to fit into your pack."
+			},
+			"cheese":{
+				"req_state":{
+					"target":["free"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
+				"description_success":"You stack the cheeses and place it carefully in your pack."
+			},
+			"grapes":{
+				"req_state":{
+					"target":["free"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
+				"description_success":"You empty the bowl of grapes into your pack."
+			},
+			"chocolate":{
+				"req_state":{
+					"target":["free"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
+				"description_success":"You scoop as much of the chocolate into your pack as you can carry."
+			},
+			"gold":{
+				"req_state":{
+					"target":["free"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
+				"description_success":"You grab as many shiny, gold coins as your pack can carry."
+			},
+			"chest":{
+				"req_state":{},
+				"next_state":{},
+				"description_success":"That seems too large and awkward to carry."
+			},
+			"hourglass":{
+				"req_state":{
+					"target":["free"],
+					"room":["init"]
+				},
+				"next_state":{
+					"target":"in_inventory",
+					"room":"free"
+				},
+				"description_success":"You pickup the hourglass and immediately the sands inside start to flow."
+			},
+			"cross":{
+				"req_state":{
+					"target":["free"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
+				"description_success":"You lift the large cross and place it in your pack."
+			},
+			"telescope":{
+				"req_state":{
+					"target":["free"],
+					"room":["init"]
+				},
+				"next_state":{
+					"target":"in_inventory",
+					"room":"free"
+				},
+				"description_success":"You lift the telescope and realize it's quite light. It fits easily in your pack."
+			}
+		},
+		"drop":{
+			"magazine":{
+				"req_state":{
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"target":"free"
+				},
+				"description_success":"You drop the less-than-tasteful dirty magazine to the floor."
+			},
+			"key":{
+				"req_state":{
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
+				"description_success":"You consider dropping the key, but can't help but think it's going to be important to keep."
+			},
+			"book":{
+				"req_state":{
+					"target":["inventory Room 1","inventory Room 2","inventory Room 3","inventory Room 4","inventory Room 5","inventory Room 6","inventory Room 7","inventory Room 8","inventory Room 9"]
+				},
+				"next_state":{
+					"target":["in_inventory"]
+				},
+				"description_success":"You should probably hold onto this."
+			},
+			"knife":{
+				"req_state":{
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"target":"free"
+				},
+				"description_success":"You drop the knife to the ground, making a loud thunk."
+			},
+			"meat":{
+				"req_state":{
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"target":"free"
+				},
+				"description_success":"You empty the meat onto the floor."
+			},
+			"bread":{
+				"req_state":{
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"target":"free"
+				},
+				"description_success":"You drop the now-crumbled bread onto the floor."
+			},
+			"cheese":{
+				"req_state":{
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"target":"free"
+				},
+				"description_success":"You place the cheeses delicately onto the floor."
+			},
+			"grapes":{
+				"req_state":{
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"target":"free"
+				},
+				"description_success":"You pile the grapes up in the corner of the room."
+			},
+			"chocolate":{
+				"req_state":{
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"target":"in_inventory"
+				},
+				"description_success":"You remove the slightly melted chocolate and place it on the floor."
+			},
+			"gold":{
+				"req_state":{
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"target":"free"
+				},
+				"description_success":"You empty the gold coins onto the floor."
+			},
+			"hourglass":{
+				"req_state":{
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"target":"free"
+				},
+				"description_success":"You set the hourglass down on the ground. The sands inside immediately stop flowing."
+			}
+		},
+		"open":{
+			"chest":{
+				"req_state":{
+					"target":["free"],
+					"key":["in_inventory"],
+					"hourglass":["hidden"]
+				},
+				"next_state":{
+					"target":"opened",
+					"key":"in_inventory",
+					"hourglass":"free"
+				},
+				"description_success":"You take out the small key from your pack and insert it into the chest's lock.\nWith a quiet 'click', the chest's lid pops open. Inside is a small hourglass."
+			}
+		},
+		"equip":{
+			"knife":{
+				"req_state":{
+					"actor":["free"],
+					"target":["in_inventory"]
+				},
+				"next_state":{
+					"actor":"armed",
+					"target":"equipped"
+				},
+				"description_success":"You remove the knife from your belt and hold it firmly in your dominant hand."
+			}
+		},
+		"eat":{
+			"magazine":{
+				"req_state":{
+					"target":["free","in_inventory"]
+				},
+				"next_state":{
+					"target":"free"
+				},
+				"description_success":"Absolutely not."
+			},
+			"key":{
+				"req_state":{},
+				"next_state":{},
+				"description_success":"You probably shouldn't eat that."
+			},
+			"book":{
+				"req_state":{},
+				"next_state":{},
+				"description_success":"You nibble the corner, but realize the book is probably more useful un-eaten."
+			},
+			"knife":{
+				"req_state":{},
+				"next_state":{},
+				"description_success":"That just seems like a bad idea."
+			},
+			"meat":{
+				"req_state":{
+					"target":["free","in_inventory"],
+					"bread":["hidden"]
+				},
+				"next_state":{
+					"target":"consumed",
+					"bread":"free"
+				},
+				"description_success":"You feast on the meat's flesh, ripping at it with your teeth. It's delicious. Somehow you find room in your stomach to eat it all.\nWhen you look down, you notice a loaf of bread has appeared where the meat had originally stood."
+			},
+			"bread":{
+				"req_state":{
+					"target":["free","in_inventory"],
+					"cheese":["hidden"]
+				},
+				"next_state":{
+					"target":"consumed",
+					"cheese":"free"
+				},
+				"description_success":"You grab fistfulls of the bread and stuff it in your mouth, barely waiting to swallow before cramming in more. It's incredibly filling, but you manage to eat the whole loaf.\nYou swear it was not there before, but suddently a large selection of cheeses has taken the place where the bread had been."
+			},
+			"cheese":{
+				"req_state":{
+					"target":["free","in_inventory"],
+					"grapes":["hidden"]
+				},
+				"next_state":{
+					"target":"consumed",
+					"grapes":"free"
+				},
+				"description_success":"You proceed to take a bite out of each of the cheeses, each one richer and more decadent than the last. Bite after bite until you realize nothing is left but the crumbs.\nOnce again, like magic, a bowl of grapes appears where the cheese had once been."
+			},
+			"grapes":{
+				"req_state":{
+					"target":["free","in_inventory"],
+					"chocolate":["hidden"]
+				},
+				"next_state":{
+					"target":"consumed",
+					"chocolate":"free"
+				},
+				"description_success":"You start popping grapes into your mouth and they burst with flavour. The juices are complex, vibrant, and you can't stop yourself from eating every last one.\nRight on cue, the bowl that had contained the grapes had transformed into a large pile of decadent chocolates."
+			},
+			"chocolate":{
+				"req_state":{
+					"target":["free","in_inventory"],
+					"room":["init"]
+				},
+				"next_state":{
+					"target":"consumed",
+					"room":"free"
+				},
+				"description_success":"You take the tiniest bite of the corner of a piece of chocolate. It's heavenly. The sugar rush fills you with a wave of giddiness. You don't want this feeling to stop. You take another bite, and another, until you look down and see only sticky fingers remaining.\nNo more food emerges in the chocolate's place - instead, you now notice the letter 'E' is carved into the ground.\nYou feel ill and ready to burst, but it seems like the path forward is now clear."
+			},
+			"gold":{
+				"req_state":{},
+				"next_state":{},
+				"description_success":"You take a quick bite. Yup, it's real."
+			},
+			"chest":{
+				"req_state":{},
+				"next_state":{},
+				"description_success":"You look for a place to sink your teeth but don't think it will make a dent."
+			},
+			"hourglass":{
+				"req_state":{},
+				"next_state":{},
+				"description_success":"That seems like it would be both painful and a waste."
+			}
+		},
+		"attack":{
+			"violent_npc":{
+				"req_state":{
+					"actor":["armed"],
+					"target":["free"]
+				},
+				"next_state":{
+					"actor":"armed",
+					"target":"unconscious"
+				},
+				"description_success":"You work up the nerve and lunge at the evil man, but your attempt is deftly avoided.\nYou realize quick his skill with the knife far exceeds yours.\nYou look at the violent images around the room and realize you're going to be his next victim.\nHe steps towards you, adjusting his grip his blood-soaked knife in preparation of a killing blow.\n\nWhat happens next makes little sense - the killer stumbles in his approach and falls awkwardly in front of you.\nYou realize you're not going to get a second chance - you close your eyes and drive the knife in your hands directly into the man's torso.\n\nWhen your eyes open, there is no man - only yourself and the knife.\nIt is unclear if the man ever even existed - or if this was some sort of sick test."
+			},
+			"barrier":{
+				"req_state":{
+					"target":["free"],
+					"room":["init"]
+				},
+				"next_state":{
+					"target":"broken",
+					"room":"free"
+				},
+				"description_success":"Mustering all the strength you can, you clench your fists and smash at the barrier.\nYou can feel the rage well up inside you as you hit it, again and again until your knuckles bleed\nYou cry out in fury as you land one more blow, and you feel the barrier crack then crumble, acquiescing to your rage."
+			}
+		}
+	}
+}

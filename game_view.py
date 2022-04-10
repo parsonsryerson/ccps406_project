@@ -1,52 +1,41 @@
+import os
 import time
 
 class GameView():
 
-	def __init__(self):
-		pass
+	def __init__(self, commands, responses):
+		self._commands = commands
+		self._responses = responses
 
-	def print_help_commands(self, available_actions):
-		print("\n********************************************")
-		print("************** HELP COMMANDS ***************")
-		print("********************************************\n")
-		print("AVAILABLE ACTIONS:\n")
-		for action in available_actions:
-			print(f"- {action}")
+	def clear_screen(self):
+		os.system('cls') # for windows
+		os.system('clear') # for unix/mac
+
+	def print_help_commands(self):
+		print(self._responses.get('help'))
+		for command in sorted(self._commands.keys()):
+			print(f"- {command}")
 
 	def print_inventory(self, inventory = []):
 		if len(inventory) == 0:
-			print("You're not holding anything.")
-			return None
-		print("Currently in your inventory:\n")
-		for item in inventory:
-			print(f"- {item}")
+			print(self._responses.get('inventory'),get("=0"))
+		else:
+			print(self._responses.get('inventory'),get(">0"))
+			for item in inventory:
+				print(f"- {item}")
 
-	def print_error_no_room_connection(self):
-		print("\nYou can't go that way.")
+	def print_error(self, error_message):
+		print(self._responses.get(error_message))
 
-	def print_error_unavailable_action(self):
-		print("\nYou can't do that. Enter 'help' for available commands.")
+	def print_message_immediate(self, immediate_text):
+		print(immediate_text)
 
-	def print_error_unknown_target(self):
-		print("\nNot sure what that is.")
-
-	def print_description(self, output_text):
+	def print_message_slow(self, slow_text):
 		print("\n")
-		for c in output_text:
+		for c in slow_text:
 			print(c,end='',flush=True)
 			time.sleep(0.01)
 		print('')
 
-	def print_introduction(self):
-		print("\n********************************************")
-		print("*************** WELCOME TO *****************")
-		print("************ ~~ THE CIRCLES ~~ *************")
-		print("********************************************\n")
-		print("- For available commands, type 'help'")
-		print("- To exit the game, type 'q'")
 
-	def print_game_over(self):
-		print("\n********************************************")
-		print("*************** GAME OVER ******************")
-		print("********************************************\n")
 
