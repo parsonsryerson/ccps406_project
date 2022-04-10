@@ -2,10 +2,23 @@ import os
 import time
 
 class GameView():
+	_instance = None
 
-	def __init__(self, commands, responses):
-		self._commands = commands
-		self._responses = responses
+	@staticmethod
+	def get_instance(commands, responses):
+		# Used to enforce Singleton
+		if GameView._instance is None:
+			GameView(commands, responses)
+		return GameView._instance
+
+	# Constructor
+	def __init__(self, commands, responses) -> None:
+		if GameView._instance is not None:
+			raise Exception("This class is a Singleton")
+		else:
+			GameView._instance = self
+			self._commands = commands
+			self._responses = responses
 
 	def clear_screen(self):
 		os.system('cls') # for windows

@@ -1,14 +1,26 @@
 from game_classes import *
 
 class GameModel():
+    _instance = None
+
+    @staticmethod
+    def get_instance(data):
+    	# Used to enforce Singleton
+        if GameModel._instance is None:
+            GameModel(data)
+        return GameModel._instance
 
     # Constructor
     def __init__(self, data) -> None:
-        self.__set_available_actions(data['actions'])
-        self.__set_world_objects(data['world_objects'])
-        self.__set_game_objects_to_rooms()
-        self.__set_player_name()
-        self.set_game_over(False)
+        if GameModel._instance is not None:
+            raise Exception("This class is a Singleton")
+        else:
+            GameModel._instance = self
+            self.__set_available_actions(data['actions'])
+            self.__set_world_objects(data['world_objects'])
+            self.__set_game_objects_to_rooms()
+            self.__set_player_name()
+            self.set_game_over(False)
 
     # Setter Methods
     def __set_available_actions(self, available_actions:dict) -> None:

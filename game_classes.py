@@ -149,7 +149,7 @@ class Item(GameObject):
 class Action():
 
     # Constructor
-    def __init__(self, available_actions:dict = {}, action_name:str = '', actor_name:str = '', target_name:str = '') -> None:
+    def __init__(self, available_actions:dict={}, action_name:str='', actor_name:str='', target_name:str='') -> None:
         self._action_name = action_name
         self._actor_name = actor_name
         self._target_name = target_name

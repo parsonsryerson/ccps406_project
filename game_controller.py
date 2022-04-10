@@ -3,10 +3,21 @@ from game_view import *
 from game_classes import *
 
 class GameController():
+    _instance = None
+
+    @staticmethod
+    def get_instance(game_model, game_view):
+        if GameController._instance is None:
+            GameController(game_model, game_view)
+        return GameController._instance
 
     def __init__(self, game_model, game_view) -> None:
-        self._game_model = game_model
-        self._game_view = game_view
+        if GameController._instance is not None:
+            raise Exception("This class is a Singleton")
+        else:
+            GameController._instance = self
+            self._game_model = game_model
+            self._game_view = game_view
 
     def clear_screen(self) -> None:
         self._game_view.clear_screen()
@@ -129,7 +140,6 @@ class GameController():
         target = self._game_model.get_world_objects().get(action.get_target_name())
 
         # Add description of target to result if in the same room
-        # return target.get_description() if player.get_room_name() == target.get_room_name() else 'error target'
         if player.get_room_name() == target.get_room_name():
             return target.get_description()
         else:
