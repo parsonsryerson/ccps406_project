@@ -167,7 +167,6 @@ class Action():
                 self._req_state = target_dict.get('req_state')
                 self._next_state = target_dict.get('next_state')
                 self._description_success = target_dict.get('description_success')
-        print(f"DEBUG - action_name: {action_name}, actor_name: {actor_name}, target_name: {target_name}, req_state: {self._req_state}, next_state: {self._next_state}, description: {self._description_success}")
 
 
     # Setter Functions

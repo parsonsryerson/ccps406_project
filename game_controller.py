@@ -26,7 +26,7 @@ class GameController():
             else:
                 pass
         elif response == 'help':
-            self._game_view.print_help_commands()
+            self._game_view.print_help_commands(self._game_model.get_available_actions())
         elif response == 'inventory':
             player = self._game_model.get_characters().get(self._game_model.get_player_name())
             self._game_view.print_inventory(player.get_inventory())
@@ -64,7 +64,7 @@ class GameController():
                 result = self.perform_describe(action)
 
                 # if the target of the describe command was a room, also check for free objects and connections
-                if target_name in all_rooms:
+                if action.get_target_name() in all_rooms.keys():
                     result += self.describe_free_objects(action)
                     result += self.describe_room_connections(action)
 
@@ -85,27 +85,31 @@ class GameController():
         return result
 
     def parse_command(self, command:str):
-        # null case
-        if command is None or command == '':
-            return ('',Action(available_commands))
-
         # split the command
         split_text = []
         command_map = self._game_view.get_command_map()
+        available_actions = self._game_model.get_available_actions()
+
+        # null case
+        if command is None or command == '':
+            return ('',Action(available_actions))
+
 
         for idx,x in enumerate(command.split()):
             next_token = str.lower(x)
             if next_token in command_map.keys():
                 next_token = command_map.get(next_token).split()
+            elif idx==0:
+                return ('error action',Action(available_actions))
             else:
-                return 'error action' if idx==0 else 'error target'
+                return ('error target',Action(available_actions))
             split_text.extend(next_token)
         split_text = list(dict.fromkeys(split_text))
 
         action_name = split_text[0]
         target_name = split_text[1] if len(split_text) > 1 else None
         actor_name = self._game_model.get_player_name()
-        return ('success', Action(self._game_model.get_available_actions(), action_name, actor_name, target_name))
+        return ('success', Action(available_actions, action_name, actor_name, target_name))
 
     def perform_action(self, action) -> str:
         # check if conditions for actions are met
@@ -134,14 +138,16 @@ class GameController():
     def describe_free_objects(self, action) -> str:
         # check for free items in the room
         result = ''
+        target = self._game_model.get_world_objects().get(action.get_target_name())
         for obj_name,obj in target.get_game_objects().items():
             if obj.get_current_state() == "free" and obj_name != self._game_model.get_player_name():
                 result += '\nIn the room, there is '+obj.get_description()
         return result
 
-    def describe_room_connections(self) -> str:
+    def describe_room_connections(self, action) -> str:
         # check for connections to other rooms
         result = ''
+        target = self._game_model.get_world_objects().get(action.get_target_name())
         if len(target.get_connections()) > 0:
             directions = list(target.get_connections().keys())
             if len(target.get_connections()) == 1:

@@ -11,10 +11,10 @@ class GameView():
 		os.system('cls') # for windows
 		os.system('clear') # for unix/mac
 
-	def print_help_commands(self):
+	def print_help_commands(self, available_actions):
 		print(self._responses.get('help'))
-		for command in sorted(self._commands.keys()):
-			print(f"- {command}")
+		for action in sorted(available_actions):
+			print(f"- {action}")
 
 	def print_inventory(self, inventory = []):
 		if len(inventory) == 0:
