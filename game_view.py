@@ -28,7 +28,7 @@ class GameView():
 		print(self._responses.get(error_message))
 
 	def print_message_immediate(self, immediate_text):
-		print(immediate_text)
+		print(self._responses.get(immediate_text))
 
 	def print_message_slow(self, slow_text):
 		print("\n")
@@ -36,6 +36,9 @@ class GameView():
 			print(c,end='',flush=True)
 			time.sleep(0.01)
 		print('')
+
+	def get_command_map(self) -> dict:
+		return self._commands
 
 
 

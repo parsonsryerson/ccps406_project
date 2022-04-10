@@ -48,7 +48,7 @@ class GameController():
             # if command was successfully parsed, perform action based on action_name
             action_name = action.get_action_name()
             target_name = action.get_target_name()
-            player = self._game_model.get_world_objects(self._game_model.get_player_name())
+            player = self._game_model.get_world_objects().get(self._game_model.get_player_name())
             all_rooms = self._game_model.get_rooms()
             current_room = all_rooms.get(player.get_room_name())
 
@@ -60,7 +60,7 @@ class GameController():
                 # special case - 'describe' conditions are always true and never updates state
                 # if no target specified, assume target is current room of player
                 if target_name is None:
-                    action.set_target_name(current_room)
+                    action.set_target_name(current_room.get_room_name())
                 result = self.perform_describe(action)
 
                 # if the target of the describe command was a room, also check for free objects and connections
@@ -85,19 +85,18 @@ class GameController():
         return result
 
     def parse_command(self, command:str):
-        # get dict of available_commands
-        available_commands = self._game_model.get_available_actions()
-        
         # null case
         if command is None or command == '':
             return ('',Action(available_commands))
 
         # split the command
         split_text = []
+        command_map = self._game_view.get_command_map()
+
         for idx,x in enumerate(command.split()):
             next_token = str.lower(x)
-            if next_token in available_commands.keys():
-                next_token = available_commands.get(next_token).split()
+            if next_token in command_map.keys():
+                next_token = command_map.get(next_token).split()
             else:
                 return 'error action' if idx==0 else 'error target'
             split_text.extend(next_token)
@@ -106,8 +105,7 @@ class GameController():
         action_name = split_text[0]
         target_name = split_text[1] if len(split_text) > 1 else None
         actor_name = self._game_model.get_player_name()
-            
-        return ('success', Action(self._game_model, action_name, actor_name, target_name))
+        return ('success', Action(self._game_model.get_available_actions(), action_name, actor_name, target_name))
 
     def perform_action(self, action) -> str:
         # check if conditions for actions are met
@@ -124,10 +122,14 @@ class GameController():
 
     def perform_describe(self, action) -> str:
         player = self._game_model.get_world_objects().get(self._game_model.get_player_name())
-        target = self._game_model.get_world_objects().get(self._target_name)
+        target = self._game_model.get_world_objects().get(action.get_target_name())
 
         # Add description of target to result if in the same room
-        return target.get_description() if player.get_room_name() == target.get_room_name() else 'error target'
+        # return target.get_description() if player.get_room_name() == target.get_room_name() else 'error target'
+        if player.get_room_name() == target.get_room_name():
+            return target.get_description()
+        else:
+            return 'error target'
 
     def describe_free_objects(self, action) -> str:
         # check for free items in the room
@@ -155,21 +157,22 @@ class GameController():
         # translate the name of the target into the correct room name based on the actor's current location
         actor = self._game_model.get_world_objects().get(action.get_actor_name())
         prev_room = self._game_model.get_world_objects().get(actor.get_room_name())
-        next_room = prev_room.get_connections().get(action.get_target_name())
+        next_room_name = prev_room.get_connections().get(action.get_target_name())
+        next_room = self._game_model.get_world_objects().get(next_room_name)
         if next_room is None:
             return "error room"
 
         # update the actor's location to the next room - and its inventory
-        actor.set_room_name(next_room.get_room_name())
+        actor.set_room_name(next_room_name)
         for inv_item_name, inv_item in actor.get_inventory().items():
-            inv_item.set_room_name(next_room.get_room_name())
+            inv_item.set_room_name(next_room_name)
 
         # update the previous and next room's game objects
         prev_room.remove_game_objects(action.get_actor_name())
         next_room.set_game_objects({action.get_actor_name():actor})
 
         # return description of next room
-        action.set_target_name(next_room.get_room_name())
+        action.set_target_name(next_room_name)
         return self.perform_describe(action)
 
     def __meets_conditions(self, action) -> bool:
@@ -198,7 +201,7 @@ class GameController():
             if name in self._game_model.get_world_objects().keys():
                 world_object = self._game_model.get_world_objects().get(name)
             elif name == 'target':
-                world_object = self._game_model.get_world_objects().get(self._target_name)
+                world_object = self._game_model.get_world_objects().get(action.get_target_name())
             elif name == 'actor':
                 world_object = actor
             elif name == 'room':
